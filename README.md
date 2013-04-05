@@ -14,17 +14,17 @@ We should have a **NuGet** bundle
 
 ## Contributing
 
-# Prepare the environment
+### Prepare the environment
 
 * Install [Node.js](http://nodejs.org/) and NPM (should come with)
 * Install global node modules: `npm install -g grunt-cli karma`
 
-# Build
+### Build
 
 The project uses [Grunt](http://gruntjs.com/) as its build system.
 
 To build the whole project execute `grunt`, this will run `lint`, `test`, and `concat` targets.
 
-# TDD
+### TDD
 
 This project uses [Karma](http://karma-runner.github.com) to execute the tests.
