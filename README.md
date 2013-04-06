@@ -1,10 +1,10 @@
-# KiUI - [Kendo UI](http://www.kendoui.com/) untold features
+# KiUI - [Kendo UI](http://www.kendoui.com/) lost features
 
 ***
 
 ## Project objectives
 
-Widgets, validators and other features that Telerik forgot to implement
+Widgets, validators and other features for **Kendo UI** that were lost in time (and space)
 
 ## Installation
 
@@ -16,8 +16,9 @@ We should have a **NuGet** bundle
 
 ### Prepare the environment
 
-* Install [Node.js](http://nodejs.org/) and NPM (should come with)
-* Install global node modules: `npm install -g grunt-cli karma`
+* Install [Node.js](http://nodejs.org/) and NPM (should come with it)
+* Install global dependencies: `npm install -g grunt-cli karma`
+* Install local dev dependencies: `npm install` while current directory is KiUI repo
 
 ### Build
 
