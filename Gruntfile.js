@@ -31,20 +31,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['Gruntfile.js','src/**/*.js'],
-      options: {
-        curly: true,
-        immed: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        boss: true,
-        eqnull: true,
-        globals: {
-          jQuery: true,
-          kendo: true
-        }
-      }
+      files: ['Gruntfile.js','src/**/*.js']
     }
   });
 
