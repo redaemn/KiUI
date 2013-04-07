@@ -24,8 +24,10 @@ We should have a **NuGet** bundle
 
 The project uses [Grunt](http://gruntjs.com/) as its build system.
 
-To build the whole project execute `grunt`, this will run `lint`, `test`, and `concat` targets.
+To build the whole project execute `grunt`, this will run `jshint`, `concat`, and `uglify` targets.
 
 ### TDD
 
 This project uses [Karma](http://karma-runner.github.com) to execute the tests.
+
+To run all project's tests execute `grunt karma`
