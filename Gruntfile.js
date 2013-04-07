@@ -32,12 +32,19 @@ module.exports = function(grunt) {
     },
     jshint: {
       files: ['Gruntfile.js','src/**/*.js']
+    },
+    karma: {
+      all: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-karma');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
