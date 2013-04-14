@@ -1,10 +1,10 @@
-# KiUI - [Kendo UI](http://www.kendoui.com/) lost features
+# KiUI - [Kendo UI Web](http://www.kendoui.com/web.aspx) lost features
 
 ***
 
 ## Project objectives
 
-Widgets, validators and other features for **Kendo UI** that were lost in time (and space)
+Widgets, validators and other features for **Kendo UI Web** that were lost in time (and space)
 
 ## Installation
 
