@@ -4,7 +4,7 @@
 
 ## Project objectives
 
-Widgets, validators and other features for **Kendo UI Web** that were lost in time (and space)
+Widgets, validators, bindings and other features for **Kendo UI Web** that were lost in time (and space)
 
 ## Installation
 
