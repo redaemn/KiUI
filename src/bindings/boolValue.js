@@ -2,7 +2,7 @@
  * Add kendo binder that makes it possible to bind radio inputs to boolean values
  */
 
-(function (kendo) {
+(function ($, kendo, undefined) {
 
 kendo.data.binders.boolValue = kendo.data.Binder.extend({
 
@@ -25,7 +25,7 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
   refresh: function () {
     var that = this,
       element = this.element,
-      vmValue = that.bindings["boolValue"].get(), //get the value from the View-Model
+      vmValue = that.bindings.boolValue.get(), //get the value from the View-Model
       elementValue = $(element).val();
 
     if (elementValue === "true") {
@@ -58,9 +58,9 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
       vmValue = null;
     }
 
-    this.bindings["boolValue"].set(vmValue); //update the View-Model
+    this.bindings.boolValue.set(vmValue); //update the View-Model
   }
 
 });
 
-})(kendo);
+})(jQuery, kendo);
