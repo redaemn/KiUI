@@ -50,6 +50,10 @@ module.exports = function(grunt) {
           type : 'html',
           dir : 'coverage/'
         }
+      },
+      watch: {
+        configFile: 'karma.conf.js',
+        autoWatch: true
       }
     },
     copy: {
