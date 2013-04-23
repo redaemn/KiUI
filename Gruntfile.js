@@ -105,7 +105,8 @@ module.exports = function(grunt) {
         featureDescriptor = {
           displayName: featureDisplayName,
           html: "",
-          js: ""
+          js: "",
+          readme: ""
         };
 
       if (!features[group]) {
@@ -122,11 +123,14 @@ module.exports = function(grunt) {
         featureDescriptor = groupDescriptor.features[feature];
       }
 
-      if (/\.js$/.test(file)) {
+      if (/demo\.js$/.test(file)) {
         featureDescriptor.js = fileContent;
       }
-      else if (/\.html$/.test(file)) {
+      else if (/demo\.html$/.test(file)) {
         featureDescriptor.html = fileContent;
+      }
+      else if (/readme\.html$/.test(file)) {
+        featureDescriptor.readme = fileContent;
       }
     }
 
