@@ -38,6 +38,18 @@ module.exports = function(grunt) {
       singleRun: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      coverage: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        preprocessors: {
+          'src/**/*.js': 'coverage'
+        },
+        reporters: ['progress', 'coverage'],
+        coverageReporter: {
+          type : 'html',
+          dir : 'coverage/'
+        }
       }
     },
     copy: {
