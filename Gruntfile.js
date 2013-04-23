@@ -31,7 +31,8 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['Gruntfile.js','src/**/*.js']
+      dist: ['Gruntfile.js','src/**/*.js'],
+      demoSite: ['demo/**/*.js']
     },
     karma: {
       all: {
@@ -68,7 +69,7 @@ module.exports = function(grunt) {
    * Default task
    ****************************************/
 
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint:dist', 'concat:dist', 'uglify:dist']);
 
   /****************************************
    * Demo Site Task
@@ -137,6 +138,6 @@ module.exports = function(grunt) {
     grunt.log.writeln(JSON.stringify(features));
     grunt.config('demoSite.features', features);
 
-    grunt.task.run(['copy:demoSite']);
+    grunt.task.run(['jshint:demoSite', 'copy:demoSite']);
   });
 };
