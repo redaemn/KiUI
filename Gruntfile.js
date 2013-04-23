@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       demoSite: ['demo/**/*.js']
     },
     karma: {
-      all: {
+      singleRun: {
         configFile: 'karma.conf.js',
         singleRun: true
       }
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
    * Default task
    ****************************************/
 
-  grunt.registerTask('default', ['jshint:dist', 'concat:dist', 'uglify:dist']);
+  grunt.registerTask('default', ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist']);
 
   /****************************************
    * Demo Site Task
