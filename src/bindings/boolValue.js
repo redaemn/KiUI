@@ -9,6 +9,8 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
   init: function (element, bindings, options) {
     // this binder can be applied only to checkbox input
     if (element.type !== "radio") {
+      // delete refresh function
+      this.refresh = function(){};
       return;
     }
 

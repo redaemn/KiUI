@@ -4,12 +4,14 @@ describe('binding boolValue', function() {
 
     var container,
       radioTrue,
-      radioFalse;
+      radioFalse,
+      radioNull;
 
     beforeEach(function() {
       container = $('<div></div>').appendTo($('body'));
       radioTrue = $('<input type="radio" name="testRadio" value="true" data-bind="boolValue: boolVar" />').appendTo(container);
       radioFalse = $('<input type="radio" name="testRadio" value="false" data-bind="boolValue: boolVar" />').appendTo(container);
+      radioNull = $('<input type="radio" name="testRadio" value="nothing" data-bind="boolValue: boolVar" />').appendTo(container);
     });
 
     afterEach(function() {
@@ -104,6 +106,21 @@ describe('binding boolValue', function() {
 
       });
 
+      describe('when null radio is checked', function() {
+
+        beforeEach(function() {
+          radioFalse.prop('checked', true);
+          radioFalse.change();
+          radioNull.prop('checked', false);
+          radioNull.change();
+        });
+
+        it('should set view-model value to null', function() {
+          expect(viewModel.boolVar).toBe(null);
+        });
+
+      });
+
     });
 
     describe('refresh', function() {
@@ -148,18 +165,61 @@ describe('binding boolValue', function() {
 
       });
 
+      describe('when view-model value is set to null', function() {
+
+        beforeEach(function() {
+          viewModel.set('boolVar', false);
+          viewModel.set('boolVar', null);
+        });
+
+        it('no radio should be checked', function() {
+          expect(radioTrue.prop('checked')).toBe(false);
+          expect(radioFalse.prop('checked')).toBe(false);
+        });
+
+      });
+
     });
 
   });
 
-  xdescribe('init on element different from radio input', function() {
+  describe('init on element different from radio input', function() {
+
+    var container,
+      checkInput,
+      viewModel;
+
+    beforeEach(function() {
+      container = $('<div></div>').appendTo($('body'));
+      checkInput = $('<input type="checkbox" name="testRadio" value="shouldNotChange" data-bind="boolValue: boolVar" />').appendTo(container);
+
+      viewModel = kendo.observable({
+        boolVar: false
+      });
+
+      kendo.bind(container, viewModel);
+    });
+
+    afterEach(function() {
+      kendo.unbind(container);
+      container.remove();
+    });
 
     it('should not change checked when view-model value changes', function() {
+      expect(checkInput.prop('checked')).toBe(false);
 
+      viewModel.set('boolVar', true);
+
+      expect(checkInput.prop('checked')).toBe(false);
     });
 
     it('should not change view-model value when checked changes', function() {
+      expect(checkInput.prop('checked')).toBe(false);
 
+      checkInput.prop('checked', true);
+      checkInput.change();
+
+      expect(viewModel.boolVar).toBe(false);
     });
 
   });
