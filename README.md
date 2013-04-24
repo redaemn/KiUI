@@ -24,11 +24,11 @@ We should have a **NuGet** bundle
 
 The project uses [Grunt](http://gruntjs.com/) as its build system.
 
-To build the whole project execute `grunt`, this will run `jshint`, `concat`, and `uglify` targets.
+To build the whole project execute `grunt`, this will run `jshint:dist`, `karma:singleRun`, `concat:dist`, `uglify:dist` targets.
 
 ### TDD
 
 This project uses [Jasmine](http://pivotal.github.io/jasmine/) as test framework and
 [Karma](http://karma-runner.github.io) as test runner.
 
-To run all project's tests execute `grunt karma`
+To run all project's tests execute `grunt karma:singleRun`

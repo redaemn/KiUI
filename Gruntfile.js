@@ -31,13 +31,47 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['Gruntfile.js','src/**/*.js']
+      dist: ['Gruntfile.js','src/**/*.js'],
+      demoSite: ['demo/**/*.js']
     },
     karma: {
-      all: {
+      singleRun: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      coverage: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        preprocessors: {
+          'src/**/*.js': 'coverage'
+        },
+        reporters: ['progress', 'coverage'],
+        coverageReporter: {
+          type : 'html',
+          dir : 'coverage/'
+        }
+      },
+      watch: {
+        configFile: 'karma.conf.js',
+        autoWatch: true
       }
+    },
+    copy: {
+      demoSite: {
+        options: {
+          processContent: grunt.template.process
+        },
+        files: [{
+          expand: true,
+          cwd: "misc/demoSite",
+          src: ["*"],
+          dest: "dist/"
+        }]
+      }
+    },
+    demoSite: {
+      // will be filled by the 'demoSite' task
+      features: {}
     }
   });
 
@@ -45,8 +79,85 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  /****************************************
+   * Default task
+   ****************************************/
 
+  grunt.registerTask('default', ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist']);
+
+  /****************************************
+   * Demo Site Task
+   ****************************************/
+
+  grunt.registerTask('demoSite', 'Build the demo site, based on the current sources', function() {
+    var features = {};
+
+    function camelCaseToSpace(text) {
+      return text.replace(/[A-Z]/g, function(match) {
+        return(' ' + match);
+      });
+    }
+
+    function ucwords(text) {
+      return text.replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+        return $1.toUpperCase();
+      });
+    }
+
+    function updateFeatures(file) {
+                    // group/feature/fileName
+      var matches = /^([^\/]+)\/([^\/]+)\//g.exec(file),
+        group = matches[1],
+        groupDisplayName = ucwords(camelCaseToSpace(group)),
+        feature = matches[2],
+        featureDisplayName = ucwords(camelCaseToSpace(feature)),
+        fileContent = grunt.file.read("demo/" + file),
+        groupDescriptor = {
+          displayName: groupDisplayName,
+          features: {}
+        },
+        featureDescriptor = {
+          displayName: featureDisplayName,
+          html: "",
+          js: "",
+          readme: ""
+        };
+
+      if (!features[group]) {
+        features[group] = groupDescriptor;
+      }
+      else {
+        groupDescriptor = features[group];
+      }
+
+      if (!groupDescriptor.features[feature]) {
+        groupDescriptor.features[feature] = featureDescriptor;
+      }
+      else {
+        featureDescriptor = groupDescriptor.features[feature];
+      }
+
+      if (/demo\.js$/.test(file)) {
+        featureDescriptor.js = fileContent;
+      }
+      else if (/demo\.html$/.test(file)) {
+        featureDescriptor.html = fileContent;
+      }
+      else if (/readme\.html$/.test(file)) {
+        featureDescriptor.readme = fileContent;
+      }
+    }
+
+    grunt.file.expand({
+      filter: 'isFile',
+      cwd: "demo/"
+    }, '**/*').forEach(updateFeatures);
+
+    grunt.log.writeln(JSON.stringify(features));
+    grunt.config('demoSite.features', features);
+
+    grunt.task.run(['jshint:demoSite', 'copy:demoSite']);
+  });
 };
