@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>KiUI - Kendo UI Web lost features</title>
+    <!-- TODO: inside the description, add the name of every element developed using a template  -->
+    <meta name="description" content="Widgets, validators and other features for Kendo UI Web that were lost in time (and space)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="rainbow-github.css" rel="stylesheet">
+
+    <script src="http://cdn.kendostatic.com/2013.1.319/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2013.1.319/js/kendo.web.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="kiui-0.0.1.min.js"></script>
+    <script src="rainbow-custom.min.js"></script>
+
+    <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <!--<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>-->
+                <a class="brand" href="#">KiUI</a>
+                <!--<div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link">Username</a>
+                    </p>
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>--><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <!--<li class="nav-header">Sidebar</li>
+                        <li class="active"><a href="#">Link</a></li>-->
+                        
+                            
+                            <li class="nav-header">Bindings</li>
+                            
+                                
+                                <li><a href="#bindings_boolValue">Bool Value</a></li>
+                            
+                        
+                    </ul>
+                </div><!--/.well -->
+            </div><!--/span-->
+            <div class="span10">
+                <div class="hero-unit">
+                    <h1>KiUI</h1>
+                    <p>Widgets, validators and other features for <strong>Kendo UI Web</strong> that were lost in time (and space)</p>
+                </div>
+
+                
+                    
+                    <div class="row-fluid group-container">
+                        <div class="span12">
+                            <div class="page-header">
+                                <h1>Bindings</h1>
+                            </div>
+
+                            
+                                
+                                
+
+                                <section id="bindings_boolValue" class="feature-container">
+
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <h3>Bool Value</h3>
+                                        </div><!--/span-->
+                                    </div><!--/row-->
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <div id="bindings_boolValue_demo">
+
+    <form>
+        <label>Do you like <strong>KiUI</strong>?</label>
+
+        <label class="radio">
+            <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
+            Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
+        </label>
+
+        <label class="radio">
+            <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
+            No
+        </label>
+
+        <label class="radio">
+            <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
+            Don't know
+        </label>
+    </form>
+
+    <pre>
+{
+    likeKiui: <span data-bind="text: likeKiuiText()"></span>
+}</pre>
+</div>
+                                            <script>jQuery(function($) {
+  var viewModel;
+
+  viewModel = kendo.observable({
+    likeKiui: null,
+    likeKiuiText: function() {
+      return kendo.stringify(this.get('likeKiui'));
+    }
+  });
+
+  kendo.bind($('#bindings_boolValue_demo'), viewModel);
+
+});
+</script>
+                                        </div><!--/span-->
+                                        <div class="span6">
+                                            <p>
+    The <code>boolValue</code> binding can be used to bind a radio buttons control with a boolean variable in the view
+    model.
+</p>
+
+<p>
+    It's able to support three different values: <code>true</code>, <code>false</code> and <code>null</code>.
+</p>
+
+                                        </div><!--/span-->
+                                    </div><!--/row-->
+
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#bindings_boolValue_html" data-toggle="tab">Html</a></li>
+                                                <li><a href="#bindings_boolValue_js" data-toggle="tab">Javascript</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="bindings_boolValue_html">
+                                                    <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
+
+    &lt;form&gt;
+        &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
+
+        &lt;label class=&quot;radio&quot;&gt;
+            &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+            Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
+        &lt;/label&gt;
+
+        &lt;label class=&quot;radio&quot;&gt;
+            &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+            No
+        &lt;/label&gt;
+
+        &lt;label class=&quot;radio&quot;&gt;
+            &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+            Don&#x27;t know
+        &lt;/label&gt;
+    &lt;/form&gt;
+
+    &lt;pre&gt;
+{
+    likeKiui: &lt;span data-bind=&quot;text: likeKiuiText()&quot;&gt;&lt;/span&gt;
+}&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+                                                </div>
+                                                <div class="tab-pane" id="bindings_boolValue_js">
+                                                    <pre><code data-language="javascript">jQuery(function($) {
+  var viewModel;
+
+  viewModel = kendo.observable({
+    likeKiui: null,
+    likeKiuiText: function() {
+      return kendo.stringify(this.get(&#x27;likeKiui&#x27;));
+    }
+  });
+
+  kendo.bind($(&#x27;#bindings_boolValue_demo&#x27;), viewModel);
+
+});
+</code></pre>
+                                                </div>
+                                            </div>
+                                        </div><!--/span-->
+                                    </div><!--/row-->
+
+                                </section>
+
+                            
+
+                        </div><!--/span-->
+                    </div><!--/row-->
+
+                
+
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <hr>
+
+        <footer>
+            <p>Powered by <a href="http://www.kendoui.com/web.aspx">Kendo UI Web</a></p>
+            <p>Project on GitHub <a href="https://github.com/redaemn/KiUI">https://github.com/redaemn/KiUI</a></p>
+        </footer>
+
+    </div><!--/.fluid-container-->
+
+</body>
+
+</html>
