@@ -155,9 +155,10 @@ module.exports = function(grunt) {
       cwd: "demo/"
     }, '**/*').forEach(updateFeatures);
 
-    grunt.log.writeln(JSON.stringify(features));
     grunt.config('demoSite.features', features);
 
     grunt.task.run(['jshint:demoSite', 'copy:demoSite']);
+
+    grunt.log.writeln("Demo Site correctly created!");
   });
 };
