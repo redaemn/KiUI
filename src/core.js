@@ -3,7 +3,7 @@
  * and defines kiui global object
  */
 
-(function(window, $) {
+(function(window, $, undefined) {
 
   var kiui = {};
   
