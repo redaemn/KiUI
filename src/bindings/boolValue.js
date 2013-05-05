@@ -65,4 +65,4 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
 
 });
 
-})(jQuery, kendo);
+})(window.jQuery, window.kendo);
