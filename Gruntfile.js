@@ -99,7 +99,19 @@ module.exports = function(grunt) {
    * Default task
    ****************************************/
 
-  grunt.registerTask('default', ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist', 'cssmin:dist']);
+  grunt.registerTask('default',
+    'Lint JS files, run tests and then build',
+    ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist', 'cssmin:dist']
+  );
+  
+  /****************************************
+   * Build Task
+   ****************************************/
+   
+   grunt.registerTask('build',
+    'Lint JS files, concatenate and then minify JS and CSS files',
+    ['jshint:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist']
+   );
 
   /****************************************
    * Demo Site Task
