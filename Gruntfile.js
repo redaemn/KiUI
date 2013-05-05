@@ -18,7 +18,7 @@ module.exports = function(grunt) {
           banner: '<%= commons.banner %>'
         },
         files: {
-          'dist/<%= filename %>-<%= pkg.version %>.js': ['src/**/*.js'],
+          'dist/<%= filename %>-<%= pkg.version %>.js': ['src/core.js', 'src/**/*.js'],
           'dist/<%= filename %>-<%= pkg.version %>.css': ['src/**/*.css']
         }
       }

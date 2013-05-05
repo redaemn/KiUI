@@ -8,6 +8,7 @@ files = [
   JASMINE_ADAPTER,
   'lib/jquery.min.js',
   'lib/kendo.web.min.js',
+  'src/core.js',
   'src/**/*.js',
   'test/**/*.js'
 ];
