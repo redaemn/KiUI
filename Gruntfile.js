@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      dist: ['Gruntfile.js','src/**/*.js'],
+      dist: ['Gruntfile.js','src/**/*.js', 'test/**/*.js'],
       demoSite: ['demo/**/*.js']
     },
     karma: {
