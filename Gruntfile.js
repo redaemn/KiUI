@@ -99,7 +99,7 @@ module.exports = function(grunt) {
    * Default task
    ****************************************/
 
-  grunt.registerTask('default', ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist']);
+  grunt.registerTask('default', ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist', 'cssmin:dist']);
 
   /****************************************
    * Demo Site Task
