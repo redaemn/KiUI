@@ -17,8 +17,10 @@ module.exports = function(grunt) {
         options: {
           banner: '<%= commons.banner %>'
         },
-        src: ['src/**/*.js'],
-        dest: 'dist/<%= filename %>-<%= pkg.version %>.js'
+        files: {
+          'dist/<%= filename %>-<%= pkg.version %>.js': ['src/**/*.js'],
+          'dist/<%= filename %>-<%= pkg.version %>.css': ['src/**/*.css']
+        }
       }
     },
     uglify: {
@@ -28,6 +30,17 @@ module.exports = function(grunt) {
         },
         src:['dist/<%= filename %>-<%= pkg.version %>.js'],
         dest:'dist/<%= filename %>-<%= pkg.version %>.min.js'
+      }
+    },
+    cssmin: {
+      dist: {
+        options: {
+          report: 'min',
+          banner: '<%= commons.banner %>'
+        },
+        files: {
+          'dist/<%= filename %>-<%= pkg.version %>.min.css': ['dist/<%= filename %>-<%= pkg.version %>.css']
+        }
       }
     },
     jshint: {
@@ -80,6 +93,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   /****************************************
    * Default task
