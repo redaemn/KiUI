@@ -10,7 +10,7 @@ module.exports = function(grunt) {
               ' * <%= pkg.name %> v<%= pkg.version %> (https://github.com/redaemn/KiUI)\n' +
               ' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
               ' * Author: <%= pkg.author %>\n' +
-              ' */\n'
+              ' */\n\n'
     },
     concat: {
       dist: {
