@@ -26,7 +26,8 @@ module.exports = function(grunt) {
     uglify: {
       dist:{
         options: {
-          banner: '<%= commons.banner %>'
+          banner: '<%= commons.banner %>',
+          report: 'min'
         },
         src:['dist/<%= filename %>-<%= pkg.version %>.js'],
         dest:'dist/<%= filename %>-<%= pkg.version %>.min.js'
