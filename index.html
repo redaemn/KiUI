@@ -12,6 +12,9 @@
     <link href="main.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="rainbow-github.css" rel="stylesheet">
+    <link href="http://cdn.kendostatic.com/2013.1.319/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2013.1.319/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="kiui-0.0.1.min.css" rel="stylesheet" />
 
     <script src="http://cdn.kendostatic.com/2013.1.319/js/jquery.min.js"></script>
     <script src="http://cdn.kendostatic.com/2013.1.319/js/kendo.web.min.js"></script>
@@ -58,7 +61,30 @@
                             <li class="nav-header">Bindings</li>
                             
                                 
-                                <li><a href="#bindings_boolValue">Bool Value</a></li>
+                                <li>
+                                    <a href="#bindings_boolValue">
+                                        Bool Value
+                                        
+                                            <span class="label label-important">New!</span>
+                                        
+                                        
+                                    </a>
+                                </li>
+                            
+                        
+                            
+                            <li class="nav-header">Utilities</li>
+                            
+                                
+                                <li>
+                                    <a href="#utilities_notify">
+                                        Notify
+                                        
+                                        
+                                            <span class="label label-info">Coming soon...</span>
+                                        
+                                    </a>
+                                </li>
                             
                         
                     </ul>
@@ -86,39 +112,51 @@
 
                                     <div class="row-fluid">
                                         <div class="span12">
-                                            <h3>Bool Value</h3>
+                                            <h2>
+                                                Bool Value
+                                                
+                                                    <span class="label label-important">New!</span>
+                                                
+                                                
+                                            </h2>
                                         </div><!--/span-->
                                     </div><!--/row-->
 
                                     <div class="row-fluid">
-                                        <div class="span6">
-                                            <div id="bindings_boolValue_demo">
+                                        
+                                            <div class="span6">
+                                                <div id="bindings_boolValue_demo">
+    <div class="span7">
+        <form>
+            <label>Do you like <strong>KiUI</strong>?</label>
 
-    <form>
-        <label>Do you like <strong>KiUI</strong>?</label>
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
+                Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
+            </label>
 
-        <label class="radio">
-            <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
-            Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
-        </label>
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
+                No
+            </label>
 
-        <label class="radio">
-            <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
-            No
-        </label>
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
+                Don't know
+            </label>
+        </form>
+    </div>
 
-        <label class="radio">
-            <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
-            Don't know
-        </label>
-    </form>
-
-    <pre>
+    <div class="span5">
+        <h5>Current view-model state:</h5>
+        <pre>
 {
     likeKiui: <span data-bind="text: likeKiuiText()"></span>
 }</pre>
+    </div>
+
 </div>
-                                            <script>jQuery(function($) {
+                                                <script>jQuery(function($) {
   var viewModel;
 
   viewModel = kendo.observable({
@@ -132,9 +170,9 @@
 
 });
 </script>
-                                        </div><!--/span-->
-                                        <div class="span6">
-                                            <p>
+                                            </div><!--/span-->
+                                            <div class="span6">
+                                                <p>
     The <code>boolValue</code> binding can be used to bind a radio buttons control with a boolean variable in the view
     model.
 </p>
@@ -143,46 +181,53 @@
     It's able to support three different values: <code>true</code>, <code>false</code> and <code>null</code>.
 </p>
 
-                                        </div><!--/span-->
+                                            </div><!--/span-->
+                                        
                                     </div><!--/row-->
 
-                                    <div class="row-fluid">
-                                        <div class="span12">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#bindings_boolValue_html" data-toggle="tab">Html</a></li>
-                                                <li><a href="#bindings_boolValue_js" data-toggle="tab">Javascript</a></li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="bindings_boolValue_html">
-                                                    <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
+                                    
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#bindings_boolValue_html" data-toggle="tab">Html</a></li>
+                                                    <li><a href="#bindings_boolValue_js" data-toggle="tab">Javascript</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="bindings_boolValue_html">
+                                                        <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
+    &lt;div class=&quot;span7&quot;&gt;
+        &lt;form&gt;
+            &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
 
-    &lt;form&gt;
-        &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
+            &lt;/label&gt;
 
-        &lt;label class=&quot;radio&quot;&gt;
-            &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-            Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
-        &lt;/label&gt;
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                No
+            &lt;/label&gt;
 
-        &lt;label class=&quot;radio&quot;&gt;
-            &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-            No
-        &lt;/label&gt;
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                Don&#x27;t know
+            &lt;/label&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
 
-        &lt;label class=&quot;radio&quot;&gt;
-            &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-            Don&#x27;t know
-        &lt;/label&gt;
-    &lt;/form&gt;
-
-    &lt;pre&gt;
+    &lt;div class=&quot;span5&quot;&gt;
+        &lt;h5&gt;Current view-model state:&lt;/h5&gt;
+        &lt;pre&gt;
 {
     likeKiui: &lt;span data-bind=&quot;text: likeKiuiText()&quot;&gt;&lt;/span&gt;
 }&lt;/pre&gt;
+    &lt;/div&gt;
+
 &lt;/div&gt;</code></pre>
-                                                </div>
-                                                <div class="tab-pane" id="bindings_boolValue_js">
-                                                    <pre><code data-language="javascript">jQuery(function($) {
+                                                    </div>
+                                                    <div class="tab-pane" id="bindings_boolValue_js">
+                                                        <pre><code data-language="javascript">jQuery(function($) {
   var viewModel;
 
   viewModel = kendo.observable({
@@ -196,10 +241,63 @@
 
 });
 </code></pre>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </div><!--/span-->
+                                        </div><!--/row-->
+                                    
+
+                                </section>
+
+                            
+
+                        </div><!--/span-->
+                    </div><!--/row-->
+
+                
+                    
+                    <div class="row-fluid group-container">
+                        <div class="span12">
+                            <div class="page-header">
+                                <h1>Utilities</h1>
+                            </div>
+
+                            
+                                
+                                
+
+                                <section id="utilities_notify" class="feature-container">
+
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <h2>
+                                                Notify
+                                                
+                                                
+                                                    <span class="label label-info">Coming soon...</span>
+                                                
+                                            </h2>
                                         </div><!--/span-->
                                     </div><!--/row-->
+
+                                    <div class="row-fluid">
+                                        
+                                            <div class="span12">
+                                                <p>
+    <code>kiui.notify</code> helps you to send notifications to the user.
+    It can handle three different type of notifications: <code>error</code>, <code>success</code> and <code>info</code>.
+</p>
+
+<p>
+    Notifications can be customized to appear in different positions of the screen
+    (<code>top left</code>, <code>top right</code>, <code>bottom left</code>, <code>bottom right</code>),
+    can be configured to <code>autoHide</code> or <code>append</code> to previous notifications.
+</p>
+                                            </div><!--/span-->
+                                        
+                                    </div><!--/row-->
+
+                                    
 
                                 </section>
 

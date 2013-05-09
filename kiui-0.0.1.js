@@ -1,8 +1,22 @@
 /*
  * KiUI v0.0.1 (https://github.com/redaemn/KiUI)
- * 2013-05-01
+ * 2013-05-09
  * Author: https://github.com/redaemn/KiUI/graphs/contributors
  */
+
+/**
+ * Contains kiui core functionalities that are needed by different modules
+ * and defines kiui global object
+ */
+
+(function(window, $, undefined) {
+
+  var kiui = {};
+  
+  window.kiui = kiui;
+
+})(window, window.jQuery);
+
 /**
  * Add kendo binder that makes it possible to bind radio inputs to boolean values
  */
@@ -70,4 +84,4 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
 
 });
 
-})(jQuery, kendo);
+})(window.jQuery, window.kendo);
