@@ -89,6 +89,7 @@ module.exports = function(grunt) {
       newFeatures: {
       },
       comingSoonFeatures: {
+        utilities: ['notify']
       }
     }
   });
