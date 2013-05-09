@@ -87,6 +87,7 @@ module.exports = function(grunt) {
       // will be filled by the 'demoSite' task
       features: {},
       newFeatures: {
+        bindings: ['boolValue']
       },
       comingSoonFeatures: {
         utilities: ['notify']
