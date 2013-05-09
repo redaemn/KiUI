@@ -85,7 +85,11 @@ module.exports = function(grunt) {
     },
     demoSite: {
       // will be filled by the 'demoSite' task
-      features: {}
+      features: {},
+      newFeatures: {
+      },
+      comingSoonFeatures: {
+      }
     }
   });
 
@@ -119,7 +123,11 @@ module.exports = function(grunt) {
    ****************************************/
 
   grunt.registerTask('demoSite', 'Build the demo site, based on the current sources', function() {
-    var features = {};
+    var features = {},
+      newFeatures = grunt.config('demoSite.newFeatures'),
+      comingSoonFeatures = grunt.config('demoSite.comingSoonFeatures'),
+      groupsCount = 0,
+      featuresCount = 0;
 
     function camelCaseToSpace(text) {
       return text.replace(/[A-Z]/g, function(match) {
@@ -149,11 +157,14 @@ module.exports = function(grunt) {
           displayName: featureDisplayName,
           html: "",
           js: "",
-          readme: ""
+          readme: "",
+          isNew: newFeatures[group] && newFeatures[group].indexOf(feature) > -1,
+          isComingSoon: comingSoonFeatures[group] && comingSoonFeatures[group].indexOf(feature) > -1
         };
 
       if (!features[group]) {
         features[group] = groupDescriptor;
+        groupsCount++;
       }
       else {
         groupDescriptor = features[group];
@@ -161,6 +172,7 @@ module.exports = function(grunt) {
 
       if (!groupDescriptor.features[feature]) {
         groupDescriptor.features[feature] = featureDescriptor;
+        featuresCount++;
       }
       else {
         featureDescriptor = groupDescriptor.features[feature];
@@ -184,8 +196,8 @@ module.exports = function(grunt) {
 
     grunt.config('demoSite.features', features);
 
-    grunt.task.run(['jshint:demoSite', 'copy:demoSite']);
+    grunt.log.writeln(groupsCount + " groups and " + featuresCount + " features correctly processed!");
 
-    grunt.log.writeln("Demo Site correctly created!");
+    grunt.task.run(['jshint:demoSite', 'copy:demoSite']);
   });
 };
