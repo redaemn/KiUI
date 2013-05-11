@@ -21,11 +21,10 @@
     EMPTY = '',
     BODY = 'body';
 
-  var globalNotifiers = {};
+  var notifyWrappers = {};
 
-  function createContainer(options) {
+  function createContainer(options, wrapperDomEl) {
     var containerType = options.containerType;
-    var autoHide = options.autoHide;
     var width = options.width;
     var container = $(
       '<div class="' + KIUI_NOTIFY_CONTAINER + ' ' + containerType + ' k-block k-error-colored">' +
@@ -33,7 +32,6 @@
         '<span class="' + KIUI_NOTIFY_CONTENT + '"></span>' +
       '</div>').css('width', width);
     var visible = false;
-    var containerObj;
       
     var closeButton = container.find('.' + KIUI_NOTIFY_CLOSE);
     
@@ -48,11 +46,13 @@
 
     function hide() {
       if (visible) {
+        visible = false;
         container.animate({ 'left': -20 }, { queue: false });
         container.fadeOut({
           queue: false,
           complete: function() {
             container.remove();
+            //TODO: remove from containers
           }
         });
       }
@@ -64,47 +64,55 @@
     
     closeButton.on('click', hide);
     
-    if (autoHide) {
-      setTimeout(hide, autoHide);
-    }
+    wrapperDomEl.append(container);
 
-    containerObj = {
+    return {
       addContent: addContent,
       show: show,
-      hide: hide,
-      _element: container
+      hide: hide
     };
-    
-    container.data(KIUI_NOTIFY_CONTAINER, containerObj);
-    
-    return containerObj;
   }
 
-  function getGlobalNotify(options) {
+  function getNotifyWrapper(options) {
     var position = options.position;
-    var globalNotify = globalNotifiers[position];
+    var notifyWrapper = notifyWrappers[position];
+    var wrapperDomEl;
     var positions;
+    
+    var containers = [];
 
-    if (!globalNotify) {
-      globalNotify = globalNotifiers[options.position] = $('<div class="' + KIUI_NOTIFY + '"></div>').appendTo(BODY);
+    if (!notifyWrapper) {
+      wrapperDomEl = $('<div class="' + KIUI_NOTIFY + '"></div>').appendTo(BODY);
       positions = /^([^-]+)-(.+)$/.exec(position);
-      globalNotify.addClass(KIUI_POSITION + positions[1]).addClass(KIUI_POSITION + positions[2]);
+      wrapperDomEl.addClass(KIUI_POSITION + positions[1]).addClass(KIUI_POSITION + positions[2]);
+      
+      notifyWrapper = notifyWrappers[options.position] = {
+        error: function(options) {
+          notify(options, ERROR);
+        },
+        destroy: destroy
+      };
     }
-
-    return globalNotify;
-  }
+    
+    function destroy() {
+      wrapperDomEl.remove();
+      containers = [];
+      notifyWrappers[position] = undefined;
+      $.each(notifyWrapper, function(key) {
+        notifyWrapper[key] = undefined;
+      });
+    }
 
   function notify(options, containerType) {
     var defaultOptions = {
+      html: "",
       autoHide: false,
-      position: TOP_RIGHT,
       width: 250,
       append: false
     };
     var isInvalidOptions;
-    var isInvalidPosition;
     var isInvalidAutoHide;
-    var globalNotify;
+    var isInvalidHtml;
     var container;
 
     if (typeof options === STRING) {
@@ -112,16 +120,66 @@
     }
 
     isInvalidOptions = (
-      typeof options !== OBJECT ||
-      typeof options.html !== STRING ||
-      options.html === EMPTY
+      typeof options !== OBJECT
     );
       
     if (isInvalidOptions) {
-      return;
+      throw new Error("Invalid options object");
+    }
+    
+    isInvalidHtml = (
+      typeof options.html !== STRING ||
+      options.html === EMPTY
+    );
+    
+    if (isInvalidHtml) {
+      throw new Error("Invalid html option");
     }
 
     options = $.extend({}, defaultOptions, options, { containerType: containerType });
+    
+    isInvalidAutoHide = (
+      options.autoHide !== false &&
+      typeof options.autoHide !== NUMBER
+    );
+    
+    if (isInvalidAutoHide) {
+      options.autoHide = defaultOptions.autoHide;
+    }
+    
+    if (options.append) {
+      container = containers[containers.length - 1];
+    }
+    
+    if (container === undefined) {
+      container = createContainer(options, wrapperDomEl);
+      containers.push(container);
+    }
+    
+    container.addContent(options.html);
+    container.show();
+    
+    if (options.autoHide) {
+      setTimeout(container.hide(), options.autoHide);
+    }
+  }
+
+    return notifyWrapper;
+  }
+  
+  function notifyFactory(options) {
+    var defaultOptions = {
+      position: TOP_RIGHT
+    };
+    var isInvalidPosition;
+    var globalNotify;
+    var container;
+
+    if (typeof options !== OBJECT) {
+      options = { html: options };
+    }
+
+    options = $.extend({}, defaultOptions, options);
     
     isInvalidPosition = (
       options.position !== TOP_RIGHT &&
@@ -133,33 +191,10 @@
     if (isInvalidPosition) {
       options.position = defaultOptions.position;
     }
-    
-    isInvalidAutoHide = (
-      options.autoHide !== false &&
-      typeof options.autoHide !== NUMBER
-    );
-    
-    if (isInvalidAutoHide) {
-      options.autoHide = defaultOptions.autoHide;
-    }
 
-    globalNotify = getGlobalNotify(options);
-    
-    if (options.append) {
-      container = globalNotify.find('.' + KIUI_NOTIFY_CONTAINER).last().data(KIUI_NOTIFY_CONTAINER);
-    }
-    
-    if (container === undefined || container === null) {
-      container = createContainer(options);
-      globalNotify.append(container['_element']);
-    }
-    
-    container.addContent(options.html);
-    container.show();
+    return getNotifyWrapper(options);
   }
 
-  kiui.notifyError = function(options) {
-    notify(options, ERROR);
-  };
+  kiui.notify = notifyFactory;
 
 })(window.jQuery, window.kendo, window.kiui);

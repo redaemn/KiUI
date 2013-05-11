@@ -1,7 +1,9 @@
 jQuery(function($) {
 
+  var notifier = kiui.notify();
+
   function notifyError() {
-    kiui.notifyError("this is an error");
+    notifier.error("this is an error");
   }
 
   $('#utilities_notify_demo button#error').click(notifyError);
