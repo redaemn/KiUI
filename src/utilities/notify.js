@@ -35,12 +35,20 @@
       
     var closeButton = container.find('.' + KIUI_NOTIFY_CLOSE);
     
-    function show() {
+    function show(autoHide) {
       if (!visible) {
         visible = true;
         container.css({'left': -20});
         container.animate({ 'left': 0 }, { queue: false });
         container.fadeIn({ queue: false });
+      }
+      
+      // TODO: unset previously set timeout
+      
+      // TODO: it should be possible to pause the timeout when the mouse hovers over notification
+      
+      if (autoHide) {
+        setTimeout(hide, autoHide);
       }
     }
 
@@ -58,7 +66,7 @@
       }
     }
 
-    function addContent(html) {
+    function addHtml(html) {
       container.find('.' + KIUI_NOTIFY_CONTENT).append(html);
     }
     
@@ -67,7 +75,8 @@
     wrapperDomEl.append(container);
 
     return {
-      addContent: addContent,
+      addHtml: addHtml,
+      // TODO: addIcon, addTitle, addContent
       show: show,
       hide: hide
     };
@@ -103,66 +112,63 @@
       });
     }
 
-  function notify(options, containerType) {
-    var defaultOptions = {
-      html: "",
-      autoHide: false,
-      width: 250,
-      append: false
-    };
-    var isInvalidOptions;
-    var isInvalidAutoHide;
-    var isInvalidHtml;
-    var container;
+    function notify(options, containerType) {
+      var defaultOptions = {
+        html: "",
+        // TODO: icon, title, content
+        autoHide: false,
+        width: 250,
+        append: false
+      };
+      var isInvalidOptions;
+      var isInvalidAutoHide;
+      var isInvalidHtml;
+      var container;
 
-    if (typeof options === STRING) {
-      options = { html: options };
-    }
+      if (typeof options === STRING) {
+        options = { html: options };
+      }
 
-    isInvalidOptions = (
-      typeof options !== OBJECT
-    );
+      isInvalidOptions = (
+        typeof options !== OBJECT
+      );
       
-    if (isInvalidOptions) {
-      throw new Error("Invalid options object");
-    }
+      if (isInvalidOptions) {
+        throw new Error("Invalid options object");
+      }
     
-    isInvalidHtml = (
-      typeof options.html !== STRING ||
-      options.html === EMPTY
-    );
+      isInvalidHtml = (
+        typeof options.html !== STRING ||
+        options.html === EMPTY
+      );
     
-    if (isInvalidHtml) {
-      throw new Error("Invalid html option");
-    }
+      if (isInvalidHtml) {
+        throw new Error("Invalid html option");
+      }
 
-    options = $.extend({}, defaultOptions, options, { containerType: containerType });
+      options = $.extend({}, defaultOptions, options, { containerType: containerType });
     
-    isInvalidAutoHide = (
-      options.autoHide !== false &&
-      typeof options.autoHide !== NUMBER
-    );
+      isInvalidAutoHide = (
+        options.autoHide !== false &&
+        typeof options.autoHide !== NUMBER
+      );
     
-    if (isInvalidAutoHide) {
-      options.autoHide = defaultOptions.autoHide;
+      if (isInvalidAutoHide) {
+        options.autoHide = defaultOptions.autoHide;
+      }
+    
+      if (options.append) {
+        container = containers[containers.length - 1];
+      }
+    
+      if (container === undefined) {
+        container = createContainer(options, wrapperDomEl);
+        containers.push(container);
+      }
+    
+      container.addHtml(options.html);
+      container.show(options.autoHide);
     }
-    
-    if (options.append) {
-      container = containers[containers.length - 1];
-    }
-    
-    if (container === undefined) {
-      container = createContainer(options, wrapperDomEl);
-      containers.push(container);
-    }
-    
-    container.addContent(options.html);
-    container.show();
-    
-    if (options.autoHide) {
-      setTimeout(container.hide(), options.autoHide);
-    }
-  }
 
     return notifyWrapper;
   }
@@ -172,8 +178,6 @@
       position: TOP_RIGHT
     };
     var isInvalidPosition;
-    var globalNotify;
-    var container;
 
     if (typeof options !== OBJECT) {
       options = { html: options };
