@@ -23,9 +23,10 @@
 
   var notifyWrappers = {};
 
-  function createContainer(options, wrapperDomEl) {
+  function createContainer(options, wrapperDomEl, removeFromContainers) {
     var containerType = options.containerType;
     var width = options.width;
+    var containerObj;
     var container = $(
       '<div class="' + KIUI_NOTIFY_CONTAINER + ' ' + containerType + ' k-block k-error-colored">' +
         '<span class="' + KIUI_NOTIFY_CLOSE + ' k-icon k-i-close"></span>' +
@@ -60,7 +61,7 @@
           queue: false,
           complete: function() {
             container.remove();
-            //TODO: remove from containers
+            removeFromContainers(containerObj);
           }
         });
       }
@@ -74,12 +75,14 @@
     
     wrapperDomEl.append(container);
 
-    return {
+    containerObj = {
       addHtml: addHtml,
       // TODO: addIcon, addTitle, addContent
       show: show,
       hide: hide
     };
+    
+    return containerObj;
   }
 
   function getNotifyWrapper(options) {
@@ -101,6 +104,10 @@
         },
         destroy: destroy
       };
+    }
+    
+    function removeFromContainers(container) {
+      containers.splice(containers.indexOf(container), 1);
     }
     
     function destroy() {
@@ -163,7 +170,7 @@
       }
     
       if (container === undefined) {
-        container = createContainer(options, wrapperDomEl);
+        container = createContainer(options, wrapperDomEl, removeFromContainers);
         containers.push(container);
       }
     
