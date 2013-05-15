@@ -230,7 +230,7 @@ describe('utility notify:', function() {
     
     });
   
-    describe('error() with object parameter:', function() {
+    describe('with object parameter:', function() {
       
       describe('html option', function() {
         
@@ -342,9 +342,50 @@ describe('utility notify:', function() {
       
       });
       
+      describe('append option', function() {
+      
+        beforeEach(function() {
+          notifier.error({
+            html: "first error"
+          });
+          notifier.error({
+            html: "second error",
+            append: true
+          });
+        });
+        
+        it('should not create a second container', function() {
+          expect(container().length).toBe(1);
+        });
+        
+        it('should append content to the existing container', function() {
+          expect(content().html()).toBe("first errorsecond error");
+        });
+      
+      });
+      
+      describe('append option with no previous notification', function() {
+      
+        beforeEach(function() {
+          notifier.error({
+            html: "first error",
+            append: true
+          });
+        });
+        
+        it('should create a container', function() {
+          expect(container().length).toBe(1);
+        });
+        
+        it('should set container content', function() {
+          expect(content().html()).toBe("first error");
+        });
+      
+      });
+      
     });
   
-    describe ('error() with invalid options parameter', function() {
+    describe ('with invalid options parameter', function() {
   
       it('should throw', function() {
         var functionParameter = function() {

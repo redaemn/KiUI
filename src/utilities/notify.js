@@ -115,10 +115,11 @@
     function notify(options, containerType) {
       var defaultOptions = {
         html: "",
-        // TODO: icon, title, content
+        // TODO: icon, title, content, template
         autoHide: false,
         width: 250,
         append: false
+        // TODO: events onShow, onHide
       };
       var isInvalidOptions;
       var isInvalidAutoHide;
