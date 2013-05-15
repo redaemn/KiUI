@@ -197,7 +197,7 @@
       options.position !== TOP_RIGHT &&
       options.position !== TOP_LEFT &&
       options.position !== BOTTOM_RIGHT &&
-      options.position !== BOTTOM_RIGHT
+      options.position !== BOTTOM_LEFT
     );
     
     if (isInvalidPosition) {
