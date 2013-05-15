@@ -1,4 +1,4 @@
-(function($, kendo, kiui, undefined) {
+(function($, kendo, kiui, window, undefined) {
 
   var ERROR = 'kiui-notify-error',
     KIUI_NOTIFY = 'kiui-notify',
@@ -23,7 +23,7 @@
 
   var notifyWrappers = {};
 
-  function createContainer(options, wrapperDomEl, removeFromContainers) {
+  function createContainer(options, wrapperDomEl, onHide) {
     var containerType = options.containerType;
     var width = options.width;
     var containerObj;
@@ -39,8 +39,8 @@
     function show(autoHide) {
       if (!visible) {
         visible = true;
-        container.css({'left': -20});
-        container.animate({ 'left': 0 }, { queue: false });
+        //container.css({'left': -20});
+        //container.animate({ 'left': 0 }, { queue: false });
         container.fadeIn({ queue: false });
       }
       
@@ -56,12 +56,12 @@
     function hide() {
       if (visible) {
         visible = false;
-        container.animate({ 'left': -20 }, { queue: false });
+        //container.animate({ 'left': -20 }, { queue: false });
         container.fadeOut({
           queue: false,
           complete: function() {
             container.remove();
-            removeFromContainers(containerObj);
+            onHide(containerObj);
           }
         });
       }
@@ -69,6 +69,18 @@
 
     function addHtml(html) {
       container.find('.' + KIUI_NOTIFY_CONTENT).append(html);
+    }
+    
+    function setPosition(position) {
+      container.css(position);
+    }
+    
+    function containerHeight() {
+      return container.outerHeight();
+    }
+    
+    function containerWidth() {
+      return container.outerWidth();
     }
     
     closeButton.on('click', hide);
@@ -79,7 +91,10 @@
       addHtml: addHtml,
       // TODO: addIcon, addTitle, addContent
       show: show,
-      hide: hide
+      hide: hide,
+      setPosition: setPosition,
+      height: containerHeight,
+      width: containerWidth
     };
     
     return containerObj;
@@ -106,8 +121,53 @@
       };
     }
     
-    function removeFromContainers(container) {
+    function setContainersPosition() {
+      var margin = 10;
+      var maxVertical = $(window).height();
+      var currentVertical = margin;
+      var currentHorizontal = margin;
+      
+      $.each(containers, function(idx, container) {
+        var height = container.height();
+        var nextVertical = currentVertical + margin;
+        
+        if (currentVertical + height > maxVertical - margin) {
+          currentVertical = margin;
+          currentHorizontal += container.width() + margin;
+        }
+        
+        if (position == TOP_RIGHT) {
+          container.setPosition({
+            top: currentVertical,
+            right: currentHorizontal
+          });
+        }
+        else if (position == TOP_LEFT) {
+          container.setPosition({
+            top: currentVertical,
+            left: currentHorizontal
+          });
+        }
+        else if (position == BOTTOM_RIGHT) {
+          container.setPosition({
+            bottom: currentVertical,
+            right: currentHorizontal
+          });
+        }
+        else if (position == BOTTOM_LEFT) {
+          container.setPosition({
+            bottom: currentVertical,
+            left: currentHorizontal
+          });
+        }
+        
+        currentVertical += height + margin;
+      });
+    }
+    
+    function onHide(container) {
       containers.splice(containers.indexOf(container), 1);
+      setContainersPosition();
     }
     
     function destroy() {
@@ -170,13 +230,16 @@
       }
     
       if (container === undefined) {
-        container = createContainer(options, wrapperDomEl, removeFromContainers);
+        container = createContainer(options, wrapperDomEl, onHide);
         containers.push(container);
       }
     
       container.addHtml(options.html);
+      setContainersPosition();
       container.show(options.autoHide);
     }
+
+    $(window).resize(setContainersPosition);
 
     return notifyWrapper;
   }
@@ -209,4 +272,4 @@
 
   kiui.notify = notifyFactory;
 
-})(window.jQuery, window.kendo, window.kiui);
+})(window.jQuery, window.kendo, window.kiui, window);

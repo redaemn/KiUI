@@ -1,39 +1,9 @@
-.kiui-notify {
-  position: fixed;
-  z-index: 10000;
-}
-
-.kiui-notify.kiui-position-top {
-  top: 6px;
-}
-
-.kiui-notify.kiui-position-bottom {
-  bottom: 6px;
-}
-
-.kiui-notify.kiui-position-left {
-  left: 6px;
-}
-
-.kiui-notify.kiui-position-right {
-  right: 6px;
-}
-
 .kiui-notify .kiui-notify-container {
   padding: 6px 24px 6px 8px;
   display: none;
   margin-bottom: 4px;
-  position: relative;
-}
-
-.kiui-notify.kiui-position-left .kiui-notify-container {
-  float: left;
-  margin-right: 4px;
-}
-
-.kiui-notify.kiui-position-right .kiui-notify-container {
-  float: right;
-  margin-left: 4px;
+  position: fixed;
+  z-index: 10000;
 }
 
 .kiui-notify .kiui-notify-container .kiui-notify-close {
