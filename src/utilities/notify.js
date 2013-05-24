@@ -247,6 +247,7 @@
   function notifyFactory(options) {
     var defaultOptions = {
       position: TOP_RIGHT
+      // TODO: notificationsMargin: 10
     };
     var isInvalidPosition;
 
