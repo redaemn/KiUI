@@ -1,7 +1,6 @@
 .kiui-notify .kiui-notify-container {
   padding: 6px 24px 6px 8px;
   display: none;
-  margin-bottom: 4px;
   position: fixed;
   z-index: 10000;
 }
