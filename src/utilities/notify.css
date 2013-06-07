@@ -3,6 +3,11 @@
   display: none;
   position: fixed;
   z-index: 10000;
+  
+  transition:         top 400ms, right 400ms, left 400ms, bottom 400ms;
+  -webkit-transition: top 400ms, right 400ms, left 400ms, bottom 400ms;
+  -moz-transition:    top 400ms, right 400ms, left 400ms, bottom 400ms;
+  -o-transition:      top 400ms, right 400ms, left 400ms, bottom 400ms;
 }
 
 .kiui-notify .kiui-notify-container .kiui-notify-close {
