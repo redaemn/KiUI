@@ -3,10 +3,21 @@
  * and defines kiui global object
  */
 
-(function(window, $, undefined) {
+(function(window, $, kendo, undefined) {
 
-  var kiui = {};
+  var KIUI = window.kiui = window.kiui || {},
+    PREFIX = "Kiui",
+    UI = kendo.ui,
+    EXTEND = $.extend;
+
+  var createPlugin = function(widget) {
+    UI.plugin(widget, KIUI, PREFIX);
+  };
   
-  window.kiui = kiui;
+  EXTEND(window.kiui, {
+    prefix: PREFIX,
+    plugin: createPlugin,
+    roles: {}
+  });
 
-})(window, window.jQuery);
+})(window, window.jQuery, window.kendo);
