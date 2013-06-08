@@ -1,6 +1,6 @@
 describe('utility notifier:', function() {
 
-  xdescribe('notifier() with no options', function() {
+  describe('notifier() with no options', function() {
   
     var notifier;
     
@@ -63,7 +63,7 @@ describe('utility notifier:', function() {
   
   });
   
-  xdescribe('destroy()', function() {
+  describe('destroy()', function() {
   
     var notifier;
     
@@ -78,11 +78,16 @@ describe('utility notifier:', function() {
   
   });
   
-  /*xdescribe('notifier() with "top-left" position', function() {
+  describe('notifier() with "top-left" position', function() {
     
-    var notifier;
+    var notifier,
+      kiuiNotifier;
     
     beforeEach(function() {
+      kiuiNotifier = kiui.Notifier;
+      spyOn(kiui, 'Notifier').andCallFake(function(element, options) {
+        return new kiuiNotifier(element, options);
+      });
       notifier = kiui.notifier({
         position: "top-left"
       });
@@ -90,7 +95,7 @@ describe('utility notifier:', function() {
     
     afterEach(function() {
       notifier.destroy();
-      notifier = undefined;
+      notifier = originalNotifier = undefined;
     });
     
     it('should create a .kiui-notify DOM element with the right positioning', function() {
@@ -100,13 +105,23 @@ describe('utility notifier:', function() {
       expect(element.hasClass('kiui-position-left')).toBeTruthy();
     });
     
-  });*/
-  
-  /*xdescribe('notifier() with invalid position', function() {
+    it('should call Notifier passing the option', function() {
+      expect(kiui.Notifier.calls.length).toBe(1);
+      expect(kiui.Notifier.mostRecentCall.args[1].position).toEqual("top-left");
+    });
     
-    var notifier;
+  });
+  
+  describe('notifier() with invalid position', function() {
+    
+    var notifier,
+      kiuiNotifier;
     
     beforeEach(function() {
+      kiuiNotifier = kiui.Notifier;
+      spyOn(kiui, 'Notifier').andCallFake(function(element, options) {
+        return new kiuiNotifier(element, options);
+      });
       notifier = kiui.notifier({
         position: "not-valid"
       });
@@ -124,304 +139,11 @@ describe('utility notifier:', function() {
       expect(element.hasClass('kiui-position-right')).toBeTruthy();
     });
     
-  });*/
-
-  xdescribe('error()', function() {
-  
-    var notifier;
-    var wrapper;
-    var container = function() {
-      return wrapper.find('.kiui-notify-container.kiui-notify-error');
-    };
-    var content = function(containerElem) {
-      if (!containerElem) {
-        containerElem = container();
-      }
-      return containerElem.find('.kiui-notify-content');
-    };
-    var closeButton = function() {
-      return container().find('.kiui-notify-close');
-    };
-
-    beforeEach(function() {
-      notifier = kiui.notifier({
-        position: "top-right"
-      });
-      wrapper = $('.kiui-notify');
-    });
-  
-    afterEach(function() {
-      notifier.destroy();
-      notifier = wrapper = undefined;
+    it('should call Notifier passing "top-right" position', function() {
+      expect(kiui.Notifier.calls.length).toBe(1);
+      expect(kiui.Notifier.mostRecentCall.args[1].position).toEqual("top-right");
     });
     
-    describe('basics:', function() {
-    
-      beforeEach(function() {
-        notifier.error("this is an error");
-      });
-  
-      it('should create an error container', function() {
-        expect(container().length).toBe(1);
-      });
-      
-      it('should add text content to the container', function() {
-        expect(content().length).toBe(1);
-        expect(content().html()).toBe("this is an error");
-      });
-    
-      describe('called a second time', function() {
-    
-        beforeEach(function() {
-          notifier.error("this is another error");
-        });
-    
-        it('should create a new container', function() { 
-          expect(container().length).toBe(2);
-        });
-      
-        it('should add the new error to the new container', function() {
-          expect(content(container().last()).length).toBe(1);
-          expect(content(container().last()).html()).toBe("this is another error");
-        });
-      
-      });
-      
-      describe('clicking close button', function() {
-      
-        var notification, called = false;
-        
-        beforeEach(function() {
-          notification = container().data('kendoKiuiNotification');
-          spyOn(notification, 'hide').andCallFake(function() {
-            called = true;
-          });
-        });
-        
-        afterEach(function() {
-          notification = undefined;
-        });
-      
-        it('should call hide() on Notification', function() {
-          runs(function() {
-            closeButton().click();
-          });
-          
-          waitsFor(function() {
-            return called;
-          }, "hide() to be called", 3000);
-          
-          runs(function() {
-            expect(notification.hide).toHaveBeenCalled();
-          });
-        });
-      
-        it('should delete the container', function() {
-          runs(function() {
-            closeButton().click();
-          });
-          
-          waitsFor(function() {
-            return container().length === 0;
-          }, "Container should have been removed", 3000);
-          
-          runs(function() {
-            expect(container().length).toBe(0);
-          });
-        });
-      
-      });
-      
-    });
-
-    xdescribe('with html string parameter', function() {
-    
-      beforeEach(function() {
-        notifier.error("this is <strong>HTML</strong> content");
-      });
-    
-      it('should add html content to the container', function() {
-        expect(content().length).toBe(1);
-        expect(content().html()).toBe("this is <strong>HTML</strong> content");
-      });
-    
-    });
-  
-    describe('with object parameter:', function() {
-      
-      xdescribe('html option', function() {
-        
-        beforeEach(function() {
-          notifier.error({
-            html: "html option content"
-          });
-        });
-        
-        it('should add content to the container', function() {
-          expect(content().length).toBe(1);
-          expect(content().html()).toBe("html option content");
-        });
-        
-      });
-      
-      xdescribe('invalid html option', function() {
-        it('should throw', function() {
-          var notification = function() {
-            notifier.error({
-              html: 42
-            });
-          };
-          
-          expect(notification).toThrow("Invalid html option");
-        });
-      });
-      
-      xdescribe('empty string html option', function() {
-        it('should throw', function() {
-          var notification = function() {
-            notifier.error({
-              html: ""
-            });
-          };
-          
-          expect(notification).toThrow("Invalid html option");
-        });
-      });
-      
-      xdescribe('autoHide option', function() {
-      
-        beforeEach(function() {
-          jasmine.Clock.useMock();
-          notifier.error({
-            html: "error with autoHide",
-            autoHide: 2000
-          });
-        });
-        
-        it('should hide notification after the right time', function() {
-          runs(function() {
-            jasmine.Clock.tick(2000);
-          });
-          
-          waitsFor(function() {
-            return container().length === 0;
-          }, "Container should have been removed", 3000);
-          
-          runs(function() {
-            expect(container().length).toBe(0);
-          });
-        });
-        
-        // FIXME: don't know how to test this...
-        
-//         it('should do nothing if notification was previously closed', function() {
-//           runs(function() {
-//             closeButton().click();
-//           });
-//           
-//           waitsFor(function() {
-//             return container().length === 0;
-//           }, "Container should have been removed", 3000);
-//           
-//           runs(function() {
-//             expect(container().length).toBe(0);
-//             jasmine.Clock.tick(2000);
-//           });
-//         });
-      
-      });
-      
-      xdescribe('invalid autoHide option', function() {
-      
-        beforeEach(function() {
-          jasmine.Clock.useMock();
-          notifier.error({
-            html: "error with autoHide",
-            autoHide: "invalid option"
-          });
-        });
-        
-        it('should not hide notification automatically', function() {
-          runs(function() {
-            jasmine.Clock.tick(1000 * 60 * 60 * 24); // tick clock one day ahead
-          });
-          
-          var now = new Date();
-          
-          waitsFor(function() {
-            return (new Date()) - now >= 3000; // wait for 3 seconds
-          }, "Container should have been removed", 4000);
-          
-          runs(function() {
-            expect(container().length).toBe(1);
-          });
-        });
-      
-      });
-      
-      xdescribe('append option', function() {
-      
-        beforeEach(function() {
-          notifier.error({
-            html: "first error"
-          });
-          notifier.error({
-            html: "second error",
-            append: true
-          });
-        });
-        
-        it('should not create a second container', function() {
-          expect(container().length).toBe(1);
-        });
-        
-        it('should append content to the existing container', function() {
-          expect(content().html()).toBe("first errorsecond error");
-        });
-      
-      });
-      
-      xdescribe('append option with no previous notification', function() {
-      
-        beforeEach(function() {
-          notifier.error({
-            html: "first error",
-            append: true
-          });
-        });
-        
-        it('should create a container', function() {
-          expect(container().length).toBe(1);
-        });
-        
-        it('should set container content', function() {
-          expect(content().html()).toBe("first error");
-        });
-      
-      });
-      
-    });
-  
-    xdescribe ('with invalid options parameter', function() {
-  
-      it('should throw', function() {
-        var functionParameter = function() {
-          notifier.error(function() {
-            var a = 1;
-            return a++;
-          });
-        };
-        
-        var numberParameter = function() {
-          notifier.error(42);
-        };
-        
-        expect(functionParameter).toThrow("Invalid options object");
-        expect(numberParameter).toThrow("Invalid options object");
-      });
-  
-    });
-  
   });
   
   // append when no previous notify exists
@@ -979,6 +701,233 @@ describe('utility notifier:', function() {
         expect(notification.trigger.calls.length).toEqual(1);
       });
       
+    });
+  
+    describe('addHtml()', function() {
+  
+      var notification;
+        
+      beforeEach(function() {
+        notification = new kiui.Notification(elem, {});
+        notification.addHtml('43 is not the answer!');
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+    
+      it('should add html to the .kiui-notify-content DOM element', function() {
+        expect(elem.find('.kiui-notify-content').html()).toEqual('43 is not the answer!');
+      });
+      
+      it('called a second time, should append the html to the .kiui-notify-content DOM element', function() {
+        notification.addHtml('this is another error');
+      
+        expect(elem.find('.kiui-notify-content').html()).toEqual('43 is not the answer!this is another error');
+      });
+  
+    });
+    
+    describe('hide()', function() {
+    
+      var notification;
+        
+      beforeEach(function() {
+        spyOn(NOTIFICATION.fn, 'trigger').andCallThrough();
+      
+        notification = new kiui.Notification(elem, {});
+        
+        spyOn(notification.element, 'fadeOut').andCallFake(function(options) {
+          options.complete();
+        });
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+      
+      describe('when notification is visible', function() {
+      
+        beforeEach(function() {
+          notification.show();
+          notification.hide();
+        });
+        
+        it('should fadeOut() notification DOM element', function() {
+          expect(notification.element.fadeOut.calls.length).toBe(1);
+        });
+      
+        it('should trigger hide event', function() {
+          expect(notification.trigger.mostRecentCall.args[0]).toBe('hide');
+        });
+      
+      });
+      
+      describe('when notification is hidden', function() {
+      
+        beforeEach(function() {
+          notification.hide();
+        });
+        
+        it('should not fadeOut() notification DOM element', function() {
+          expect(notification.element.fadeOut).not.toHaveBeenCalled();
+        });
+      
+        it('should not trigger hide event', function() {
+          expect(notification.trigger).not.toHaveBeenCalledWith('hide');
+        });
+      
+      });
+    
+    });
+    
+    describe('show()', function() {
+    
+      var notification;
+        
+      beforeEach(function() {
+        spyOn(NOTIFICATION.fn, 'trigger').andCallThrough();
+        spyOn(NOTIFICATION.fn, 'hide').andCallThrough();
+      
+        notification = new kiui.Notification(elem, {});
+        
+        spyOn(notification.element, 'fadeIn').andCallFake(function(options) {
+          options.complete();
+        });
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+      
+      describe('when notification is hidden', function() {
+      
+        beforeEach(function() {
+          notification.show();
+        });
+        
+        it('should fadeIn() notification DOM element', function() {
+          expect(notification.element.fadeIn.calls.length).toBe(1);
+        });
+      
+        it('should trigger show event', function() {
+          expect(notification.trigger.calls.length).toBe(1);
+          expect(notification.trigger.mostRecentCall.args[0]).toBe('show');
+        });
+      
+      });
+      
+      describe('when notification is visible', function() {
+      
+        beforeEach(function() {
+          notification.show();
+          notification.show();
+        });
+        
+        it('should not fadeIn() notification DOM element', function() {
+          expect(notification.element.fadeIn.calls.length).toBe(1);
+        });
+      
+        it('should not trigger show event', function() {
+          expect(notification.trigger.calls.length).toBe(1);
+        });
+      
+      });
+      
+      describe('called with autoHide parameter', function() {
+      
+        beforeEach(function() {
+          jasmine.Clock.useMock();
+          notification.show(2000);
+        });
+        
+        it('should call hide() after the right amount of time', function() {
+          jasmine.Clock.tick(2000);
+          
+          expect(notification.hide.calls.length).toBe(1);
+        });
+      
+      });
+    
+    });
+    
+    describe('setPosition()', function() {
+    
+      var notification;
+        
+      beforeEach(function() {
+        notification = new kiui.Notification(elem, {});
+        
+        spyOn(notification.element, 'css').andCallThrough();
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+      
+      it('should set css position on notification DOM element', function() {
+        notification.setPosition({top: 100, left: 200});
+        
+        expect(notification.element.css.calls.length).toBe(1);
+        expect(notification.element.css).toHaveBeenCalledWith({top: 100, left: 200});
+      });
+    
+    });
+    
+    describe('height()', function() {
+    
+      var notification;
+        
+      beforeEach(function() {
+        notification = new kiui.Notification(elem, {});
+        
+        spyOn(notification.element, 'outerHeight').andCallFake(function() {
+          return 42;
+        });
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+      
+      it('should return notification DOM element outerHeight', function() {
+        var height = notification.height();
+      
+        expect(notification.element.outerHeight.calls.length).toBe(1);
+        expect(height).toBe(42);
+      });
+    
+    });
+    
+    describe('width()', function() {
+    
+      var notification;
+        
+      beforeEach(function() {
+        notification = new kiui.Notification(elem, {});
+        
+        spyOn(notification.element, 'outerWidth').andCallFake(function() {
+          return 42;
+        });
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+      
+      it('should return notification DOM element outerWidth', function() {
+        var width = notification.width();
+      
+        expect(notification.element.outerWidth.calls.length).toBe(1);
+        expect(width).toBe(42);
+      });
+    
     });
   
   });
