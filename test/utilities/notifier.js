@@ -17,9 +17,9 @@ describe('utility notifier:', function() {
       expect(notifier).toEqual(jasmine.any(kiui.Notifier));
     });
     
-    it('should append a .kiui-notify DOM element to the body', function() {
-      expect($('.kiui-notify').length).toBe(1);
-      expect($('body > .kiui-notify').length).toBe(1);
+    it('should append a .kiui-notifier DOM element to the body', function() {
+      expect($('.kiui-notifier').length).toBe(1);
+      expect($('body > .kiui-notifier').length).toBe(1);
     });
     
     describe('called after a destroy()', function() {
@@ -35,9 +35,9 @@ describe('utility notifier:', function() {
         expect(notifier.isTheSameOldOne).toBeFalsy();
       });
     
-      it('should delete the old .kiui-notify DOM element and append a new one to the body', function() {
-        expect($('.kiui-notify').length).toBe(1);
-        expect($('body > .kiui-notify').length).toBe(1);
+      it('should delete the old .kiui-notifier DOM element and append a new one to the body', function() {
+        expect($('.kiui-notifier').length).toBe(1);
+        expect($('body > .kiui-notifier').length).toBe(1);
       });
     
     });
@@ -54,26 +54,23 @@ describe('utility notifier:', function() {
         expect(notifier.isTheSameOldOne).toBeTruthy();
       });
     
-      it('should not create a new .kiui-notify DOM element', function() {
-        expect($('.kiui-notify').length).toBe(1);
-        expect($('body > .kiui-notify').length).toBe(1);
+      it('should not create a new .kiui-notifier DOM element', function() {
+        expect($('.kiui-notifier').length).toBe(1);
+        expect($('body > .kiui-notifier').length).toBe(1);
       });
     
     });
   
-  });
+    describe('when destroyed', function() {
   
-  describe('destroy()', function() {
+      beforeEach(function() {
+        notifier.destroy();
+      });
   
-    var notifier;
-    
-    beforeEach(function() {
-      notifier = kiui.notifier();
-      notifier.destroy();
-    });
+      it('should remove the .kiui-notifier DOM element', function() {
+        expect($('.kiui-notifier').length).toBe(0);
+      });
   
-    it('should remove the .kiui-notify DOM element', function() {
-      expect($('.kiui-notify').length).toBe(0);
     });
   
   });
@@ -98,8 +95,8 @@ describe('utility notifier:', function() {
       notifier = originalNotifier = undefined;
     });
     
-    it('should create a .kiui-notify DOM element with the right positioning', function() {
-      var element = $('.kiui-notify');
+    it('should create a .kiui-notifier DOM element with the right positioning', function() {
+      var element = $('.kiui-notifier');
       expect(element.length).toBe(1);
       expect(element.hasClass('kiui-position-top')).toBeTruthy();
       expect(element.hasClass('kiui-position-left')).toBeTruthy();
@@ -132,8 +129,8 @@ describe('utility notifier:', function() {
       notifier = undefined;
     });
     
-    it('should create a .kiui-notify DOM element with "top-right" positioning', function() {
-      var element = $('.kiui-notify');
+    it('should create a .kiui-notifier DOM element with "top-right" positioning', function() {
+      var element = $('.kiui-notifier');
       expect(element.length).toBe(1);
       expect(element.hasClass('kiui-position-top')).toBeTruthy();
       expect(element.hasClass('kiui-position-right')).toBeTruthy();
@@ -211,7 +208,7 @@ describe('utility notifier:', function() {
         });
         
         it('should set the right classes on DOM element', function() {
-          expect(elem.is('.kiui-position-top.kiui-position-right')).toBeTruthy();
+          expect(elem.is('.kiui-notifier.kiui-position-top.kiui-position-right')).toBeTruthy();
         });
         
         it('on window resize should call setPosition on every notification', function() {
@@ -243,7 +240,7 @@ describe('utility notifier:', function() {
         });
         
         it('should set the right classes on DOM element', function() {
-          expect(elem.is('.kiui-position-bottom.kiui-position-left')).toBeTruthy();
+          expect(elem.is('.kiui-notifier.kiui-position-bottom.kiui-position-left')).toBeTruthy();
         });
       });
       
@@ -263,7 +260,7 @@ describe('utility notifier:', function() {
         });
         
         it('should set the right classes on DOM element', function() {
-          expect(elem.is('.kiui-position-top.kiui-position-right')).toBeTruthy();
+          expect(elem.is('.kiui-notifier.kiui-position-top.kiui-position-right')).toBeTruthy();
         });
         
       });
@@ -320,7 +317,7 @@ describe('utility notifier:', function() {
         var notifier;
         
         var container = function() {
-          return elem.find('div.kiui-notify');
+          return elem.find('div.kiui-notifier');
         };
       
         beforeEach(function() {
@@ -357,12 +354,11 @@ describe('utility notifier:', function() {
       
             it('should create a Notification passing the "notificationClass" option', function() {
               expect(kiui.Notification.calls.length).toBe(1);
-              expect(kiui.Notification.mostRecentCall.args[1].notificationClass).toEqual('kiui-notify-' + notificationType);
+              expect(kiui.Notification.mostRecentCall.args[1].notificationClass).toEqual('kiui-notification-' + notificationType);
             });
       
             it('should create a DOM element to contain the notification', function() {
               expect(elem.children().length).toEqual(1);
-              expect(container().length).toEqual(1);
             });
         
             it('should show the Notification', function() {
@@ -425,9 +421,8 @@ describe('utility notifier:', function() {
               expect(notifications.length).toBe(1);
             });
       
-            it('should create a new DOM element to contain the notification', function() {
+            it('should not create a new DOM element to contain the notification', function() {
               expect(elem.children().length).toEqual(1);
-              expect(container().length).toEqual(1);
             });
         
             it('should add html to the Notification', function() {
@@ -453,7 +448,7 @@ describe('utility notifier:', function() {
       Notification = kiui.Notification;
       
     var container = function() {
-      return elem.find('div.kiui-notify');
+      return elem.find('div.kiui-notifier');
     };
       
     beforeEach(function() {
@@ -566,13 +561,13 @@ describe('utility notifier:', function() {
         });
         
         it('should set the right classes on DOM element', function() {
-          expect(elem.is('.kiui-notify-container.k-block')).toBeTruthy();
+          expect(elem.is('.kiui-notification.k-block')).toBeTruthy();
         });
         
         it('should append default notification template', function() {
           expect(elem.children().length).toBe(2);
-          expect(elem.find('span.kiui-notify-close.k-icon.k-i-close').length).toBe(1);
-          expect(elem.find('span.kiui-notify-content').length).toBe(1);
+          expect(elem.find('span.kiui-notification-close.k-icon.k-i-close').length).toBe(1);
+          expect(elem.find('span.kiui-notification-content').length).toBe(1);
         });
         
         it('shold set default notification width', function() {
@@ -584,7 +579,7 @@ describe('utility notifier:', function() {
         });
         
         it('should attach click handler to close button', function() {
-          var closeButton = elem.find(".kiui-notify-close");
+          var closeButton = elem.find(".kiui-notification-close");
           expect(closeButton.length).toBe(1);
           
           closeButton.click();
@@ -643,13 +638,13 @@ describe('utility notifier:', function() {
         
     $.each(NOTIFICATION_TYPES, function(idx, notificationType) {
     
-      describe('init() with kiui-notify-' + notificationType + ' "notificationClass" option', function() {
+      describe('init() with kiui-notification-' + notificationType + ' "notificationClass" option', function() {
       
         var notification;
         
         beforeEach(function() {
           notification = new kiui.Notification(elem, {
-            notificationClass: 'kiui-notify-' + notificationType
+            notificationClass: 'kiui-notification-' + notificationType
           });
         });
         
@@ -689,7 +684,7 @@ describe('utility notifier:', function() {
       });
       
       it('should detach click handler from close button', function() {
-        var closeButton = elem.find(".kiui-notify-close");
+        var closeButton = elem.find(".kiui-notification-close");
         expect(closeButton.length).toBe(1);
         
         closeButton.click();
@@ -717,14 +712,14 @@ describe('utility notifier:', function() {
         notification = undefined;
       });
     
-      it('should add html to the .kiui-notify-content DOM element', function() {
-        expect(elem.find('.kiui-notify-content').html()).toEqual('43 is not the answer!');
+      it('should add html to the .kiui-notification-content DOM element', function() {
+        expect(elem.find('.kiui-notification-content').html()).toEqual('43 is not the answer!');
       });
       
-      it('called a second time, should append the html to the .kiui-notify-content DOM element', function() {
+      it('called a second time, should append the html to the .kiui-notification-content DOM element', function() {
         notification.addHtml('this is another error');
       
-        expect(elem.find('.kiui-notify-content').html()).toEqual('43 is not the answer!this is another error');
+        expect(elem.find('.kiui-notification-content').html()).toEqual('43 is not the answer!this is another error');
       });
   
     });

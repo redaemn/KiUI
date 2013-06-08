@@ -4,20 +4,19 @@
  
 (function($, kendo, kiui, window, undefined) {
 
-  // TODO: rename css classes to notification and notifier
   var NS = ".kiuiNotifier",
     PREFIX = kiui.prefix,
     WIDGET = kendo.ui.Widget,
     UI = kendo.ui,
     PROXY = $.proxy,
-    ERROR = 'kiui-notify-error',
-    INFO = 'kiui-notify-info',
-    SUCCESS = 'kiui-notify-success',
-    KIUI_NOTIFY = 'kiui-notify',
+    ERROR = 'kiui-notification-error',
+    INFO = 'kiui-notification-info',
+    SUCCESS = 'kiui-notification-success',
+    KIUI_NOTIFIER = 'kiui-notifier',
     KIUI_POSITION = 'kiui-position-',
-    KIUI_NOTIFY_CONTAINER = 'kiui-notify-container',
-    KIUI_NOTIFY_CLOSE = 'kiui-notify-close',
-    KIUI_NOTIFY_CONTENT = 'kiui-notify-content',
+    KIUI_NOTIFICATION = 'kiui-notification',
+    KIUI_NOTIFICATION_CLOSE = 'kiui-notification-close',
+    KIUI_NOTIFICATION_CONTENT = 'kiui-notification-content',
     TOP = 'top',
     BOTTOM = 'bottom',
     RIGHT = 'right',
@@ -62,6 +61,7 @@
 
       positions = /^([^-]+)-(.+)$/.exec(options.position);
       element
+        .addClass(KIUI_NOTIFIER)
         .addClass(KIUI_POSITION + positions[1])
         .addClass(KIUI_POSITION + positions[2]);
         
@@ -144,7 +144,7 @@
     
       if (notification === undefined) {
         notification = new kiui.Notification(
-          $('<div class="' + KIUI_NOTIFY + '"></div>').appendTo(that.element),
+          $('<div></div>').appendTo(that.element),
           options);
           
         that._notifications.push(notification);
@@ -232,10 +232,10 @@
       options = that.options;
       
       element
-        .addClass(KIUI_NOTIFY_CONTAINER + ' ' + options.notificationClass + ' k-block')
+        .addClass(KIUI_NOTIFICATION + ' ' + options.notificationClass + ' k-block')
         .append(options.template)
         .css('width', options.width)
-        .on('click' + NS, '.' + KIUI_NOTIFY_CLOSE, PROXY(that.hide, that));
+        .on('click' + NS, '.' + KIUI_NOTIFICATION_CLOSE, PROXY(that.hide, that));
         
       if (options.notificationClass === ERROR) {
         element.addClass('k-error-colored');
@@ -257,15 +257,14 @@
     options: {
       prefix: PREFIX,
       name: "Notification",
-      template: '<span class="' + KIUI_NOTIFY_CLOSE + ' k-icon k-i-close"></span>' +
-        '<span class="' + KIUI_NOTIFY_CONTENT + '"></span>',
+      template: '<span class="' + KIUI_NOTIFICATION_CLOSE + ' k-icon k-i-close"></span>' +
+        '<span class="' + KIUI_NOTIFICATION_CONTENT + '"></span>',
       notificationClass: ERROR,
       html: "",
       // TODO: icon, title, content, template
       autoHide: false,
       width: 250,
       append: false
-      // TODO: events onShow, onHide
       // TODO: animation
     },
     
@@ -316,7 +315,7 @@
     addHtml: function (html) {
       var that = this;
       
-      that.element.find('.' + KIUI_NOTIFY_CONTENT).append(html);
+      that.element.find('.' + KIUI_NOTIFICATION_CONTENT).append(html);
     },
     
     // TODO: addIcon, addTitle, addContent
@@ -375,7 +374,7 @@
     notifier = notifiers[options.position];
     
     if (!notifier) {
-      notifierElem = $('<div class="' + KIUI_NOTIFY + '"></div>').appendTo(BODY);
+      notifierElem = $('<div></div>').appendTo(BODY);
       notifier = notifiers[options.position] = new kiui.Notifier(notifierElem, options);
       
       notifier.bind(DESTROY, function() {

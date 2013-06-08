@@ -1,4 +1,4 @@
-.kiui-notify .kiui-notify-container {
+.kiui-notification {
   padding: 6px 24px 6px 8px;
   display: none;
   position: fixed;
@@ -10,7 +10,7 @@
   -o-transition:      top 400ms, right 400ms, left 400ms, bottom 400ms;
 }
 
-.kiui-notify .kiui-notify-container .kiui-notify-close {
+.kiui-notification .kiui-notification-close {
   position: absolute;
   top: 6px;
   right: 4px;
