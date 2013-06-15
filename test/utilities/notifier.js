@@ -315,10 +315,28 @@ describe('utility notifier:', function() {
           beforeEach(function() {
             notifier[notificationType]('43 is not the answer!');
           });
+          
+          it('should create a Notification', function() {
+            expect(kiui.Notification.calls.length).toBe(1);
+          });
         
           it('should create a Notification passing the string as "content" option', function() {
-            expect(kiui.Notification.calls.length).toBe(1);
             expect(kiui.Notification.mostRecentCall.args[1].content).toEqual('43 is not the answer!');
+          });
+          
+          it('should create a Notification passing the correct "icon" option', function() {
+            if (notificationType === 'error') {
+              expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('<span class="k-icon k-i-note"></span>');
+            }
+            else if (notificationType === 'info') {
+              expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('<span class="k-icon k-i-pencil"></span>');
+            }
+            else if (notificationType === 'success') {
+              expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('<span class="k-icon k-i-tick"></span>');
+            }
+            else {
+              expect(false).toBeTruthy();
+            }
           });
         
         });
@@ -333,9 +351,27 @@ describe('utility notifier:', function() {
               });
             });
       
-            it('should create a Notification passing the "notificationClass" option', function() {
+            it('should create a Notification passing', function() {
               expect(kiui.Notification.calls.length).toBe(1);
-              expect(kiui.Notification.mostRecentCall.args[1].notificationClass).toEqual('kiui-notification-' + notificationType);
+            });
+      
+            it('should create a Notification passing the "notificationClass" option', function() {
+              expect(kiui.Notification.mostRecentCall.args[1].notificationClass).toEqual('kiui-notification-' + notificationType + ' k-' + notificationType + '-colored');
+            });
+            
+            it('should create a Notification passing the correct "icon" option', function() {
+              if (notificationType === 'error') {
+                expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('<span class="k-icon k-i-note"></span>');
+              }
+              else if (notificationType === 'info') {
+                expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('<span class="k-icon k-i-pencil"></span>');
+              }
+              else if (notificationType === 'success') {
+                expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('<span class="k-icon k-i-tick"></span>');
+              }
+              else {
+                expect(false).toBeTruthy();
+              }
             });
       
             it('should create a DOM element to contain the notification', function() {
@@ -677,31 +713,6 @@ describe('utility notifier:', function() {
       
       });
     
-    });
-        
-    $.each(NOTIFICATION_TYPES, function(idx, notificationType) {
-    
-      describe('init() with kiui-notification-' + notificationType + ' "notificationClass" option', function() {
-      
-        var notification;
-        
-        beforeEach(function() {
-          notification = new kiui.Notification(elem, {
-            notificationClass: 'kiui-notification-' + notificationType
-          });
-        });
-        
-        afterEach(function() {
-          notification.destroy();
-          notification = undefined;
-        });
-        
-        it('should set k-' + notificationType + '-colored class on DOM element', function() {
-          expect(elem.is('.k-' + notificationType + '-colored')).toBeTruthy();
-        });
-      
-      });
-      
     });
     
     describe('destroy()', function() {

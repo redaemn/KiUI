@@ -9,9 +9,9 @@
     WIDGET = kendo.ui.Widget,
     UI = kendo.ui,
     PROXY = $.proxy,
-    ERROR = 'kiui-notification-error',
-    INFO = 'kiui-notification-info',
-    SUCCESS = 'kiui-notification-success',
+    ERROR = 'kiui-notification-error k-error-colored',
+    INFO = 'kiui-notification-info k-info-colored',
+    SUCCESS = 'kiui-notification-success k-success-colored',
     KIUI_NOTIFIER = 'kiui-notifier',
     KIUI_POSITION = 'kiui-position-',
     KIUI_NOTIFICATION = 'kiui-notification',
@@ -115,15 +115,9 @@
       });
     },
     
-    _notify: function(options, notificationClass) { // TODO: change the way to pass notification class
+    _notify: function(options) {
       var that = this,
         notification;
-
-      if (typeof options === STRING) {
-        options = { content: options };
-      }
-
-      options = $.extend({}, options, { notificationClass: notificationClass });
     
       if (options.append) {
         notification = that._notifications[that._notifications.length - 1];
@@ -152,22 +146,44 @@
       notification.show(options.autoHide);
     },
     
+    _createNotificationOptions: function(options, notificationType) {
+      var that = this;
+      
+      if (typeof options === STRING) {
+        options = { content: options };
+      }
+      
+      options.notificationClass = notificationType;
+      
+      if (notificationType == ERROR) {
+        options.icon = '<span class="k-icon k-i-note"></span>';
+      }
+      else if (notificationType == INFO) {
+        options.icon = '<span class="k-icon k-i-pencil"></span>';
+      }
+      else if (notificationType == SUCCESS) {
+        options.icon = '<span class="k-icon k-i-tick"></span>';
+      }
+      
+      return options;
+    },
+    
     error: function(options) {
       var that = this;
       
-      that._notify(options, ERROR);
+      that._notify(that._createNotificationOptions(options, ERROR));
     },
     
     info: function(options) {
       var that = this;
       
-      that._notify(options, INFO);
+      that._notify(that._createNotificationOptions(options, INFO));
     },
     
     success: function(options) {
       var that = this;
       
-      that._notify(options, SUCCESS);
+      that._notify(that._createNotificationOptions(options, SUCCESS));
     },
     
     destroy: function() {
@@ -199,20 +215,11 @@
       options = that.options;
       
       element
-        .addClass(KIUI_NOTIFICATION + ' ' + options.notificationClass + ' k-block')
+        .addClass(KIUI_NOTIFICATION + ' k-block')
+        .addClass(options.notificationClass)
         .append(options.template)
         .css('width', options.width)
         .on('click' + NS, '.' + KIUI_NOTIFICATION_CLOSE, PROXY(that.hide, that));
-        
-      if (options.notificationClass === ERROR) {
-        element.addClass('k-error-colored');
-      }
-      else if (options.notificationClass === INFO) {
-        element.addClass('k-info-colored');
-      }
-      else if (options.notificationClass === SUCCESS) {
-        element.addClass('k-success-colored');
-      }
       
       that._visible = false;
       
