@@ -15,7 +15,9 @@
     KIUI_NOTIFIER = 'kiui-notifier',
     KIUI_POSITION = 'kiui-position-',
     KIUI_NOTIFICATION = 'kiui-notification',
+    KIUI_NOTIFICATION_ICON = 'kiui-notification-icon',
     KIUI_NOTIFICATION_CLOSE = 'kiui-notification-close',
+    KIUI_NOTIFICATION_TITLE = 'kiui-notification-title',
     KIUI_NOTIFICATION_CONTENT = 'kiui-notification-content',
     TOP = 'top',
     BOTTOM = 'bottom',
@@ -113,19 +115,19 @@
       });
     },
     
-    _notify: function(options, notificationClass) {
+    _notify: function(options, notificationClass) { // TODO: change the way to pass notification class
       var that = this,
         notification;
 
       if (typeof options === STRING) {
-        options = { html: options };
+        options = { content: options };
       }
 
       options = $.extend({}, options, { notificationClass: notificationClass });
     
       if (options.append) {
         notification = that._notifications[that._notifications.length - 1];
-        notification.addHtml(options.html);
+        notification.addContent(options.content);
       }
     
       if (notification === undefined) {
@@ -214,19 +216,25 @@
       
       that._visible = false;
       
-      if (options.html) {
-        that.addHtml(options.html);
-      }
+      that.setIcon(options.icon);
+      that.setTitle(options.title);
+      that.addContent(options.content);
     },
 
     options: {
       prefix: PREFIX,
       name: "Notification",
-      template: '<span class="' + KIUI_NOTIFICATION_CLOSE + ' k-icon k-i-close"></span>' +
-        '<span class="' + KIUI_NOTIFICATION_CONTENT + '"></span>',
+      template:
+        '<div class="' + KIUI_NOTIFICATION_ICON + '"></div>' +
+        '<div class="' + KIUI_NOTIFICATION_CLOSE + '">' +
+          '<span class="k-icon k-i-close">' +
+        '</div>' +
+        '<div class="' + KIUI_NOTIFICATION_TITLE + '"></div>' +
+        '<div class="' + KIUI_NOTIFICATION_CONTENT + '"></div>',
       notificationClass: ERROR,
-      html: "",
-      // TODO: icon, title, content, template
+      icon: "",
+      title: "",
+      content: "",
       autoHide: false,
       width: 250,
       append: false
@@ -276,14 +284,32 @@
         });
       }
     },
-
-    addHtml: function (html) {
+    
+    setIcon: function (iconHtml) {
       var that = this;
       
-      that.element.find('.' + KIUI_NOTIFICATION_CONTENT).append(html);
+      that.element.find('.' + KIUI_NOTIFICATION_ICON).html(iconHtml);
     },
     
-    // TODO: addIcon, addTitle, addContent
+    setTitle: function (htmlTitle) {
+      var that = this,
+        titleElement = that.element.find('.' + KIUI_NOTIFICATION_TITLE);
+      
+      titleElement.html(htmlTitle);
+      
+      if (htmlTitle === EMPTY) {
+        titleElement.hide();
+      }
+      else {
+        titleElement.show();
+      }
+    },
+
+    addContent: function (htmlContent) {
+      var that = this;
+      
+      that.element.find('.' + KIUI_NOTIFICATION_CONTENT).append(htmlContent);
+    },
     
     setPosition: function (position) {
       var that = this;

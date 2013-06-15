@@ -143,16 +143,18 @@ describe('utility notifier:', function() {
     
   });
   
-  // append when no previous notify exists
+  // TODO: append when no previous notify exists
   
-  // autohide when appending
+  // TODO: autohide when appending
   
   
   var NotificationFake = function() {
     return jasmine.createSpyObj('Notification', [
       'destroy',
       'bind',
-      'addHtml',
+      'addContent',
+      'setIcon',
+      'setTitle',
       'show',
       'height',
       'setPosition'
@@ -314,9 +316,9 @@ describe('utility notifier:', function() {
             notifier[notificationType]('43 is not the answer!');
           });
         
-          it('should create a Notification passing the string as "html" option', function() {
+          it('should create a Notification passing the string as "content" option', function() {
             expect(kiui.Notification.calls.length).toBe(1);
-            expect(kiui.Notification.mostRecentCall.args[1].html).toEqual('43 is not the answer!');
+            expect(kiui.Notification.mostRecentCall.args[1].content).toEqual('43 is not the answer!');
           });
         
         });
@@ -327,7 +329,7 @@ describe('utility notifier:', function() {
       
             beforeEach(function() {
               notifier[notificationType]({
-                html: '43 is not the answer!'
+                content: '43 is not the answer!'
               });
             });
       
@@ -357,13 +359,13 @@ describe('utility notifier:', function() {
         
             beforeEach(function() {
               notifier[notificationType]({
-                html: '43 is not the answer!'
+                content: '43 is not the answer!'
               });
             });
         
             it('should create a Notification passing the options', function() {
               expect(kiui.Notification.calls.length).toBe(1);
-              expect(kiui.Notification.mostRecentCall.args[1].html).toEqual('43 is not the answer!');
+              expect(kiui.Notification.mostRecentCall.args[1].content).toEqual('43 is not the answer!');
             });
         
           });
@@ -372,7 +374,7 @@ describe('utility notifier:', function() {
         
             beforeEach(function() {
               notifier[notificationType]({
-                html: '43 is not the answer!',
+                content: '43 is not the answer!',
                 autoHide: 2000
               });
             });
@@ -390,7 +392,7 @@ describe('utility notifier:', function() {
               notifier[notificationType]('this is an error!');
             
               notifier[notificationType]({
-                html: '43 is not the answer!',
+                content: '43 is not the answer!',
                 append: true
               });
             });
@@ -405,8 +407,8 @@ describe('utility notifier:', function() {
             });
         
             it('should add html to the Notification', function() {
-              expect(notifications[0].addHtml.calls.length).toBe(1);
-              expect(notifications[0].addHtml.mostRecentCall.args[0]).toEqual('43 is not the answer!');
+              expect(notifications[0].addContent.calls.length).toBe(1);
+              expect(notifications[0].addContent.mostRecentCall.args[0]).toEqual('43 is not the answer!');
             });
         
           });
@@ -525,7 +527,9 @@ describe('utility notifier:', function() {
         beforeEach(function() {
           spyOn(WIDGET.fn, 'init').andCallThrough();
           spyOn(NOTIFICATION.fn, 'hide').andCallThrough();
-          spyOn(NOTIFICATION.fn, 'addHtml').andCallThrough();
+          spyOn(NOTIFICATION.fn, 'addContent').andCallThrough();
+          spyOn(NOTIFICATION.fn, 'setIcon').andCallThrough();
+          spyOn(NOTIFICATION.fn, 'setTitle').andCallThrough();
           
           notification = new kiui.Notification(elem, {});
         });
@@ -544,17 +548,29 @@ describe('utility notifier:', function() {
         });
         
         it('should append default notification template', function() {
-          expect(elem.children().length).toBe(2);
-          expect(elem.find('span.kiui-notification-close.k-icon.k-i-close').length).toBe(1);
-          expect(elem.find('span.kiui-notification-content').length).toBe(1);
+          expect(elem.children().length).toBe(4);
+          expect(elem.find('div.kiui-notification-icon').length).toBe(1);
+          expect(elem.find('div.kiui-notification-close').length).toBe(1);
+          expect(elem.find('div.kiui-notification-close').children().length).toBe(1);
+          expect(elem.find('div.kiui-notification-close').find('span.k-icon.k-i-close').length).toBe(1);
+          expect(elem.find('div.kiui-notification-title').length).toBe(1);
+          expect(elem.find('div.kiui-notification-content').length).toBe(1);
         });
         
         it('shold set default notification width', function() {
           expect(elem.width()).toBe(250);
         });
         
-        it('should not call addHtml()', function() {
-          expect(notification.addHtml.calls.length).toBe(0);
+        it('should call addContent()', function() {
+          expect(notification.addContent.calls.length).toBe(1);
+        });
+        
+        it('should call setIcon()', function() {
+          expect(notification.setIcon.calls.length).toBe(1);
+        });
+        
+        it('should call setTitle()', function() {
+          expect(notification.setTitle.calls.length).toBe(1);
         });
         
         it('should attach click handler to close button', function() {
@@ -568,15 +584,15 @@ describe('utility notifier:', function() {
         
       });
       
-      describe('with "html" option', function() {
+      describe('with "content" option', function() {
       
         var notification;
         
         beforeEach(function() {
-          spyOn(NOTIFICATION.fn, 'addHtml').andCallThrough();
+          spyOn(NOTIFICATION.fn, 'addContent').andCallThrough();
         
           notification = new kiui.Notification(elem, {
-            html: '43 is not the answer!'
+            content: '43 is not the answer!'
           });
         });
         
@@ -585,9 +601,57 @@ describe('utility notifier:', function() {
           notification = undefined;
         });
         
-        it('should call addHtml()', function() {
-          expect(notification.addHtml.calls.length).toBe(1);
-          expect(notification.addHtml.mostRecentCall.args[0]).toBe('43 is not the answer!');
+        it('should call addContent()', function() {
+          expect(notification.addContent.calls.length).toBe(1);
+          expect(notification.addContent.mostRecentCall.args[0]).toBe('43 is not the answer!');
+        });
+      
+      });
+      
+      describe('with "title" option', function() {
+      
+        var notification;
+        
+        beforeEach(function() {
+          spyOn(NOTIFICATION.fn, 'setTitle').andCallThrough();
+        
+          notification = new kiui.Notification(elem, {
+            title: 'Error title!'
+          });
+        });
+        
+        afterEach(function() {
+          notification.destroy();
+          notification = undefined;
+        });
+        
+        it('should call setTitle()', function() {
+          expect(notification.setTitle.calls.length).toBe(1);
+          expect(notification.setTitle.mostRecentCall.args[0]).toBe('Error title!');
+        });
+      
+      });
+      
+      describe('with "icon" option', function() {
+      
+        var notification;
+        
+        beforeEach(function() {
+          spyOn(NOTIFICATION.fn, 'setIcon').andCallThrough();
+        
+          notification = new kiui.Notification(elem, {
+            icon: 'icon'
+          });
+        });
+        
+        afterEach(function() {
+          notification.destroy();
+          notification = undefined;
+        });
+        
+        it('should call setIcon()', function() {
+          expect(notification.setIcon.calls.length).toBe(1);
+          expect(notification.setIcon.mostRecentCall.args[0]).toBe('icon');
         });
       
       });
@@ -677,13 +741,12 @@ describe('utility notifier:', function() {
       
     });
   
-    describe('addHtml()', function() {
+    describe('addContent()', function() {
   
       var notification;
         
       beforeEach(function() {
         notification = new kiui.Notification(elem, {});
-        notification.addHtml('43 is not the answer!');
       });
     
       afterEach(function() {
@@ -691,14 +754,107 @@ describe('utility notifier:', function() {
         notification = undefined;
       });
     
-      it('should add html to the .kiui-notification-content DOM element', function() {
+      it('should add text to the .kiui-notification-content DOM element', function() {
+        notification.addContent('43 is not the answer!');
+        
         expect(elem.find('.kiui-notification-content').html()).toEqual('43 is not the answer!');
       });
       
-      it('called a second time, should append the html to the .kiui-notification-content DOM element', function() {
-        notification.addHtml('this is another error');
+      it('called a second time, should append the text to the .kiui-notification-content DOM element', function() {
+        notification.addContent('43 is not the answer!');
+        notification.addContent('this is another error');
       
         expect(elem.find('.kiui-notification-content').html()).toEqual('43 is not the answer!this is another error');
+      });
+      
+      it('should add html to the .kiui-notification-content DOM element', function() {
+        notification.addContent('43 is <strong>not</strong> the answer!');
+        
+        expect(elem.find('.kiui-notification-content').html()).toEqual('43 is <strong>not</strong> the answer!');
+        expect(elem.find('.kiui-notification-content').find('strong').length).toEqual(1);
+      });
+  
+    });
+  
+    describe('setTitle()', function() {
+  
+      var notification;
+        
+      beforeEach(function() {
+        notification = new kiui.Notification(elem, {});
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+    
+      it('should add text to the .kiui-notification-title DOM element', function() {
+        notification.setTitle('43 is not the answer!');
+        
+        expect(elem.find('.kiui-notification-title').html()).toEqual('43 is not the answer!');
+      });
+      
+      it('called a second time, should substitute the text inside the .kiui-notification-title DOM element', function() {
+        notification.setTitle('43 is not the answer!');
+        notification.setTitle('this is another error');
+      
+        expect(elem.find('.kiui-notification-title').html()).toEqual('this is another error');
+      });
+      
+      it('should add html to the .kiui-notification-title DOM element', function() {
+        notification.setTitle('43 is <strong>not</strong> the answer!');
+        
+        expect(elem.find('.kiui-notification-title').html()).toEqual('43 is <strong>not</strong> the answer!');
+        expect(elem.find('.kiui-notification-title').find('strong').length).toEqual(1);
+      });
+      
+      it('when title is empty, should hide DOM element', function() {
+        notification.setTitle('');
+      
+        expect(elem.find('.kiui-notification-title').is(':visible')).toBeFalsy();
+      });
+      
+      it('called after the title had been hidden, should show it', function() {
+        notification.setTitle('');
+        notification.setTitle('new title');
+      
+        expect(elem.find('.kiui-notification-title').is(':visible')).toBeTruthy();
+      });
+  
+    });
+  
+    describe('setIcon()', function() {
+  
+      var notification;
+        
+      beforeEach(function() {
+        notification = new kiui.Notification(elem, {});
+      });
+    
+      afterEach(function() {
+        notification.destroy();
+        notification = undefined;
+      });
+    
+      it('should add text to the .kiui-notification-icon DOM element', function() {
+        notification.setIcon('icon');
+        
+        expect(elem.find('.kiui-notification-icon').html()).toEqual('icon');
+      });
+      
+      it('called a second time, should substitute the text inside the .kiui-notification-icon DOM element', function() {
+        notification.setIcon('icon');
+        notification.setIcon('new icon');
+      
+        expect(elem.find('.kiui-notification-icon').html()).toEqual('new icon');
+      });
+      
+      it('should add html to the .kiui-notification-icon DOM element', function() {
+        notification.setIcon('<span>icon</span>');
+        
+        expect(elem.find('.kiui-notification-icon').html()).toEqual('<span>icon</span>');
+        expect(elem.find('.kiui-notification-icon').find('span').length).toEqual(1);
       });
   
     });
