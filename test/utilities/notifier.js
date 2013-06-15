@@ -244,27 +244,6 @@ describe('utility notifier:', function() {
         });
       });
       
-      describe('with invalid position option', function() {
-        
-        var notifier;
-        
-        beforeEach(function() {
-          notifier = new kiui.Notifier(elem, {
-            position: 'invalid-position'
-          });
-        });
-        
-        afterEach(function() {
-          notifier.destroy();
-          notifier = undefined;
-        });
-        
-        it('should set the right classes on DOM element', function() {
-          expect(elem.is('.kiui-notifier.kiui-position-top.kiui-position-right')).toBeTruthy();
-        });
-        
-      });
-      
     });
     
     describe('destroy()', function() {

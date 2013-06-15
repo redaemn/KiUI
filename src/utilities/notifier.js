@@ -38,21 +38,7 @@
   var Notifier = WIDGET.extend({
     init: function (element, options) {
       var that = this,
-        position,
-        positions,
-        isInvalidPosition;
-      
-      isInvalidPosition = (
-        options &&
-        options.position !== TOP_RIGHT &&
-        options.position !== TOP_LEFT &&
-        options.position !== BOTTOM_RIGHT &&
-        options.position !== BOTTOM_LEFT
-      );
-      
-      if (isInvalidPosition) {
-        options.position = that.options.position;
-      }
+        positions;
 
       WIDGET.fn.init.call(that, element, options);
 
@@ -203,28 +189,7 @@
   
   var Notification = WIDGET.extend({
     init: function (element, options) {
-      var that = this,
-        isInvalidAutoHide,
-        isInvalidHtml;
-    
-      isInvalidHtml = (
-        options.html &&
-        typeof options.html !== STRING
-      );
-    
-      if (isInvalidHtml) {
-        throw new Error("Invalid html option");
-      }
-    
-      isInvalidAutoHide = (
-        options.autoHide &&
-        options.autoHide !== false &&
-        typeof options.autoHide !== NUMBER
-      );
-    
-      if (isInvalidAutoHide) {
-        options.autoHide = undefined;
-      }
+      var that = this;
       
       WIDGET.fn.init.call(that, element, options);
 
