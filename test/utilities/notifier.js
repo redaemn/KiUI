@@ -143,13 +143,11 @@ describe('utility notifier:', function() {
     
   });
   
-  // TODO: append when no previous notify exists
-  
   // TODO: autohide when appending
   
   
   var NotificationFake = function() {
-    return jasmine.createSpyObj('Notification', [
+    var Notification = jasmine.createSpyObj('Notification', [
       'destroy',
       'bind',
       'addContent',
@@ -159,6 +157,12 @@ describe('utility notifier:', function() {
       'height',
       'setPosition'
     ]);
+    
+    Notification.element = jasmine.createSpyObj('Notification.element', [
+      'hasClass'
+    ]);
+    
+    return Notification;
   };
   
   describe('Notifier', function() {
@@ -423,28 +427,105 @@ describe('utility notifier:', function() {
           });
         
           describe('with append option', function() {
+          
+            describe('when a previous notification of the same type exists', function() {
         
-            beforeEach(function() {
-              notifier[notificationType]('this is an error!');
+              beforeEach(function() {
+                notifier[notificationType]('this is an error!');
+              
+                notifications[0].element.hasClass.andReturn(true);
             
-              notifier[notificationType]({
-                content: '43 is not the answer!',
-                append: true
+                notifier[notificationType]({
+                  content: '43 is not the answer!',
+                  append: true
+                });
               });
-            });
         
-            it('should not create a new Notification', function() {
-              expect(kiui.Notification.calls.length).toBe(1);
-              expect(notifications.length).toBe(1);
-            });
+              it('should not create a new Notification', function() {
+                expect(kiui.Notification.calls.length).toBe(1);
+                expect(notifications.length).toBe(1);
+              });
       
-            it('should not create a new DOM element to contain the notification', function() {
-              expect(elem.children().length).toEqual(1);
-            });
+              it('should not create a new DOM element to contain the notification', function() {
+                expect(elem.children().length).toEqual(1);
+              });
         
-            it('should add html to the Notification', function() {
-              expect(notifications[0].addContent.calls.length).toBe(1);
-              expect(notifications[0].addContent.mostRecentCall.args[0]).toEqual('43 is not the answer!');
+              it('should add html to the existing Notification', function() {
+                expect(notifications[0].addContent.calls.length).toBe(1);
+                expect(notifications[0].addContent.mostRecentCall.args[0]).toEqual('43 is not the answer!');
+              });
+            
+            });
+            
+            describe('when multiple previous notification of the same type exist', function() {
+        
+              beforeEach(function() {
+                notifier[notificationType]('this is an error!');
+                notifier[notificationType]('this is another error!');
+              
+                notifications[0].element.hasClass.andReturn(true);
+                notifications[1].element.hasClass.andReturn(true);
+            
+                notifier[notificationType]({
+                  content: '43 is not the answer!',
+                  append: true
+                });
+              });
+        
+              it('should add html to the last Notification', function() {
+                expect(notifications[0].addContent.calls.length).toBe(0);
+                expect(notifications[1].addContent.calls.length).toBe(1);
+                expect(notifications[1].addContent.mostRecentCall.args[0]).toEqual('43 is not the answer!');
+              });
+            
+            });
+            
+            describe('when no previous notifications exist', function() {
+        
+              beforeEach(function() {
+                //notifier[notificationType]('this is an error!');
+              
+                //notifications[0].element.hasClass.andReturn(false);
+            
+                notifier[notificationType]({
+                  content: '43 is not the answer!',
+                  append: true
+                });
+              });
+        
+              it('should create a new Notification', function() {
+                expect(kiui.Notification.calls.length).toBe(1);
+                expect(notifications.length).toBe(1);
+              });
+      
+              it('should create a new DOM element to contain the notification', function() {
+                expect(elem.children().length).toEqual(1);
+              });
+            
+            });
+            
+            describe('when a previous notification of the same type does not exist', function() {
+        
+              beforeEach(function() {
+                notifier[notificationType]('this is an error!');
+              
+                notifications[0].element.hasClass.andReturn(false);
+            
+                notifier[notificationType]({
+                  content: '43 is not the answer!',
+                  append: true
+                });
+              });
+        
+              it('should create a new Notification', function() {
+                expect(kiui.Notification.calls.length).toBe(2);
+                expect(notifications.length).toBe(2);
+              });
+      
+              it('should create a new DOM element to contain the notification', function() {
+                expect(elem.children().length).toEqual(2);
+              });
+            
             });
         
           });

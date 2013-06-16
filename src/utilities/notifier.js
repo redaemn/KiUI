@@ -9,9 +9,9 @@
     WIDGET = kendo.ui.Widget,
     UI = kendo.ui,
     PROXY = $.proxy,
-    ERROR = 'kiui-notification-error k-error-colored',
-    INFO = 'kiui-notification-info k-info-colored',
-    SUCCESS = 'kiui-notification-success k-success-colored',
+    ERROR = 'kiui-notification-error',
+    INFO = 'kiui-notification-info',
+    SUCCESS = 'kiui-notification-success',
     KIUI_NOTIFIER = 'kiui-notifier',
     KIUI_POSITION = 'kiui-position-',
     KIUI_NOTIFICATION = 'kiui-notification',
@@ -115,16 +115,22 @@
       });
     },
     
-    _notify: function(options) {
+    _notify: function(options, notificationType) {
       var that = this,
         notification;
     
       if (options.append) {
-        notification = that._notifications[that._notifications.length - 1];
-        notification.addContent(options.content);
+        $.each(that._notifications, function(idx, _notification) {
+          if (_notification.element.hasClass(notificationType)) {
+            notification = _notification;
+          }
+        });
       }
     
-      if (notification === undefined) {
+      if (notification !== undefined) {
+        notification.addContent(options.content);
+      }
+      else {
         notification = new kiui.Notification(
           $('<div></div>').appendTo(that.element),
           options);
@@ -153,16 +159,17 @@
         options = { content: options };
       }
       
-      options.notificationClass = notificationType;
-      
       if (notificationType == ERROR) {
         options.icon = '<span class="k-icon k-i-note"></span>';
+        options.notificationClass = notificationType + ' k-error-colored';
       }
       else if (notificationType == INFO) {
         options.icon = '<span class="k-icon k-i-pencil"></span>';
+        options.notificationClass = notificationType + ' k-info-colored';
       }
       else if (notificationType == SUCCESS) {
         options.icon = '<span class="k-icon k-i-tick"></span>';
+        options.notificationClass = notificationType + ' k-success-colored';
       }
       
       return options;
@@ -171,19 +178,19 @@
     error: function(options) {
       var that = this;
       
-      that._notify(that._createNotificationOptions(options, ERROR));
+      that._notify(that._createNotificationOptions(options, ERROR), ERROR);
     },
     
     info: function(options) {
       var that = this;
       
-      that._notify(that._createNotificationOptions(options, INFO));
+      that._notify(that._createNotificationOptions(options, INFO), INFO);
     },
     
     success: function(options) {
       var that = this;
       
-      that._notify(that._createNotificationOptions(options, SUCCESS));
+      that._notify(that._createNotificationOptions(options, SUCCESS), SUCCESS);
     },
     
     destroy: function() {
@@ -238,7 +245,7 @@
         '</div>' +
         '<div class="' + KIUI_NOTIFICATION_TITLE + '"></div>' +
         '<div class="' + KIUI_NOTIFICATION_CONTENT + '"></div>',
-      notificationClass: ERROR,
+      notificationClass: 'k-error-colored',
       icon: "",
       title: "",
       content: "",
