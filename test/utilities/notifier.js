@@ -395,7 +395,7 @@ describe('utility notifier:', function() {
           
           });
         
-          describe('with html option', function() {
+          describe('with content option', function() {
         
             beforeEach(function() {
               notifier[notificationType]({
@@ -403,9 +403,39 @@ describe('utility notifier:', function() {
               });
             });
         
-            it('should create a Notification passing the options', function() {
+            it('should create a Notification passing the option', function() {
               expect(kiui.Notification.calls.length).toBe(1);
               expect(kiui.Notification.mostRecentCall.args[1].content).toEqual('43 is not the answer!');
+            });
+        
+          });
+          
+          describe('with title option', function() {
+        
+            beforeEach(function() {
+              notifier[notificationType]({
+                title: 'notification title'
+              });
+            });
+        
+            it('should create a Notification passing the option', function() {
+              expect(kiui.Notification.calls.length).toBe(1);
+              expect(kiui.Notification.mostRecentCall.args[1].title).toEqual('notification title');
+            });
+        
+          });
+          
+          describe('with icon option', function() {
+        
+            beforeEach(function() {
+              notifier[notificationType]({
+                icon: 'notification icon'
+              });
+            });
+        
+            it('should create a Notification passing the option', function() {
+              expect(kiui.Notification.calls.length).toBe(1);
+              expect(kiui.Notification.mostRecentCall.args[1].icon).toEqual('notification icon');
             });
         
           });
@@ -947,6 +977,19 @@ describe('utility notifier:', function() {
         
         expect(elem.find('.kiui-notification-icon').html()).toEqual('<span>icon</span>');
         expect(elem.find('.kiui-notification-icon').find('span').length).toEqual(1);
+      });
+      
+      it('when icon is empty, should hide DOM element', function() {
+        notification.setIcon('');
+      
+        expect(elem.find('.kiui-notification-icon').is(':visible')).toBeFalsy();
+      });
+      
+      it('called after the icon had been hidden, should show it', function() {
+        notification.setIcon('');
+        notification.setIcon('new icon');
+      
+        expect(elem.find('.kiui-notification-icon').is(':visible')).toBeTruthy();
       });
   
     });

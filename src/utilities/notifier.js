@@ -160,15 +160,21 @@
       }
       
       if (notificationType == ERROR) {
-        options.icon = '<span class="k-icon k-i-note"></span>';
+        if (options.icon === undefined) {
+          options.icon = '<span class="k-icon k-i-note"></span>';
+        }
         options.notificationClass = notificationType + ' k-error-colored';
       }
       else if (notificationType == INFO) {
-        options.icon = '<span class="k-icon k-i-pencil"></span>';
+        if (options.icon === undefined) {
+          options.icon = '<span class="k-icon k-i-pencil"></span>';
+        }
         options.notificationClass = notificationType + ' k-info-colored';
       }
       else if (notificationType == SUCCESS) {
-        options.icon = '<span class="k-icon k-i-tick"></span>';
+        if (options.icon === undefined) {
+          options.icon = '<span class="k-icon k-i-tick"></span>';
+        }
         options.notificationClass = notificationType + ' k-success-colored';
       }
       
@@ -300,9 +306,17 @@
     },
     
     setIcon: function (iconHtml) {
-      var that = this;
-      
-      that.element.find('.' + KIUI_NOTIFICATION_ICON).html(iconHtml);
+      var that = this,
+        iconElement = that.element.find('.' + KIUI_NOTIFICATION_ICON);
+       
+      iconElement.html(iconHtml);
+        
+      if (iconHtml === EMPTY) {
+        iconElement.hide();
+      }
+      else {
+        iconElement.show();
+      }
     },
     
     setTitle: function (htmlTitle) {
