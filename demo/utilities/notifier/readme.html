@@ -1,3 +1,46 @@
 <p>
-    <code>kiui.notifier</code> helps you to send notifications to the user.
+    The <em>Notifier</em> utility helps you to send notifications to the user.
+</p>
+
+<p>
+    Start creating an instance of Notifier using the <code>kiui.notifier()</code> function, it accepts a single <code>position</code> option that can
+    have four values: <code>top-left</code>, <code>bottom-left</code>, <code>bottom-right</code> or <code>top-right</code>. Default is <code>top-right</code>.
+</p>
+
+<p>
+    The Notifier exposes three methods that you can use to create different kinds of notifications: <code>error()</code>, <code>info()</code> and <code>success()</code>.
+</p>
+
+<p>
+    Each method accepts the following options:
+    
+    <ul>
+        <li>
+            <code>append</code>: when set to <code>true</code>, the given content will be appended to a previous notification of the same type;
+            if such a notification does not exist, a standard notification will be created instead. (Default: <code>false</code>)
+        </li>
+    
+        <li>
+            <code>autoHide</code>: when set to a number, the notification will be automatically hidden after the given amount of milliseconds. If set to
+            <code>false</code> the notification will have to be hidden manually.
+            (Default: <code>false</code>)
+        </li>
+        
+        <li>
+            <code>content</code>: the html content that will be inserted inside the notification.
+        </li>
+        
+        <li>
+            <code>icon</code>: the html that will be used as icon for the notification. (Default: every method has its specific default icon)
+        </li>
+        
+        <li>        
+            <code>title</code>: the notification title, if empty the title will be hidden. (Default: <code>""</code>)
+        </li>
+        
+        <li>        
+            <code>width</code>: the notification width in pixels. (Default: <code>250</code>)
+        </li>
+    </ul>
+    
 </p>
