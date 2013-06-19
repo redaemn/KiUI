@@ -74,16 +74,22 @@
         position = that.options.position,
         margin = 10,
         maxVertical = $(window).height(),
+        maxHorizontal = 0,
         currentVertical = margin,
         currentHorizontal = margin;
       
       $.each(that._notifications, function(idx, notification) {
         var height = notification.height();
-        var nextVertical = currentVertical + margin;
+        var width = notification.width();
         
-        if (currentVertical + height > maxVertical - margin) {
+        if (width > maxHorizontal) {
+          maxHorizontal = width;
+        }
+        
+        if (idx > 0 && currentVertical + height > maxVertical - margin) {
           currentVertical = margin;
-          currentHorizontal += notification.width() + margin;
+          currentHorizontal += maxHorizontal + margin;
+          maxHorizontal = 0;
         }
         
         if (position == TOP_RIGHT) {

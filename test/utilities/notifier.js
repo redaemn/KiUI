@@ -155,6 +155,7 @@ describe('utility notifier:', function() {
       'setTitle',
       'show',
       'height',
+      'width',
       'setPosition'
     ]);
     
