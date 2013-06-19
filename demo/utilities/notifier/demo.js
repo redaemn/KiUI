@@ -86,11 +86,63 @@ jQuery(function($) {
     notifier.success({
       title: "Narrower",
       content: "This notification is narrower than the others",
-      width: 100
+      width: 150
     });
   }
   
   $('#utilities_notify_demo button#wider-notification').click(widerNotification);
   $('#utilities_notify_demo button#narrower-notification').click(narrowerNotification);
+  
+  var topLeftNotifier = kiui.notifier({
+    position: "top-left"
+  });
+  
+  var bottomLeftNotifier = kiui.notifier({
+    position: "bottom-left"
+  });
+  
+  var bottomRightNotifier = kiui.notifier({
+    position: "bottom-right"
+  });
+  
+  var topRightNotifier = kiui.notifier({
+    position: "top-right"
+  });
+  
+  function topLeftNotification() {
+    topLeftNotifier.success({
+      title: "Top-left positioning",
+      content: "This notification is positioned in the top-left corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#top-left-positioning').click(topLeftNotification);
+  
+  function bottomLeftNotification() {
+    bottomLeftNotifier.info({
+      title: "Bottom-left positioning",
+      content: "This notification is positioned in the bottom-left corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#bottom-left-positioning').click(bottomLeftNotification);
+  
+  function bottomRightNotification() {
+    bottomRightNotifier.error({
+      title: "Bottom-right positioning",
+      content: "This notification is positioned in the bottom-right corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#bottom-right-positioning').click(bottomRightNotification);
+  
+  function topRightNotification() {
+    topRightNotifier.info({
+      title: "Top-right positioning",
+      content: "This notification is positioned in the top-right corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#top-right-positioning').click(topRightNotification);
 
 });
