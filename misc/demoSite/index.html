@@ -14,6 +14,7 @@
     <link href="rainbow-github.css" rel="stylesheet">
     <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="<%= filename %>-<%= pkg.version%>.min.css" rel="stylesheet" />
 
     <script src="http://cdn.kendostatic.com/<%= kendoVersion %>/js/jquery.min.js"></script>
     <script src="http://cdn.kendostatic.com/<%= kendoVersion %>/js/kendo.web.min.js"></script>
@@ -60,7 +61,17 @@
                             <li class="nav-header"><%= groupDescriptor.displayName %></li>
                             <% Object.keys(groupDescriptor.features).forEach(function(featureId) { %>
                                 <% var feature = groupDescriptor.features[featureId]; %>
-                                <li><a href="#<%= groupId %>_<%= featureId %>"><%= feature.displayName %></a></li>
+                                <li>
+                                    <a href="#<%= groupId %>_<%= featureId %>">
+                                        <%= feature.displayName %>
+                                        <% if (feature.isNew) { %>
+                                            <span class="label label-important">New!</span>
+                                        <% } %>
+                                        <% if (feature.isComingSoon) { %>
+                                            <span class="label label-info">Coming soon...</span>
+                                        <% } %>
+                                    </a>
+                                </li>
                             <% }); %>
                         <% }); %>
                     </ul>
@@ -88,36 +99,52 @@
 
                                     <div class="row-fluid">
                                         <div class="span12">
-                                            <h2><%= feature.displayName %></h2>
+                                            <h2>
+                                                <%= feature.displayName %>
+                                                <% if (feature.isNew) { %>
+                                                    <span class="label label-important">New!</span>
+                                                <% } %>
+                                                <% if (feature.isComingSoon) { %>
+                                                    <span class="label label-info">Coming soon...</span>
+                                                <% } %>
+                                            </h2>
                                         </div><!--/span-->
                                     </div><!--/row-->
 
                                     <div class="row-fluid">
-                                        <div class="span6">
-                                            <%= feature.html %>
-                                            <script><%= feature.js %></script>
-                                        </div><!--/span-->
-                                        <div class="span6">
-                                            <%= feature.readme %>
-                                        </div><!--/span-->
+                                        <% if (feature.isComingSoon) { %>
+                                            <div class="span12">
+                                                <%= feature.readme %>
+                                            </div><!--/span-->
+                                        <% } else { %>
+                                            <div class="span6">
+                                                <%= feature.html %>
+                                                <script><%= feature.js %></script>
+                                            </div><!--/span-->
+                                            <div class="span6">
+                                                <%= feature.readme %>
+                                            </div><!--/span-->
+                                        <% } %>
                                     </div><!--/row-->
 
-                                    <div class="row-fluid">
-                                        <div class="span12">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#<%= featureCompleteID %>_html" data-toggle="tab">Html</a></li>
-                                                <li><a href="#<%= featureCompleteID %>_js" data-toggle="tab">Javascript</a></li>
-                                            </ul>
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="<%= featureCompleteID %>_html">
-                                                    <pre><code data-language="html"><%- feature.html %></code></pre>
+                                    <% if (!feature.isComingSoon) { %>
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#<%= featureCompleteID %>_html" data-toggle="tab">Html</a></li>
+                                                    <li><a href="#<%= featureCompleteID %>_js" data-toggle="tab">Javascript</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="<%= featureCompleteID %>_html">
+                                                        <pre><code data-language="html"><%- feature.html %></code></pre>
+                                                    </div>
+                                                    <div class="tab-pane" id="<%= featureCompleteID %>_js">
+                                                        <pre><code data-language="javascript"><%- feature.js %></code></pre>
+                                                    </div>
                                                 </div>
-                                                <div class="tab-pane" id="<%= featureCompleteID %>_js">
-                                                    <pre><code data-language="javascript"><%- feature.js %></code></pre>
-                                                </div>
-                                            </div>
-                                        </div><!--/span-->
-                                    </div><!--/row-->
+                                            </div><!--/span-->
+                                        </div><!--/row-->
+                                    <% } %>
 
                                 </section>
 
@@ -139,6 +166,16 @@
         </footer>
 
     </div><!--/.fluid-container-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41055822-1', 'redaemn.github.io');
+      ga('send', 'pageview');
+    </script>
 
 </body>
 
