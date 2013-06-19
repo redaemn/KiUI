@@ -1,0 +1,8 @@
+/*
+ * KiUI v0.0.1 (https://github.com/redaemn/KiUI)
+ * 2013-06-19
+ * Author: https://github.com/redaemn/KiUI/graphs/contributors
+ */
+
+
+.kiui-notification{padding:.8em;display:none;position:fixed;z-index:10000;transition:top 400ms,right 400ms,left 400ms,bottom 400ms;-webkit-transition:top 400ms,right 400ms,left 400ms,bottom 400ms;-moz-transition:top 400ms,right 400ms,left 400ms,bottom 400ms;-o-transition:top 400ms,right 400ms,left 400ms,bottom 400ms}.kiui-notification .kiui-notification-icon{float:left;margin-right:.3em}.kiui-notification .kiui-notification-title{line-height:1.3em;min-height:1.3em;margin-bottom:.4em;font-weight:700}.kiui-notification .kiui-notification-close{float:right;margin-left:.3em;cursor:pointer}.kiui-notification .kiui-notification-content{line-height:1.3em}

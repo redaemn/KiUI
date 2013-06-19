@@ -23,6 +23,16 @@
     <script src="rainbow-custom.min.js"></script>
 
     <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41055822-1', 'redaemn.github.io');
+      ga('send', 'pageview');
+    </script>
 </head>
 
 <body>
@@ -65,8 +75,6 @@
                                     <a href="#bindings_boolValue">
                                         Bool Value
                                         
-                                            <span class="label label-important">New!</span>
-                                        
                                         
                                     </a>
                                 </li>
@@ -77,11 +85,11 @@
                             
                                 
                                 <li>
-                                    <a href="#utilities_notify">
-                                        Notify
+                                    <a href="#utilities_notifier">
+                                        Notifier
                                         
+                                            <span class="label label-important">New!</span>
                                         
-                                            <span class="label label-info">Coming soon...</span>
                                         
                                     </a>
                                 </li>
@@ -114,8 +122,6 @@
                                         <div class="span12">
                                             <h2>
                                                 Bool Value
-                                                
-                                                    <span class="label label-important">New!</span>
                                                 
                                                 
                                             </h2>
@@ -266,15 +272,15 @@
                                 
                                 
 
-                                <section id="utilities_notify" class="feature-container">
+                                <section id="utilities_notifier" class="feature-container">
 
                                     <div class="row-fluid">
                                         <div class="span12">
                                             <h2>
-                                                Notify
+                                                Notifier
                                                 
+                                                    <span class="label label-important">New!</span>
                                                 
-                                                    <span class="label label-info">Coming soon...</span>
                                                 
                                             </h2>
                                         </div><!--/span-->
@@ -282,21 +288,488 @@
 
                                     <div class="row-fluid">
                                         
-                                            <div class="span12">
+                                            <div class="span6">
+                                                <div id="utilities_notify_demo">
+    <p>
+        There are three different styles of notifications:
+    </p>
+    <p>
+        <button id="error" class="btn btn-danger">Notify error</button>
+        <button id="info" class="btn btn-info">Notify info</button>
+        <button id="success" class="btn btn-success">Notify success</button>
+    </p>
+    
+    <p>
+        Notification content can be appended to a previous notification of the same type:
+    </p>
+    <p>
+        <button id="append-notification" class="btn btn-danger">Append notification</button>
+    </p>
+    
+    <p>
+        Notifications can auto-hide after a defined time:
+    </p>
+    <p>
+        <button id="autoHide-notification" class="btn btn-success">Auto-hide notification</button>
+    </p>
+    
+    <p>
+        Notifications can be created without a title:
+    </p>
+    <p>
+        <button id="no-title-notification" class="btn btn-info">Notification with no title</button>
+    </p>
+    
+    <p>
+        Notifications can have a custom icon or no icon at all:
+    </p>
+    <p>
+        <button id="custom-icon-notification" class="btn btn-danger">Notification with custom icon</button>
+        <button id="no-icon-notification" class="btn btn-info">Notification with no icon</button>
+    </p>
+    
+    <p>
+        Notifications width can be customized too:
+    </p>
+    <p>
+        <button id="wider-notification" class="btn btn-success">Wider notification</button>
+        <button id="narrower-notification" class="btn btn-success">Narrower notification</button>
+    </p>
+    
+    <p>
+        Notifications can be positioned in the four corners of the screen:
+    </p>
+    <p>
+        <button id="top-left-positioning" class="btn btn-success">Top-Left</button>
+        <button id="bottom-left-positioning" class="btn btn-info">Bottom-Left</button>
+        <button id="bottom-right-positioning" class="btn btn-danger">Bottom-Right</button>
+        <button id="top-right-positioning" class="btn btn-info">Top-Right</button>
+    </p>
+</div>
+                                                <script>jQuery(function($) {
+
+  var notifier = kiui.notifier();
+
+  function notifyError() {
+    notifier.error({
+      title: "Error",
+      content: "This is an error with a title and a content"
+    });
+  }
+  
+  function notifyInfo() {
+    notifier.info({
+      title: "Info",
+      content: "This is an info with a title and a content"
+    });
+  }
+  
+  function notifySuccess() {
+    notifier.success({
+      title: "Success",
+      content: "This is a success notification with a title"
+    });
+  }
+
+  $('#utilities_notify_demo button#error').click(notifyError);
+  $('#utilities_notify_demo button#info').click(notifyInfo);
+  $('#utilities_notify_demo button#success').click(notifySuccess);
+  
+  function appendNotification() {
+    notifier.error({
+      title: "This title is not considered if appended",
+      content: "<p>This error will be appended to the last one if it's still visible</p>",
+      append: true
+    });
+  }
+  
+  $('#utilities_notify_demo button#append-notification').click(appendNotification);
+  
+  function autoHideNotification() {
+    notifier.success({
+      title: "Auto-hide",
+      content: "This notification will hide automatically in 4 seconds.",
+      autoHide: 4000
+    });
+  }
+  
+  $('#utilities_notify_demo button#autoHide-notification').click(autoHideNotification);
+  
+  function noTitleNotification() {
+    notifier.info({
+      content: "This notification has no title, just content!!"
+    });
+  }
+  
+  $('#utilities_notify_demo button#no-title-notification').click(noTitleNotification);
+  
+  function customIconNotification() {
+    notifier.error({
+      icon: '<span class="k-icon k-i-cancel"></span>',
+      title: "Custom icon",
+      content: "This notification has a custom icon"
+    });
+  }
+  
+  function noIconNotification() {
+    notifier.info({
+      icon: "",
+      title: "No icon",
+      content: "This notification has no icon"
+    });
+  }
+  
+  $('#utilities_notify_demo button#custom-icon-notification').click(customIconNotification);
+  $('#utilities_notify_demo button#no-icon-notification').click(noIconNotification);
+  
+  function widerNotification() {
+    notifier.success({
+      title: "Wider",
+      content: "This notification is wider than the others",
+      width: 400
+    });
+  }
+  
+  function narrowerNotification() {
+    notifier.success({
+      title: "Narrower",
+      content: "This notification is narrower than the others",
+      width: 150
+    });
+  }
+  
+  $('#utilities_notify_demo button#wider-notification').click(widerNotification);
+  $('#utilities_notify_demo button#narrower-notification').click(narrowerNotification);
+  
+  var topLeftNotifier = kiui.notifier({
+    position: "top-left"
+  });
+  
+  var bottomLeftNotifier = kiui.notifier({
+    position: "bottom-left"
+  });
+  
+  var bottomRightNotifier = kiui.notifier({
+    position: "bottom-right"
+  });
+  
+  var topRightNotifier = kiui.notifier({
+    position: "top-right"
+  });
+  
+  function topLeftNotification() {
+    topLeftNotifier.success({
+      title: "Top-left positioning",
+      content: "This notification is positioned in the top-left corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#top-left-positioning').click(topLeftNotification);
+  
+  function bottomLeftNotification() {
+    bottomLeftNotifier.info({
+      title: "Bottom-left positioning",
+      content: "This notification is positioned in the bottom-left corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#bottom-left-positioning').click(bottomLeftNotification);
+  
+  function bottomRightNotification() {
+    bottomRightNotifier.error({
+      title: "Bottom-right positioning",
+      content: "This notification is positioned in the bottom-right corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#bottom-right-positioning').click(bottomRightNotification);
+  
+  function topRightNotification() {
+    topRightNotifier.info({
+      title: "Top-right positioning",
+      content: "This notification is positioned in the top-right corner of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#top-right-positioning').click(topRightNotification);
+
+});
+</script>
+                                            </div><!--/span-->
+                                            <div class="span6">
                                                 <p>
-    <code>kiui.notify</code> helps you to send notifications to the user.
-    It can handle three different type of notifications: <code>error</code>, <code>success</code> and <code>info</code>.
+    The <em>Notifier</em> utility helps you to send notifications to the user.
 </p>
 
 <p>
-    Notifications can be customized to appear in different positions of the screen
-    (<code>top left</code>, <code>top right</code>, <code>bottom left</code>, <code>bottom right</code>),
-    can be configured to <code>autoHide</code> or <code>append</code> to previous notifications.
+    Start creating an instance of Notifier using the <code>kiui.notifier()</code> function, it accepts a single <code>position</code> option that can
+    have four values: <code>top-left</code>, <code>bottom-left</code>, <code>bottom-right</code> or <code>top-right</code>. Default is <code>top-right</code>.
 </p>
+
+<p>
+    The Notifier exposes three methods that you can use to create different kinds of notifications: <code>error()</code>, <code>info()</code> and <code>success()</code>.
+</p>
+
+<p>
+    Each method accepts the following options:
+    
+    <ul>
+        <li>
+            <code>append</code>: when set to <code>true</code>, the given content will be appended to a previous notification of the same type;
+            if such a notification does not exist, a standard notification will be created instead. (Default: <code>false</code>)
+        </li>
+    
+        <li>
+            <code>autoHide</code>: when set to a number, the notification will be automatically hidden after the given amount of milliseconds. If set to
+            <code>false</code> the notification will have to be hidden manually.
+            (Default: <code>false</code>)
+        </li>
+        
+        <li>
+            <code>content</code>: the html content that will be inserted inside the notification.
+        </li>
+        
+        <li>
+            <code>icon</code>: the html that will be used as icon for the notification, if set to <code>""</code> the icon will be hidden.
+            (Default: every method has its specific default icon)
+        </li>
+        
+        <li>        
+            <code>title</code>: the notification title, if set to <code>""</code> the title will be hidden. (Default: <code>""</code>)
+        </li>
+        
+        <li>        
+            <code>width</code>: the notification width in pixels. (Default: <code>250</code>)
+        </li>
+    </ul>
+    
+</p>
+
                                             </div><!--/span-->
                                         
                                     </div><!--/row-->
 
+                                    
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#utilities_notifier_html" data-toggle="tab">Html</a></li>
+                                                    <li><a href="#utilities_notifier_js" data-toggle="tab">Javascript</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="utilities_notifier_html">
+                                                        <pre><code data-language="html">&lt;div id=&quot;utilities_notify_demo&quot;&gt;
+    &lt;p&gt;
+        There are three different styles of notifications:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;error&quot; class=&quot;btn btn-danger&quot;&gt;Notify error&lt;/button&gt;
+        &lt;button id=&quot;info&quot; class=&quot;btn btn-info&quot;&gt;Notify info&lt;/button&gt;
+        &lt;button id=&quot;success&quot; class=&quot;btn btn-success&quot;&gt;Notify success&lt;/button&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        Notification content can be appended to a previous notification of the same type:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;append-notification&quot; class=&quot;btn btn-danger&quot;&gt;Append notification&lt;/button&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        Notifications can auto-hide after a defined time:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;autoHide-notification&quot; class=&quot;btn btn-success&quot;&gt;Auto-hide notification&lt;/button&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        Notifications can be created without a title:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;no-title-notification&quot; class=&quot;btn btn-info&quot;&gt;Notification with no title&lt;/button&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        Notifications can have a custom icon or no icon at all:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;custom-icon-notification&quot; class=&quot;btn btn-danger&quot;&gt;Notification with custom icon&lt;/button&gt;
+        &lt;button id=&quot;no-icon-notification&quot; class=&quot;btn btn-info&quot;&gt;Notification with no icon&lt;/button&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        Notifications width can be customized too:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;wider-notification&quot; class=&quot;btn btn-success&quot;&gt;Wider notification&lt;/button&gt;
+        &lt;button id=&quot;narrower-notification&quot; class=&quot;btn btn-success&quot;&gt;Narrower notification&lt;/button&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        Notifications can be positioned in the four corners of the screen:
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;button id=&quot;top-left-positioning&quot; class=&quot;btn btn-success&quot;&gt;Top-Left&lt;/button&gt;
+        &lt;button id=&quot;bottom-left-positioning&quot; class=&quot;btn btn-info&quot;&gt;Bottom-Left&lt;/button&gt;
+        &lt;button id=&quot;bottom-right-positioning&quot; class=&quot;btn btn-danger&quot;&gt;Bottom-Right&lt;/button&gt;
+        &lt;button id=&quot;top-right-positioning&quot; class=&quot;btn btn-info&quot;&gt;Top-Right&lt;/button&gt;
+    &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                                                    </div>
+                                                    <div class="tab-pane" id="utilities_notifier_js">
+                                                        <pre><code data-language="javascript">jQuery(function($) {
+
+  var notifier = kiui.notifier();
+
+  function notifyError() {
+    notifier.error({
+      title: &quot;Error&quot;,
+      content: &quot;This is an error with a title and a content&quot;
+    });
+  }
+  
+  function notifyInfo() {
+    notifier.info({
+      title: &quot;Info&quot;,
+      content: &quot;This is an info with a title and a content&quot;
+    });
+  }
+  
+  function notifySuccess() {
+    notifier.success({
+      title: &quot;Success&quot;,
+      content: &quot;This is a success notification with a title&quot;
+    });
+  }
+
+  $(&#x27;#utilities_notify_demo button#error&#x27;).click(notifyError);
+  $(&#x27;#utilities_notify_demo button#info&#x27;).click(notifyInfo);
+  $(&#x27;#utilities_notify_demo button#success&#x27;).click(notifySuccess);
+  
+  function appendNotification() {
+    notifier.error({
+      title: &quot;This title is not considered if appended&quot;,
+      content: &quot;&lt;p&gt;This error will be appended to the last one if it&#x27;s still visible&lt;/p&gt;&quot;,
+      append: true
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#append-notification&#x27;).click(appendNotification);
+  
+  function autoHideNotification() {
+    notifier.success({
+      title: &quot;Auto-hide&quot;,
+      content: &quot;This notification will hide automatically in 4 seconds.&quot;,
+      autoHide: 4000
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#autoHide-notification&#x27;).click(autoHideNotification);
+  
+  function noTitleNotification() {
+    notifier.info({
+      content: &quot;This notification has no title, just content!!&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#no-title-notification&#x27;).click(noTitleNotification);
+  
+  function customIconNotification() {
+    notifier.error({
+      icon: &#x27;&lt;span class=&quot;k-icon k-i-cancel&quot;&gt;&lt;/span&gt;&#x27;,
+      title: &quot;Custom icon&quot;,
+      content: &quot;This notification has a custom icon&quot;
+    });
+  }
+  
+  function noIconNotification() {
+    notifier.info({
+      icon: &quot;&quot;,
+      title: &quot;No icon&quot;,
+      content: &quot;This notification has no icon&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#custom-icon-notification&#x27;).click(customIconNotification);
+  $(&#x27;#utilities_notify_demo button#no-icon-notification&#x27;).click(noIconNotification);
+  
+  function widerNotification() {
+    notifier.success({
+      title: &quot;Wider&quot;,
+      content: &quot;This notification is wider than the others&quot;,
+      width: 400
+    });
+  }
+  
+  function narrowerNotification() {
+    notifier.success({
+      title: &quot;Narrower&quot;,
+      content: &quot;This notification is narrower than the others&quot;,
+      width: 150
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#wider-notification&#x27;).click(widerNotification);
+  $(&#x27;#utilities_notify_demo button#narrower-notification&#x27;).click(narrowerNotification);
+  
+  var topLeftNotifier = kiui.notifier({
+    position: &quot;top-left&quot;
+  });
+  
+  var bottomLeftNotifier = kiui.notifier({
+    position: &quot;bottom-left&quot;
+  });
+  
+  var bottomRightNotifier = kiui.notifier({
+    position: &quot;bottom-right&quot;
+  });
+  
+  var topRightNotifier = kiui.notifier({
+    position: &quot;top-right&quot;
+  });
+  
+  function topLeftNotification() {
+    topLeftNotifier.success({
+      title: &quot;Top-left positioning&quot;,
+      content: &quot;This notification is positioned in the top-left corner of the screen&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#top-left-positioning&#x27;).click(topLeftNotification);
+  
+  function bottomLeftNotification() {
+    bottomLeftNotifier.info({
+      title: &quot;Bottom-left positioning&quot;,
+      content: &quot;This notification is positioned in the bottom-left corner of the screen&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#bottom-left-positioning&#x27;).click(bottomLeftNotification);
+  
+  function bottomRightNotification() {
+    bottomRightNotifier.error({
+      title: &quot;Bottom-right positioning&quot;,
+      content: &quot;This notification is positioned in the bottom-right corner of the screen&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#bottom-right-positioning&#x27;).click(bottomRightNotification);
+  
+  function topRightNotification() {
+    topRightNotifier.info({
+      title: &quot;Top-right positioning&quot;,
+      content: &quot;This notification is positioned in the top-right corner of the screen&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#top-right-positioning&#x27;).click(topRightNotification);
+
+});
+</code></pre>
+                                                    </div>
+                                                </div>
+                                            </div><!--/span-->
+                                        </div><!--/row-->
                                     
 
                                 </section>
@@ -319,17 +792,6 @@
         </footer>
 
     </div><!--/.fluid-container-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-41055822-1', 'redaemn.github.io');
-      ga('send', 'pageview');
-
-    </script>
 
 </body>
 
