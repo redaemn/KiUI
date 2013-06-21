@@ -92,6 +92,15 @@ module.exports = function(grunt) {
       comingSoonFeatures: {
         
       }
+    },
+    watch: {
+      demoSite: {
+        files: ['demo/**/*', 'misc/demoSite/**/*'],
+        tasks: ['demoSite'],
+        options: {
+          interrupt: true
+        }
+      }
     }
   });
 
@@ -101,6 +110,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   /****************************************
    * Default task
