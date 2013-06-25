@@ -3,15 +3,27 @@
 
 <head>
     <meta charset="utf-8">
-    <title>KiUI - Kendo UI Web lost features</title>
+    <title>KiUI - Kendo UI Web features for your everyday job</title>
     <!-- TODO: inside the description, add the name of every element developed using a template  -->
-    <meta name="description" content="Widgets, validators and other features for Kendo UI Web that were lost in time (and space)">
+    <meta name="description" content="Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web
+    
+    <% Object.keys(demoSite.features).forEach(function(groupId) { %>
+        <% var groupDescriptor = demoSite.features[groupId]; %>
+        - <%= groupDescriptor.displayName %>:
+        
+        <% Object.keys(groupDescriptor.features).forEach(function(featureId, idx) { %>
+            <% var feature = groupDescriptor.features[featureId]; %>
+            <% if (idx > 0) { %>, <% } %><%= feature.displayName %>
+        <% }); %>
+    <% }); %>
+    
+    ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="rainbow-github.css" rel="stylesheet">
+    <link href="resources/rainbow-github.css" rel="stylesheet">
     <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.default.min.css" rel="stylesheet" />
     <link href="<%= filename %>-<%= pkg.version%>.min.css" rel="stylesheet" />
@@ -20,7 +32,7 @@
     <script src="http://cdn.kendostatic.com/<%= kendoVersion %>/js/kendo.web.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script src="<%= filename %>-<%= pkg.version%>.min.js"></script>
-    <script src="rainbow-custom.min.js"></script>
+    <script src="resources/rainbow-custom.min.js"></script>
 
     <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
     
@@ -38,7 +50,7 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container-fluid">
+            <div class="container">
                 <!--<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -59,13 +71,15 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="row-fluid">
             <div class="span2">
                 <div class="well sidebar-nav">
                     <ul class="nav nav-list">
                         <!--<li class="nav-header">Sidebar</li>
                         <li class="active"><a href="#">Link</a></li>-->
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#installation">Installation</a></li>
                         <% Object.keys(demoSite.features).forEach(function(groupId) { %>
                             <% var groupDescriptor = demoSite.features[groupId]; %>
                             <li class="nav-header"><%= groupDescriptor.displayName %></li>
@@ -88,10 +102,49 @@
                 </div><!--/.well -->
             </div><!--/span-->
             <div class="span10">
-                <div class="hero-unit">
+                <div class="hero-unit text-center">
                     <h1>KiUI</h1>
-                    <p>Widgets, validators and other features for <strong>Kendo UI Web</strong> that were lost in time (and space)</p>
+                    <p>Widgets, validators, bindings and other useful features for your everyday job with <strong>Kendo UI Web</strong></p>
+                    <p><a href="<%= filename %>-<%= pkg.version%>.zip" class="btn btn-primary btn-large">Download latest version</a></p>
                 </div>
+                
+                <section id="introduction">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="page-header">
+                                <h1>Introduction</h1>
+                            </div>
+                            <p>
+                                <strong>KiUI</strong> is a companion framework for Telerik's <strong><a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></strong>.
+                                It adds widgets, validators, bindings and other higher-level features useful for your everyday job with Kendo... so that
+                                you don't have to develop them yourself!! :)
+                            </p>
+                            <p>
+                                <strong>KiUI</strong> comes to you from the experience of a professional that works day after day with Kendo framework to build customized
+                                widgets and features for web applications and sites.
+                            </p>
+                            <p>
+                                <strong>KiUI</strong> is currently tested on the latest version of <strong>Chrome</strong> and <strong>Firefox</strong>.
+                            </p>
+                            <p class="well">
+                                You had an idea for a new feature that you think would be a perfect addition to <strong>KiUI</strong>? Just open a new
+                                <a href="https://github.com/redaemn/KiUI/issues" target="_blank">issue</a> or submit a new
+                                <a href="https://github.com/redaemn/KiUI/pulls" target="_blank">pull request</a> and tell me all
+                                about it!! Together we can try to add it!! :)
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="installation">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="page-header">
+                                <h1>Installation</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <% Object.keys(demoSite.features).forEach(function(groupId) { %>
                     <% var groupDescriptor = demoSite.features[groupId]; %>
@@ -171,8 +224,8 @@
         <hr>
 
         <footer>
-            <p>Powered by <a href="http://www.kendoui.com/web.aspx">Kendo UI Web</a></p>
-            <p>Project on GitHub <a href="https://github.com/redaemn/KiUI">https://github.com/redaemn/KiUI</a></p>
+            <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+            <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
         </footer>
 
     </div><!--/.fluid-container-->

@@ -28,8 +28,14 @@ footer > p {
     text-align: center;
 }
 
+section#introduction,
+section#installation,
 section.feature-container {
     padding-top: 30px;
+}
+
+section#installation {
+  padding-bottom: 30px;
 }
 
 .group-container .page-header {
