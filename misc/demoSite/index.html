@@ -23,6 +23,7 @@
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/main.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href="resources/rainbow-github.css" rel="stylesheet">
     <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.default.min.css" rel="stylesheet" />
@@ -89,7 +90,7 @@
                                     <a href="#<%= groupId %>_<%= featureId %>">
                                         <%= feature.displayName %>
                                         <% if (feature.isNew) { %>
-                                            <span class="label label-important">New!</span>
+                                            <span class="label label-important"><i class="icon-star"></i> New!</span>
                                         <% } %>
                                         <% if (feature.isComingSoon) { %>
                                             <span class="label label-info">Coming soon...</span>
@@ -105,7 +106,7 @@
                 <div class="hero-unit text-center">
                     <h1>KiUI</h1>
                     <p>Widgets, validators, bindings and other useful features for your everyday job with <strong>Kendo UI Web</strong></p>
-                    <p><a href="<%= filename %>-<%= pkg.version%>.zip" class="btn btn-primary btn-large">Download latest version</a></p>
+                    <p><a href="<%= filename %>-<%= pkg.version%>.zip" class="btn btn-primary btn-large"><i class="icon-download icon-large"></i> Download latest version</a></p>
                 </div>
                 
                 <section id="introduction">
@@ -142,6 +143,19 @@
                             <div class="page-header">
                                 <h1>Installation</h1>
                             </div>
+                            <p>
+                                To start working with <strong>KiUI</strong> begin <a href="<%= filename %>-<%= pkg.version%>.zip">downloading the latest version</a>,
+                                the package contains <code>.css</code> and <code>.js</code> files both in minified and un-minified version.
+                            </p>
+                            <p>
+                                After you included the Kendo UI Web library and one of its color themes, you must include the <strong>KiUI</strong> library
+                                using the following code:
+                            </p>
+                            <pre><code data-language="html"><link href="<%= filename %>-<%= pkg.version%>.min.css" rel="stylesheet" />
+<script src="<%= filename %>-<%= pkg.version%>.min.js"></script></code></pre>
+                            <p>
+                                Now you're good to go!! Explore all the available <strong>KiUI</strong> features described below and... happy coding!! :)
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -165,7 +179,7 @@
                                             <h2>
                                                 <%= feature.displayName %>
                                                 <% if (feature.isNew) { %>
-                                                    <span class="label label-important">New!</span>
+                                                    <span class="label label-important"><i class="icon-star"></i> New!</span>
                                                 <% } %>
                                                 <% if (feature.isComingSoon) { %>
                                                     <span class="label label-info">Coming soon...</span>
