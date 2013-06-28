@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     kendoVersion: '2013.1.319',
     pkg: grunt.file.readJSON('package.json'),
     filename: 'kiui',
+    
     commons: {
       banner: '/*\n' +
               ' * <%= pkg.name %> v<%= pkg.version %> (https://github.com/redaemn/KiUI)\n' +
@@ -12,6 +13,7 @@ module.exports = function(grunt) {
               ' * Author: <%= pkg.author %>\n' +
               ' */\n\n'
     },
+    
     concat: {
       dist: {
         options: {
@@ -23,6 +25,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    
     uglify: {
       dist:{
         options: {
@@ -33,6 +36,7 @@ module.exports = function(grunt) {
         dest:'dist/<%= filename %>-<%= pkg.version %>.min.js'
       }
     },
+    
     cssmin: {
       dist: {
         options: {
@@ -44,10 +48,12 @@ module.exports = function(grunt) {
         }
       }
     },
+    
     jshint: {
       dist: ['Gruntfile.js','src/**/*.js', 'test/**/*.js'],
       demoSite: ['demo/**/*.js']
     },
+    
     karma: {
       singleRun: {
         configFile: 'karma.conf.js',
@@ -70,6 +76,7 @@ module.exports = function(grunt) {
         autoWatch: true
       }
     },
+    
     copy: {
       demoSite: {
         options: {
@@ -83,6 +90,7 @@ module.exports = function(grunt) {
         }]
       }
     },
+    
     demoSite: {
       // will be filled by the 'demoSite' task
       features: {},
@@ -93,6 +101,7 @@ module.exports = function(grunt) {
         
       }
     },
+    
     watch: {
       demoSite: {
         files: ['demo/**/*', 'misc/demoSite/**/*'],
@@ -101,7 +110,26 @@ module.exports = function(grunt) {
           interrupt: true
         }
       }
+    },
+    
+    compress: {
+      dist: {
+        options: {
+          archive: 'dist/<%= filename %>-<%= pkg.version %>.zip'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'dist/',
+            flatten: true,
+            src: ['<%= filename %>-<%= pkg.version %>.*js', '<%= filename %>-<%= pkg.version %>.*css'], 
+            dest: '<%= filename %>-<%= pkg.version %>/',
+            filter: 'isFile'
+          }
+        ]
+      }
     }
+    
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -111,6 +139,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   /****************************************
    * Default task
@@ -118,7 +147,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default',
     'Lint JS files, run tests and then build',
-    ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist', 'cssmin:dist']
+    ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'compress:dist']
   );
   
   /****************************************
@@ -127,7 +156,7 @@ module.exports = function(grunt) {
    
    grunt.registerTask('build',
     'Lint JS files, concatenate and then minify JS and CSS files',
-    ['jshint:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist']
+    ['jshint:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'compress:dist']
    );
 
   /****************************************
