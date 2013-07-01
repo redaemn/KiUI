@@ -32,3 +32,7 @@ This project uses [Jasmine](http://pivotal.github.io/jasmine/) as test framework
 [Karma](http://karma-runner.github.io) as test runner.
 
 To run all project's tests execute `grunt karma:singleRun`
+
+### License
+
+This software is licensed under the [GNU General Public License (GPL) version 3](http://www.gnu.org/copyleft/gpl.html)
