@@ -11,6 +11,9 @@ module.exports = function(grunt) {
               ' * <%= pkg.name %> v<%= pkg.version %> (https://github.com/redaemn/KiUI)\n' +
               ' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
               ' * Author: <%= pkg.author %>\n' +
+              ' *\n' +
+              ' * This software is licensed under the GNU General Public License (GPL) version 3\n' +
+              ' * http://www.gnu.org/copyleft/gpl.html\n' +
               ' */\n\n'
     },
     
