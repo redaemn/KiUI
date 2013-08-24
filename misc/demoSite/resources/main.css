@@ -41,3 +41,13 @@ section#installation {
 .group-container .page-header {
     margin-bottom: 0;
 }
+
+ul.social-buttons {
+    list-style-type: none;
+    margin: 40px 0 0;
+}
+
+ul.social-buttons li {
+    display: inline-block;
+    margin: 0 20px;
+}
