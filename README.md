@@ -1,16 +1,29 @@
-# KiUI - [Kendo UI Web](http://www.kendoui.com/web.aspx) lost features
+# KiUI - Widgets, validators, bindings and other useful features for your everyday job with [Kendo UI Web](http://www.kendoui.com/web.aspx)
 
 ***
 
 ## Project objectives
 
-Widgets, validators, bindings and other features for **Kendo UI Web** that were lost in time (and space)
+**KiUI** is a companion framework for Telerik's [Kendo UI Web](http://www.kendoui.com/web.aspx). It adds widgets, validators, bindings and other higher-level features useful for your everyday job with Kendo... so that you don't have to develop them yourself!! :)
+
+**KiUI** comes to you from the experience of a professional that works day after day with Kendo framework to build customized widgets and features for web applications and sites.
+
+**KiUI** is currently tested on the latest version of **Chrome** and **Firefox**.
 
 ## Installation
 
-todo...
+To start working with **KiUI** begin [downloading the latest compressed version](https://github.com/redaemn/KiUI/tree/gh-pages), the `zip` package contains `.css` and .`js` files both in minified and un-minified version.
 
-We should have a **NuGet** bundle
+After you included the Kendo UI Web library and one of its color themes, you must include the **KiUI** library using the following code:
+
+```html
+<link href="kiui-0.0.1.min.css" rel="stylesheet">
+<script src="kiui-0.0.1.min.js"></script>
+```
+
+Now you're good to go!! Explore all the available **KiUI** features described in the [official site](http://redaemn.github.io/KiUI/) and... happy coding!! :)
+
+*Note to self:* I should create a **NuGet** bundle!!
 
 ## Contributing
 
@@ -33,6 +46,6 @@ This project uses [Jasmine](http://pivotal.github.io/jasmine/) as test framework
 
 To run all project's tests execute `grunt karma:singleRun`
 
-### License
+## License
 
 This software is licensed under the [GNU General Public License (GPL) version 3](http://www.gnu.org/copyleft/gpl.html)
