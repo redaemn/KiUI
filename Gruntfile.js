@@ -101,7 +101,7 @@ module.exports = function(grunt) {
         utilities: ['notifier']
       },
       comingSoonFeatures: {
-        
+        widgets: ['popupMenu']
       }
     },
     
