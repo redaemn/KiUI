@@ -98,10 +98,10 @@ module.exports = function(grunt) {
       // will be filled by the 'demoSite' task
       features: {},
       newFeatures: {
-        utilities: ['notifier']
+        widgets: ['popupMenu']
       },
       comingSoonFeatures: {
-        widgets: ['popupMenu']
+        
       }
     },
     
