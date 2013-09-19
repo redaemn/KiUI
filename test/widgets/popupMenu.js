@@ -6,7 +6,8 @@ describe('widgets popupMenu:', function() {
     POPUP = kiui.PopupMenu,
     MenuFake = function() {
       return  jasmine.createSpyObj('kendoMenu', [
-        'destroy'
+        'destroy',
+        'bind'
       ]);
     };
   
@@ -72,6 +73,62 @@ describe('widgets popupMenu:', function() {
         triggerEl.click();
         
         expect(popup.toggle.calls.length).toBe(1);
+      });
+        
+      function findCallByEventName(eventName) {
+        return function(call) {
+          return call.args[0] === eventName;
+        };
+      }
+    
+      ['open', 'close', 'select'].forEach(function(eventName) {
+    
+        it('should bind to menu ' + eventName + ' event', function() {
+          spyOn(POPUP.fn, 'trigger').andReturn(false);
+        
+          expect(popup.menu.bind.calls.some(findCallByEventName(eventName))).toBeTruthy();
+        });
+    
+        it('should bind to menu ' + eventName + ' event with a function that triggers the popup ' + eventName + ' event', function() {
+          var boundFunction = function() {},
+            param = { item: 'eventItem' };
+            
+          spyOn(POPUP.fn, 'trigger').andReturn(false);
+            
+          popup.menu.bind.calls.forEach(function(call) {
+            if (call.args[0] === eventName) {
+              boundFunction = call.args[1];
+            }
+          });
+      
+          boundFunction(param);
+      
+          expect(popup.trigger.calls.length).toBe(1);
+          expect(popup.trigger.mostRecentCall.args[0]).toBe(eventName);
+          expect(popup.trigger.mostRecentCall.args[1]).toEqual(param);
+        });
+    
+        if (eventName !== 'select') {
+        
+          it('should cancel the popup ' + eventName + ' event if the menu ' + eventName + ' event was cancelled', function() {
+            var boundFunction = function() {},
+              eventObj = jasmine.createSpyObj('eventObj', ['preventDefault']);
+              
+            spyOn(POPUP.fn, 'trigger').andReturn(true);
+            
+            popup.menu.bind.calls.forEach(function(call) {
+              if (call.args[0] === eventName) {
+                boundFunction = call.args[1];
+              }
+            });
+        
+            boundFunction(eventObj);
+      
+            expect(eventObj.preventDefault).toHaveBeenCalled();
+          });
+          
+        }
+      
       });
     
     });
@@ -144,6 +201,7 @@ describe('widgets popupMenu:', function() {
         
     beforeEach(function() {
       spyOn(POPUP.fn, 'close').andCallThrough();
+      spyOn(POPUP.fn, 'trigger').andCallThrough();
     
       popup = new kiui.PopupMenu(elem, {});
       
@@ -185,6 +243,30 @@ describe('widgets popupMenu:', function() {
       
       expect(popup.close.calls.length).toBe(2);
     });
+    
+    it('should trigger open event', function() {
+      expect(popup.trigger.mostRecentCall.args[0]).toBe('open');
+    });
+    
+    it('should trigger the open event passing the trigger element', function() {
+      expect($(popup.trigger.mostRecentCall.args[1].item).is(triggerEl)).toBeTruthy();
+    });
+    
+    it('should not trigger open event if the menu is yet open', function() {
+      popup.open();
+    
+      expect(popup.trigger.calls.length).toBe(1);
+    });
+    
+    it('should not open the menu if the event is cancelled', function() {
+      popup.close();
+      popup.bind('open', function(e) {
+        e.preventDefault();
+      });
+      popup.open();
+      
+      expect(popup._menuEl.slideToggle.calls.length).toBe(2);
+    });
   
   });
   
@@ -212,6 +294,17 @@ describe('widgets popupMenu:', function() {
       expect(popup.close.calls.length).toBe(1);
     });
     
+    it('should not detach itself if close event was cancelled', function() {
+      popup.bind('close', function(e) {
+        e.preventDefault();
+      });
+      
+      $('body').click();
+      $('body').click();
+      
+      expect(popup.close.calls.length).toBe(2);
+    });
+    
     it('should not close the menu if the trigger is clicked', function() {
       triggerEl.click();
       
@@ -232,6 +325,7 @@ describe('widgets popupMenu:', function() {
         
     beforeEach(function() {
       spyOn(POPUP.fn, 'open').andCallThrough();
+      spyOn(POPUP.fn, 'trigger').andCallThrough();
     
       popup = new kiui.PopupMenu(elem, {});
       
@@ -258,6 +352,30 @@ describe('widgets popupMenu:', function() {
       popup.close();
     
       expect(popup._menuEl.slideToggle.calls.length).toBe(2);
+    });
+    
+    it('should trigger close event', function() {
+      expect(popup.trigger.mostRecentCall.args[0]).toBe('close');
+    });
+    
+    it('should trigger the close event passing the trigger element', function() {
+      expect($(popup.trigger.mostRecentCall.args[1].item).is(triggerEl)).toBeTruthy();
+    });
+    
+    it('should not trigger open event if the menu is yet closed', function() {
+      popup.close();
+    
+      expect(popup.trigger.calls.length).toBe(2);
+    });
+    
+    it('should not open the menu if the event is cancelled', function() {
+      popup.open();
+      popup.bind('close', function(e) {
+        e.preventDefault();
+      });
+      popup.close();
+      
+      expect(popup._menuEl.slideToggle.calls.length).toBe(3);
     });
   
   });
