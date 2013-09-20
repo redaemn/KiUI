@@ -12,7 +12,7 @@ describe('widgets popupMenu:', function() {
     };
   
   beforeEach(function() {
-    elem = $('<div><a><span></span></a><ul></ul></div>').appendTo('body');
+    elem = $('<div><a><span></span></a><ul><li></li></ul></div>').appendTo('body');
     triggerEl = elem.children('a');
     menuEl = elem.children('ul');
     spyOn(kendo.ui, 'Menu').andCallFake(MenuFake);
@@ -157,6 +157,113 @@ describe('widgets popupMenu:', function() {
         expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual(menuOptions);
       });
       
+    });
+    
+    describe('with "openOnHover" option', function() {
+    
+      var popup,
+        TIMER_DELAY = 200;
+        
+      beforeEach(function() {
+        spyOn(POPUP.fn, 'toggle').andCallThrough();
+        spyOn(POPUP.fn, 'open').andCallThrough();
+        spyOn(POPUP.fn, 'close').andCallThrough();
+        jasmine.Clock.useMock();
+      
+        popup = new kiui.PopupMenu(elem, {
+          openOnHover: true
+        });
+      });
+      
+      afterEach(function() {
+        popup.destroy();
+        popup = undefined;
+      });
+      
+      it('should not attach click handler to trigger element', function() {
+        triggerEl.click();
+        
+        expect(popup.toggle.calls.length).toBe(0);
+      });
+      
+      it('should open() menu when mouseenter occurs', function() {
+        expect(popup.open.calls.length).toBe(0);
+        
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+      
+        expect(popup.open.calls.length).toBe(1);
+      });
+      
+      it('should not open() menu when mouseleave occurs right after mouseenter', function() {
+        expect(popup.open.calls.length).toBe(0);
+        
+        elem.mouseenter();
+        elem.mouseleave();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+      
+        expect(popup.open.calls.length).toBe(0);
+      });
+      
+      it('should close() menu when mouseleave occurs after the menu opened', function() {
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        expect(popup.close.calls.length).toBe(0);
+        
+        elem.mouseleave();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+      
+        expect(popup.close.calls.length).toBe(1);
+      });
+      
+      it("should not close() menu when it's open and mouseenter occurs right after mouseleave", function() {
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        expect(popup.close.calls.length).toBe(0);
+        
+        elem.mouseleave();
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+      
+        expect(popup.close.calls.length).toBe(0);
+      });
+      
+      it("should continue to open() the menu on mouseenter after it was opened and closed before", function() {
+        expect(popup.open.calls.length).toBe(0);
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        expect(popup.open.calls.length).toBe(1);
+        elem.mouseleave();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        expect(popup.open.calls.length).toBe(1);
+        
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        
+        expect(popup.open.calls.length).toBe(2);
+      });
+      
+      it('should close() the menu only once when clicking on an item', function() {
+        expect(popup.close.calls.length).toBe(0);
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        
+        menuEl.find('li').click();
+        
+        expect(popup.close.calls.length).toBe(1);
+      });
+      
+      it('should not open() the menu again when clicking on an item', function() {
+        expect(popup.open.calls.length).toBe(0);
+        elem.mouseenter();
+        jasmine.Clock.tick(TIMER_DELAY + 1);
+        expect(popup.open.calls.length).toBe(1);
+        
+        menuEl.find('li').click();
+        
+        expect(popup.open.calls.length).toBe(1);
+      });
+    
     });
     
   });

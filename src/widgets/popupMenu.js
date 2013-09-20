@@ -2,7 +2,7 @@
  *
  */
  
-(function($, document, undefined) {
+(function($, document, window, undefined) {
 
   var NS = ".kiuiPopupMenu",
     PREFIX = kiui.prefix,
@@ -10,6 +10,8 @@
     UI = kendo.ui,
     PROXY = $.proxy,
     CLICK = 'click',
+    MOUSEENTER = 'mouseenter',
+    MOUSELEAVE = 'mouseleave',
     KIUI_POPUP_MENU = "kiui-popup-menu",
     KIUI_POPUP_MENU_TRIGGER = "kiui-popup-menu-trigger",
     KIUI_POPUP_MENU_MENU = "kiui-popup-menu-menu",
@@ -28,10 +30,16 @@
       element = that.element;
       options = that.options;
       
+      that._triggerEl = element.children().first();
+      that._menuEl = that._triggerEl.next('ul');
+      
       element.addClass(KIUI_POPUP_MENU);
+      that._triggerEl.addClass(KIUI_POPUP_MENU_TRIGGER);
+      that._menuEl.addClass(KIUI_POPUP_MENU_MENU);
       
       that._createMenu();
       that._bindMenuEvents();
+      that._attachTriggerHandlers();
     },
 
     options: {
@@ -40,7 +48,7 @@
       menuOptions: {
         orientation: "vertical"
       },
-      openOnHover: false, // TODO: handle this option
+      openOnHover: false,
       direction: 'bottom right', // TODO: handle this option
       animation: 'slide' // TODO: handel this option -> ['fade', 'none']
     },
@@ -52,24 +60,56 @@
     ],
     
     _createMenu: function() {
-      var that = this,
-        triggerEl = that._triggerEl = that.element.children().first(),
-        menuEl = that._menuEl = triggerEl.next('ul');
+      var that = this;
+      
+      that.menu = new UI.Menu(that._menuEl, that.options.menuOptions);
+      
+      that._open = false;
+      that._automaticallyCloseMenuAttached = false;
+    },
+    
+    _attachTriggerHandlers: function() {
+      var that = this;
       
       function clickWrapper(e) {
         e.preventDefault();
         that.toggle();
       }
       
-      triggerEl
-        .addClass(KIUI_POPUP_MENU_TRIGGER)
-        .on(CLICK + NS, clickWrapper);
+      var toggleTimer;
       
-      menuEl.addClass(KIUI_POPUP_MENU_MENU);
-      that.menu = new UI.Menu(menuEl, that.options.menuOptions);
+      function clearTimer() {
+        window.clearTimeout(toggleTimer);
+        toggleTimer = undefined;
+      }
       
-      that._open = false;
-      that._automaticallyCloseMenuAttached = false;
+      function mouseenterWrapper(e) {
+        toggleTimer = window.setTimeout(function() {
+          toggleTimer = undefined;
+          that.element.off(MOUSEENTER + NS + ' ' + MOUSELEAVE + NS);
+          that.element.on(MOUSELEAVE + NS, mouseleaveWrapper);
+          that.open();
+        }, 200);
+      
+        that.element.one(MOUSELEAVE + NS, clearTimer);
+      }
+      
+      function mouseleaveWrapper(e) {
+        toggleTimer = window.setTimeout(function() {
+          toggleTimer = undefined;
+          that.element.off(MOUSELEAVE + NS + ' ' + MOUSEENTER + NS);
+          that.element.on(MOUSEENTER + NS, mouseenterWrapper);
+          that.close();
+        }, 200);
+      
+        that.element.one(MOUSEENTER + NS, clearTimer);
+      }
+      
+      if (that.options.openOnHover) {
+        that.element.on(MOUSEENTER + NS, mouseenterWrapper);
+      } else {  
+        that._triggerEl.on(CLICK + NS, clickWrapper);
+      }
     },
     
     _bindMenuEvents: function() {
@@ -146,6 +186,7 @@
       var that = this;
 
       that._triggerEl.off(NS);
+      that.element.off(NS);
       that.menu.destroy();
 
       WIDGET.fn.destroy.call(that);
@@ -155,4 +196,4 @@
   
   kiui.plugin(PopupMenu);
 
-})(window.jQuery, window.document);
+})(window.jQuery, window.document, window);

@@ -9,7 +9,7 @@
 .kiui-popup-menu .kiui-popup-menu-menu {
   display: none;
   position: absolute;
-  margin-top: .15em;
+  /*margin-top: .15em;*/ /* TODO: to enable this, I need a wrapper around the menu */
   white-space: nowrap;
   top: 100%;
   min-width: 160px;
