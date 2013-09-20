@@ -66,7 +66,14 @@ describe('widgets popupMenu:', function() {
       it('should create a kendoMenu using the menu DOM element and passing default options', function() {
         expect(kendo.ui.Menu.calls.length).toBe(1);
         expect(kendo.ui.Menu.mostRecentCall.args[0].is(menuEl)).toBe(true);
-        expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual({ orientation: 'vertical' });
+        expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual({
+          orientation: 'vertical',
+          animation: {
+            open: {
+              effects: "expand"
+            }
+          }
+        });
       });
       
       it('should attach click handler to trigger element', function() {
@@ -133,7 +140,8 @@ describe('widgets popupMenu:', function() {
     
     });
     
-    describe('with "menuOptions" option', function() {
+    /*** menuOptions option is not available for now ***/
+    /*describe('with "menuOptions" option', function() {
     
       var popup,
         menuOptions;
@@ -157,7 +165,7 @@ describe('widgets popupMenu:', function() {
         expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual(menuOptions);
       });
       
-    });
+    });*/
     
     describe('with "openOnHover" option', function() {
     
@@ -266,6 +274,118 @@ describe('widgets popupMenu:', function() {
     
     });
     
+    describe('with "animation" option', function() {
+    
+      var popup;
+       
+      describe('"fade"', function() {
+        
+        beforeEach(function() {
+          popup = new kiui.PopupMenu(elem, {
+            animation: 'fade'
+          });
+          
+          spyOn(popup._menuEl, 'fadeToggle').andCallThrough();
+        });
+      
+        afterEach(function() {
+          popup.destroy();
+          popup = undefined;
+        });
+        
+        it('should create menu widget passing the right options', function() {
+          expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual({
+            orientation: 'vertical',
+            animation: {
+              open: {
+                effects: "fadeIn"
+              }
+            }
+          });
+        });
+        
+        describe('open()', function() {
+        
+          beforeEach(function() {
+            popup.open();
+          });
+      
+          it('should open the menu with "fade" animation', function() {
+            expect(popup._menuEl.fadeToggle.calls.length).toBe(1);
+            expect(popup._menuEl.fadeToggle.calls[0].args[0]).toBe(200);
+          });
+        
+        });
+        
+        describe('close()', function() {
+        
+          beforeEach(function() {
+            popup.open();
+            popup.close();
+          });
+      
+          it('should close the menu with "fade" animation', function() {
+            expect(popup._menuEl.fadeToggle.calls.length).toBe(2);
+            expect(popup._menuEl.fadeToggle.mostRecentCall.args[0]).toBe(100);
+          });
+        
+        });
+      
+      });
+      
+      describe('"none"', function() {
+        
+        beforeEach(function() {
+          popup = new kiui.PopupMenu(elem, {
+            animation: 'none'
+          });
+          
+          spyOn(popup._menuEl, 'toggle').andCallThrough();
+        });
+      
+        afterEach(function() {
+          popup.destroy();
+          popup = undefined;
+        });
+        
+        it('should create menu widget passing the right options', function() {
+          expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual({
+            orientation: 'vertical',
+            animation: false
+          });
+        });
+        
+        describe('open()', function() {
+        
+          beforeEach(function() {
+            popup.open();
+          });
+      
+          it('should open the menu with no animation', function() {
+            expect(popup._menuEl.toggle.calls.length).toBe(1);
+            expect(popup._menuEl.toggle.calls[0].args[0]).toBe(0);
+          });
+        
+        });
+        
+        describe('close()', function() {
+        
+          beforeEach(function() {
+            popup.open();
+            popup.close();
+          });
+      
+          it('should close the menu with no animation', function() {
+            expect(popup._menuEl.toggle.calls.length).toBe(2);
+            expect(popup._menuEl.toggle.mostRecentCall.args[0]).toBe(0);
+          });
+        
+        });
+      
+      });
+      
+    });
+    
   });
   
   describe('toggle()', function() {
@@ -326,8 +446,9 @@ describe('widgets popupMenu:', function() {
       expect(elem.is('.kiui-state-open')).toBeTruthy();
     });
     
-    it('should slide open the menu', function() {
-      expect(popup._menuEl.slideToggle).toHaveBeenCalled();
+    it('should open the menu with "expand" animation', function() {
+      expect(popup._menuEl.slideToggle.calls.length).toBe(1);
+      expect(popup._menuEl.slideToggle.calls[0].args[0]).toBe(200);
     });
     
     it('should not open the menu when it is yet open', function() {
@@ -451,8 +572,9 @@ describe('widgets popupMenu:', function() {
       expect(elem.is('.kiui-state-open')).toBeFalsy();
     });
     
-    it('should slide close the menu', function() {
+    it('should close the menu with "expand" animation', function() {
       expect(popup._menuEl.slideToggle.calls.length).toBe(2);
+      expect(popup._menuEl.slideToggle.mostRecentCall.args[0]).toBe(100);
     });
     
     it('should not close the menu when it is yet closed', function() {

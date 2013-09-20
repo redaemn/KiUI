@@ -46,11 +46,16 @@
       prefix: PREFIX,
       name: "PopupMenu",
       menuOptions: {
-        orientation: "vertical"
+        orientation: "vertical",
+        animation: {
+          open: {
+            effects: "expand"
+          }
+        }
       },
       openOnHover: false,
       direction: 'bottom right', // TODO: handle this option
-      animation: 'slide' // TODO: handel this option -> ['fade', 'none']
+      animation: 'expand' // can also be 'fade' or 'none'
     },
     
     events: [
@@ -60,9 +65,16 @@
     ],
     
     _createMenu: function() {
-      var that = this;
+      var that = this,
+        options = that.options;
+        
+      if (options.animation === 'fade') {
+        options.menuOptions.animation = { open: { effects: "fadeIn" } };
+      } else if (options.animation === 'none') {
+        options.menuOptions.animation = false;
+      }
       
-      that.menu = new UI.Menu(that._menuEl, that.options.menuOptions);
+      that.menu = new UI.Menu(that._menuEl, options.menuOptions);
       
       that._open = false;
       that._automaticallyCloseMenuAttached = false;
@@ -144,13 +156,23 @@
     },
     
     open: function() {
-      var that = this;
+      var that = this,
+        animation = 'slideToggle',
+        duration = 200;
+      
+      if (that.options.animation === 'fade') {
+        animation = 'fadeToggle';
+      }
+      else if (that.options.animation === 'none') {
+        animation = 'toggle';
+        duration = 0;
+      }
     
       if (!that._open && that.trigger(OPEN, { item: that._triggerEl[0] }) === false) {
         that._open = true;
         that.element.addClass(KIUI_STATE_OPEN);
         that._setAutomaticClose();
-        that._menuEl.stop().slideToggle('fast');
+        that._menuEl.stop()[animation](duration);
       }
     },
     
@@ -171,12 +193,22 @@
     },
     
     close: function() {
-      var that = this;
+      var that = this,
+        animation = 'slideToggle',
+        duration = 100;
+        
+      if (that.options.animation === 'fade') {
+        animation = 'fadeToggle';
+      }
+      else if (that.options.animation === 'none') {
+        animation = 'toggle';
+        duration = 0;
+      }
     
       if (that._open && that.trigger(CLOSE, { item: that._triggerEl[0] }) === false) {
         that._open = false;
         that.element.removeClass(KIUI_STATE_OPEN);
-        that._menuEl.stop().slideToggle('fast');
+        that._menuEl.stop()[animation](duration);
       }
       
       return that._open === false; // return whether the menu has been closed
