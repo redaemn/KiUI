@@ -386,6 +386,51 @@ describe('widgets popupMenu:', function() {
       
     });
     
+    describe('with "direction" option', function() {
+    
+      var popup;
+       
+      describe('"top *"', function() {
+        
+        beforeEach(function() {
+          popup = new kiui.PopupMenu(elem, {
+            direction: 'top right'
+          });
+        });
+      
+        afterEach(function() {
+          popup.destroy();
+          popup = undefined;
+        });
+        
+        it('should set "kiui-position-top" class on DOM element', function() {
+          expect(elem.is('.kiui-position-top')).toBeTruthy();
+        });
+      
+      });
+      
+      describe('"* left"', function() {
+        
+        beforeEach(function() {
+          popup = new kiui.PopupMenu(elem, {
+            direction: 'bottom left'
+          });
+        });
+      
+        afterEach(function() {
+          popup.destroy();
+          popup = undefined;
+        });
+        
+        it('should create a kendoMenu passing the correct direction option', function() {
+          expect(kendo.ui.Menu.calls.length).toBe(1);
+          expect(kendo.ui.Menu.mostRecentCall.args[1].direction).toEqual('left');
+        });
+      
+      });
+      
+    });
+    
   });
   
   describe('toggle()', function() {

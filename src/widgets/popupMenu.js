@@ -16,6 +16,7 @@
     KIUI_POPUP_MENU_TRIGGER = "kiui-popup-menu-trigger",
     KIUI_POPUP_MENU_MENU = "kiui-popup-menu-menu",
     KIUI_STATE_OPEN = "kiui-state-open",
+    KIUI_POSITION_TOP = "kiui-position-top",
     OPEN = "open",
     CLOSE = "close",
     SELECT = "select";
@@ -54,8 +55,9 @@
         }
       },
       openOnHover: false,
-      direction: 'bottom right', // TODO: handle this option
-      animation: 'expand' // can also be 'fade' or 'none'
+      direction: 'bottom right', // can also be 'bottom left', 'top right' or 'top left'
+      animation: 'expand', // can also be 'fade' or 'none'
+      collisionDetection: false // TODO: handle this option
     },
     
     events: [
@@ -66,12 +68,20 @@
     
     _createMenu: function() {
       var that = this,
-        options = that.options;
+        options = that.options,
+        directions = options.direction.split(' ');
         
       if (options.animation === 'fade') {
         options.menuOptions.animation = { open: { effects: "fadeIn" } };
       } else if (options.animation === 'none') {
         options.menuOptions.animation = false;
+      }
+      
+      if (directions[1] === 'left') {
+        options.menuOptions.direction = 'left';
+      }
+      if (directions[0] === 'top') {
+        that.element.addClass(KIUI_POSITION_TOP);
       }
       
       that.menu = new UI.Menu(that._menuEl, options.menuOptions);
