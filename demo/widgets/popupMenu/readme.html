@@ -1,7 +1,40 @@
 <p>
-    The <em>Popup Menu</em> widget allows you to create a menu that opens only when clicking on a target element.
+    The <em>Popup Menu</em> widget allows you to create a menu attached to a specific target element (such as a button or an anchor).
 </p>
 
 <p>
-    It's a very simple feature but at the same time a very useful one for many sites and web applications.
+    The basic <code>HTML</code> layout needed to build a <em>Popup Menu</em> requires a container element (usually a <code>&lt;div></code> tag)
+    that contains exactly two children: the first one is the trigger element which will trigger the menu opening and closing, the second
+    one is a <code>&lt;ul></code> element that will render the actual menu.
+</p>
+
+<p>
+    Under the hood, <em>Popup Menu</em> uses the <em>kendoMenu</em> widget to build the menu so the possible structure for the <code>&lt;ul></code>
+    subtree is the same as the one described for the <a href="http://demos.kendoui.com/web/menu/index.html" target="_blank">kendoMenu widget</a>.
+</p>
+
+<p>
+    The trigger element can be any <code>HTML</code> tag but usually a <code>&lt;button></code> or <code>&lt;a></code> tag will be used.
+</p>
+
+<hr />
+
+<p>
+    The widget accepts the following configuration options:
+    
+    <ul>
+        <li>
+            <code>openOnHover</code>: by default the menu will open when clicking on the target menu; setting this option to <code>true</code>
+            will trigger the menu opening when the mouse stops over the trigger.
+            (Default: <code>false</code>)
+        </li>
+        
+        <li>
+            <code>direction</code>: 
+        </li>
+        
+        <li>
+            <code>animation</code>: 
+        </li>
+    </ul>
 </p>
