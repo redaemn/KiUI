@@ -408,6 +408,33 @@ describe('widgets popupMenu:', function() {
       
     });
     
+    describe('with "dataSource" option', function() {
+    
+      var popup,
+        dataSource = [
+          {
+            text: "Custom menu"
+          }
+        ];
+        
+      beforeEach(function() {
+        popup = new kiui.PopupMenu(elem, {
+          dataSource: dataSource
+        });
+      });
+    
+      afterEach(function() {
+        popup.destroy();
+        popup = undefined;
+      });
+      
+      it('should create a kendoMenu passing the correct dataSource option', function() {
+          expect(kendo.ui.Menu.calls.length).toBe(1);
+          expect(kendo.ui.Menu.mostRecentCall.args[1].dataSource).toEqual(dataSource);
+        });
+      
+    });
+    
   });
   
   describe('toggle()', function() {

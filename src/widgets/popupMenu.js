@@ -50,7 +50,7 @@
       openOnHover: false,
       direction: 'bottom right', // can also be 'bottom left', 'top right' or 'top left'
       animation: 'expand', // can also be 'fade' or 'none'
-      dataSource: null, // TODO: handle this option
+      dataSource: null,
       collisionDetection: false // TODO: handle this option
     },
     
@@ -85,6 +85,10 @@
       }
       if (directions[0] === 'top') {
         that.element.addClass(KIUI_POSITION_TOP);
+      }
+      
+      if (options.dataSource) {
+        menuOptions.dataSource = options.dataSource;
       }
       
       that.menu = new UI.Menu(that._menuEl, menuOptions);
