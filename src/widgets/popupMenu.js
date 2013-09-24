@@ -47,14 +47,6 @@
     options: {
       prefix: PREFIX,
       name: "PopupMenu",
-      menuOptions: {
-        orientation: "vertical",
-        animation: {
-          open: {
-            effects: "expand"
-          }
-        }
-      },
       openOnHover: false,
       direction: 'bottom right', // can also be 'bottom left', 'top right' or 'top left'
       animation: 'expand', // can also be 'fade' or 'none'
@@ -71,23 +63,31 @@
     _createMenu: function() {
       var that = this,
         options = that.options,
+        menuOptions = {
+          orientation: "vertical",
+          animation: {
+            open: {
+              effects: "expand"
+            }
+          }
+        },
         directions = options.direction.split(' ');
         
       if (options.animation === 'fade') {
-        options.menuOptions.animation = { open: { effects: "fadeIn" } };
+        menuOptions.animation = { open: { effects: "fadeIn" } };
       } else if (options.animation === 'none') {
-        options.menuOptions.animation = false;
+        menuOptions.animation = false;
       }
       
       if (directions[1] === 'left') {
-        options.menuOptions.direction = 'left';
+        menuOptions.direction = 'left';
         that.element.addClass(KIUI_POSITION_LEFT);
       }
       if (directions[0] === 'top') {
         that.element.addClass(KIUI_POSITION_TOP);
       }
       
-      that.menu = new UI.Menu(that._menuEl, options.menuOptions);
+      that.menu = new UI.Menu(that._menuEl, menuOptions);
       
       that._open = false;
       that._automaticallyCloseMenuAttached = false;

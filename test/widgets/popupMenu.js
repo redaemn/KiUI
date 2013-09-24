@@ -140,33 +140,6 @@ describe('widgets popupMenu:', function() {
     
     });
     
-    /*** menuOptions option is not available for now ***/
-    /*describe('with "menuOptions" option', function() {
-    
-      var popup,
-        menuOptions;
-        
-      beforeEach(function() {
-        menuOptions = { orientation: 'custom', myCustomOptions: true };
-        
-        popup = new kiui.PopupMenu(elem, {
-          menuOptions: menuOptions
-        });
-      });
-      
-      afterEach(function() {
-        popup.destroy();
-        popup = menuOptions = undefined;
-      });
-      
-      it('should create a kendoMenu using the menu DOM element and passing custom menuOptions', function() {
-        expect(kendo.ui.Menu.calls.length).toBe(1);
-        expect(kendo.ui.Menu.mostRecentCall.args[0].is(menuEl)).toBe(true);
-        expect(kendo.ui.Menu.mostRecentCall.args[1]).toEqual(menuOptions);
-      });
-      
-    });*/
-    
     describe('with "openOnHover" option', function() {
     
       var popup,
