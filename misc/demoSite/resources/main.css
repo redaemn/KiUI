@@ -51,3 +51,7 @@ ul.social-buttons li {
     display: inline-block;
     margin: 0 20px;
 }
+
+div.paragraph {
+  margin: 0 0 10px;
+}
