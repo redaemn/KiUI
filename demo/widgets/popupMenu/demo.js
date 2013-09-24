@@ -31,6 +31,17 @@ jQuery(function($) {
   });
   
   //animation: 'expand', // can also be 'fade' or 'none'
+  $('#widgets_popupMenu_demo .expand-animation-option').kendoKiuiPopupMenu({
+    animation: 'expand'
+  });
+  
+  $('#widgets_popupMenu_demo .fade-animation-option').kendoKiuiPopupMenu({
+    animation: 'fade'
+  });
+  
+  $('#widgets_popupMenu_demo .none-animation-option').kendoKiuiPopupMenu({
+    animation: 'none'
+  });
   
   // kendoMenu is accessible using the widget's "menu" property
   
