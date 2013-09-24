@@ -1,5 +1,6 @@
 .kiui-popup-menu {
   position: relative;
+  display: inline-block;
 }
 
 .kiui-popup-menu .kiui-popup-menu-trigger {
