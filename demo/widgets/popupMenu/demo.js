@@ -6,8 +6,6 @@ jQuery(function($) {
   // layout using a <span> and an <a>
   $('#widgets_popupMenu_demo .alternative-layout').kendoKiuiPopupMenu();
   
-  // event handling
-  
   // openOnHover
   $('#widgets_popupMenu_demo .openOnHover-option').kendoKiuiPopupMenu({
     openOnHover: true
@@ -43,7 +41,32 @@ jQuery(function($) {
     animation: 'none'
   });
   
+  // dataSource option
+  $('#widgets_popupMenu_demo .datasource-option').kendoKiuiPopupMenu({
+    dataSource: [
+      {
+        text: "Menu 1",
+        spriteCssClass: "k-icon k-i-clock",
+        items: [
+          {
+            text: "<b>SubMenu 1</b>",
+            encoded: false
+          },
+          {
+            text: "SubMenu 2"
+          }
+        ]
+      },
+      {
+        text: "Menu 2",
+        spriteCssClass: "k-icon k-i-search"
+      }
+    ]
+  });
+  
   // kendoMenu is accessible using the widget's "menu" property
+  
+  // event handling
   
   
   
