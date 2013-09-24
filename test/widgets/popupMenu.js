@@ -426,6 +426,10 @@ describe('widgets popupMenu:', function() {
           expect(kendo.ui.Menu.calls.length).toBe(1);
           expect(kendo.ui.Menu.mostRecentCall.args[1].direction).toEqual('left');
         });
+        
+        it('should set "kiui-position-left" class on DOM element', function() {
+          expect(elem.is('.kiui-position-left')).toBeTruthy();
+        });
       
       });
       

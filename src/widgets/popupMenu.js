@@ -17,6 +17,7 @@
     KIUI_POPUP_MENU_MENU = "kiui-popup-menu-menu",
     KIUI_STATE_OPEN = "kiui-state-open",
     KIUI_POSITION_TOP = "kiui-position-top",
+    KIUI_POSITION_LEFT = "kiui-position-left",
     OPEN = "open",
     CLOSE = "close",
     SELECT = "select";
@@ -57,6 +58,7 @@
       openOnHover: false,
       direction: 'bottom right', // can also be 'bottom left', 'top right' or 'top left'
       animation: 'expand', // can also be 'fade' or 'none'
+      dataSource: null, // TODO: handle this option
       collisionDetection: false // TODO: handle this option
     },
     
@@ -79,6 +81,7 @@
       
       if (directions[1] === 'left') {
         options.menuOptions.direction = 'left';
+        that.element.addClass(KIUI_POSITION_LEFT);
       }
       if (directions[0] === 'top') {
         that.element.addClass(KIUI_POSITION_TOP);

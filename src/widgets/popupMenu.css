@@ -26,3 +26,7 @@
   margin-top: 0;
   margin-bottom: .15em;
 }
+
+.kiui-popup-menu.kiui-position-left .kiui-popup-menu-menu {
+  right: 0;
+}
