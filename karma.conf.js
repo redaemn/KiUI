@@ -25,7 +25,7 @@ exclude = [
 // - Opera
 // - Safari
 // - PhantomJS
-browsers = [
+browsers = process.env ? [] : [
   'Chrome'
 ];
 
@@ -33,11 +33,13 @@ browsers = [
 // possible values: dots || progress
 reporters = ['progress'];
 
+hostname = process.env ? process.env.IP : localhost;
+
 // web server port
-port = 9018;
+port = process.env ? process.env.PORT : 9018;
 
 // cli runner port
-runnerPort = 9100;
+runnerPort = process.env ? 0 : 9100;
 
 // enable / disable colors in the output (reporters and logs)
 colors = true;
