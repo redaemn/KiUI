@@ -184,6 +184,8 @@
         animation = 'toggle';
         duration = 0;
       }
+      
+      // TODO: maybe this method should use a setTimeout() as close() does
     
       if (!that._open && that.trigger(OPEN, { item: that._triggerEl[0] }) === false) {
         that._open = true;
@@ -197,14 +199,14 @@
       var that = this;
       
       function automaticallyCloseMenu(e) {
-        if (!that._triggerEl.find('*').add(that._triggerEl).is(e.target) && that.close()) {
-          that._automaticallyCloseMenuAttached = false;
-          $(document).off(CLICK + NS, automaticallyCloseMenu);
+        if (!that._triggerEl.find('*').add(that._triggerEl).is(e.target)) {
+          that.close();
         }
       }
       
       if (!that._automaticallyCloseMenuAttached) {
         that._automaticallyCloseMenuAttached = true;
+        that._automaticallyCloseMenuFunction = automaticallyCloseMenu;
         $(document).on(CLICK + NS, automaticallyCloseMenu);
       }
     },
@@ -221,11 +223,20 @@
         animation = 'toggle';
         duration = 0;
       }
-    
-      if (that._open && that.trigger(CLOSE, { item: that._triggerEl[0] }) === false) {
-        that._open = false;
-        that.element.removeClass(KIUI_STATE_OPEN);
-        that._menuEl.stop()[animation](duration);
+      
+      if (that._open) {
+        that.menu.close();
+      
+        setTimeout(function() {
+        if (that._open && that.trigger(CLOSE, { item: that._triggerEl[0] }) === false) {
+            that._open = false;
+            that.element.removeClass(KIUI_STATE_OPEN);
+            that._menuEl.stop()[animation](duration);
+            
+            that._automaticallyCloseMenuAttached = false;
+            $(document).off(CLICK + NS, that._automaticallyCloseMenuFunction);
+          }
+        }, that.menu.options.hoverDelay + 1);
       }
       
       return that._open === false; // return whether the menu has been closed
