@@ -14,10 +14,11 @@
   white-space: nowrap;
   top: 100%;
   min-width: 160px;
+  z-index: 10000;
 }
 
 .kiui-popup-menu.kiui-state-open .kiui-popup-menu-menu {
-  z-index: 10000;
+  z-index: 10001;
 }
 
 .kiui-popup-menu.kiui-position-top .kiui-popup-menu-menu {
