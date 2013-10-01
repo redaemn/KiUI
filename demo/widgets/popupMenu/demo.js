@@ -3,7 +3,7 @@ jQuery(function($) {
   // basic layout needed
   $('#widgets_popupMenu_demo .basic-layout').kendoKiuiPopupMenu();
   
-  // layout using a <span> and an <a>
+  // layout using an <a>
   $('#widgets_popupMenu_demo .alternative-layout').kendoKiuiPopupMenu();
   
   // openOnHover
@@ -11,7 +11,7 @@ jQuery(function($) {
     openOnHover: true
   });
   
-  //direction: 'bottom right', // can also be 'bottom left', 'top right' or 'top left'
+  //direction
   $('#widgets_popupMenu_demo .bottom-right-direction-option').kendoKiuiPopupMenu({
     direction: 'bottom right'
   });
@@ -28,7 +28,7 @@ jQuery(function($) {
     direction: 'top left'
   });
   
-  //animation: 'expand', // can also be 'fade' or 'none'
+  //animation
   $('#widgets_popupMenu_demo .expand-animation-option').kendoKiuiPopupMenu({
     animation: 'expand'
   });
@@ -41,7 +41,7 @@ jQuery(function($) {
     animation: 'none'
   });
   
-  // dataSource option
+  // dataSource
   $('#widgets_popupMenu_demo .datasource-option').kendoKiuiPopupMenu({
     dataSource: [
       {
@@ -63,8 +63,6 @@ jQuery(function($) {
       }
     ]
   });
-  
-  // kendoMenu is accessible using the widget's "menu" property
   
   // event handling
   var eventLogger = $('#widgets_popupMenu_demo .kiuiEventLogger ul');
