@@ -1,7 +1,74 @@
 <p>
-    The <em>Popup Menu</em> widget allows you to create a menu that opens only when clicking on a target element.
+    The <em>Popup Menu</em> widget allows you to create a menu attached to a specific target element (such as a button or an anchor).
 </p>
 
 <p>
-    It's a very simple feature but at the same time a very useful one for many sites and web applications.
+    The basic <code>HTML</code> layout needed to build a <em>Popup Menu</em> requires a container element (usually a <code>&lt;div></code> tag)
+    that contains exactly two children: the first one is the trigger element which will trigger the menu opening and closing, the second
+    one is a <code>&lt;ul></code> element that will render the actual menu.
+</p>
+
+<p>
+    Under the hood, <em>Popup Menu</em> uses the <em>kendoMenu</em> widget to build the menu so the possible structure for the <code>&lt;ul></code>
+    subtree is the same as the one described for the <a href="http://demos.kendoui.com/web/menu/index.html" target="_blank">kendoMenu widget</a>.
+</p>
+
+<p>
+    The trigger element can be any <code>HTML</code> tag but usually a <code>&lt;button></code> or <code>&lt;a></code> tag will be used.
+</p>
+
+<hr />
+
+<p>
+    The widget accepts the following configuration options:
+    
+    <ul>
+        <li>
+            <code>openOnHover</code>: by default the menu will open when clicking on the target menu; setting this option to <code>true</code>
+            will trigger the menu opening when the mouse stops over the trigger.
+            (Default: <code>false</code>)
+        </li>
+        
+        <li>
+            <code>direction</code>: controls the menu and submenus opening directions; accepted values are <code>'bottom right'</code>, <code>'bottom left'</code>,
+            <code>'top right'</code> and <code>'top left'</code>; the first value is the menu direction and the second one is the
+            submenus direction. (Default: <code>'bottom right'</code>)
+        </li>
+        
+        <li>
+            <code>animation</code>: specifies which animation will be used when opening and closing the menu and submenus; available
+            animations are <code>'expand'</code>, <code>'fade'</code> and <code>'none'</code>. (Default: <code>'expand'</code>)
+        </li>
+        
+        <li>
+            <code>dataSource</code>: with this option it's possible to build the menu using a <code>dataSource</code> instead of static <code>HTML</code>;
+            for the structure of the dataSource, refer to the <a href="http://docs.kendoui.com/api/web/menu#methods-append" target="_blank">kendoMenu widget</a> documentation.
+        </li>
+    </ul>
+</p>
+
+<hr />
+
+<p>
+    The widget fires the following events to which you can subscribe:
+    
+    <ul>
+        <li>
+            <code>open</code>: fired before the menu or any of the submenus are opened; canceling the event will prevent the opening; the
+            event object will have a property <code>item</code> containing the DOM element representing the opened menu item.
+        </li>
+        
+        <li>
+            <code>close</code>: fired before the menu or any of the submenus are closed; canceling the event will prevent the closing; the
+            event object will have a property <code>item</code> containing the DOM element representing the closed menu item.
+        </li>
+        
+        <li>
+            <code>select</code>: fired when a menu or submenus item is selected; the event object will have a property
+            <code>item</code> containing the DOM element representing the selected menu item.
+        </li>
+    </ul>
+
+    You can subscribe to the events as you would do with any other Kendo UI widget: passing the event handler as a configuration
+    property or using the <code>bind()</code> method on the widget object.
 </p>

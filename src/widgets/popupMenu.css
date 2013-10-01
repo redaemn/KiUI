@@ -1,0 +1,33 @@
+.kiui-popup-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.kiui-popup-menu .kiui-popup-menu-trigger {
+
+}
+
+.kiui-popup-menu .kiui-popup-menu-menu {
+  display: none;
+  position: absolute;
+  margin-top: .15em;
+  white-space: nowrap;
+  top: 100%;
+  min-width: 160px;
+  z-index: 10000;
+}
+
+.kiui-popup-menu.kiui-state-open .kiui-popup-menu-menu {
+  z-index: 10001;
+}
+
+.kiui-popup-menu.kiui-position-top .kiui-popup-menu-menu {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: .15em;
+}
+
+.kiui-popup-menu.kiui-position-left .kiui-popup-menu-menu {
+  right: 0;
+}
