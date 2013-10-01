@@ -55,3 +55,21 @@ ul.social-buttons li {
 div.paragraph {
   margin: 0 0 10px;
 }
+
+.kiuiEventLogger h4 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.kiuiEventLogger ul {
+  list-style-type: none;
+  height: 200px;
+  margin: 0;
+  overflow-y: auto;
+  background-color: white;
+}
+
+.kiuiEventLogger ul li {
+  padding: 1px 4px;
+  border-bottom: 1px solid #eeeeee;
+}
