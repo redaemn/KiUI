@@ -67,19 +67,58 @@ jQuery(function($) {
   // kendoMenu is accessible using the widget's "menu" property
   
   // event handling
+  var eventLogger = $('#widgets_popupMenu_demo .kiuiEventLogger ul');
   
-  
-  
-  /*var blockOpen = false;
-  
-  $('#widgets_popupMenu_demo .ex2').data('kendoKiuiPopupMenu').bind('open', function(e) {
-    console.log(e.item);
-    if (blockOpen) {
-      console.log('prevented');
-      e.preventDefault();
+  $('#widgets_popupMenu_demo .trigger-events').kendoKiuiPopupMenu({
+    open: function(e) {
+      var itemName = $(e.item).is('button') ?
+        'Button menu' : 
+        $(e.item).children('.k-link').text().trim();
+      
+      eventLogger.logEvent("Opened: " + itemName);
+    },
+    close: function(e) {
+      var itemName = $(e.item).is('button') ?
+        'Button menu' : 
+        $(e.item).children('.k-link').text().trim();
+      
+      eventLogger.logEvent("Closed: " + itemName);
+    },
+    select: function(e) {
+      eventLogger.logEvent('Selected: ' + $(e.item).children('.k-link').text().trim());
     }
-    
-    blockOpen = !blockOpen;
-  });*/
+  });
+  
+  var blockEvent = false;
+  
+  $('#widgets_popupMenu_demo .cancel-event').kendoKiuiPopupMenu({
+    open: function(e) {
+      var itemName = $(e.item).is('button') ?
+        'Button menu' : 
+        $(e.item).children('.k-link').text().trim();
+      
+      if (itemName === 'Button menu' && blockEvent) {
+        e.preventDefault();
+       
+        eventLogger.logEvent("Open prevented: " + itemName);
+      }
+      else {
+        eventLogger.logEvent("Opened: " + itemName);
+      }
+      
+      if (itemName === 'Button menu') {
+         blockEvent = !blockEvent;
+      }
+    }
+  });
+  
+  // you can also subscribe to the event after the widget was created
+  $('#widgets_popupMenu_demo .bind-event').kendoKiuiPopupMenu({});
+  // retrieve the widget object
+  $('#widgets_popupMenu_demo .bind-event').data('kendoKiuiPopupMenu')
+    // bind the event
+    .bind('select', function(e) {
+      eventLogger.logEvent('Selected: ' + $(e.item).children('.k-link').text().trim());
+    });
 
 });
