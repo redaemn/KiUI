@@ -2,6 +2,8 @@
  *
  */
  
+// TODO: add event handling
+ 
 (function($, kendo, kiui, window, undefined) {
 
   var NS = ".kiuiNotifier",
