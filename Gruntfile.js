@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    kendoVersion: '2013.1.319',
+    kendoVersion: '2013.2.716',
     pkg: grunt.file.readJSON('package.json'),
     filename: 'kiui',
     
