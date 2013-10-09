@@ -5,19 +5,7 @@
     <meta charset="utf-8">
     <title>KiUI - Kendo UI Web features for your everyday job</title>
     <!-- TODO: inside the description, add the name of every element developed using a template  -->
-    <meta name="description" content="Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web
-    
-    <% Object.keys(demoSite.features).forEach(function(groupId) { %>
-        <% var groupDescriptor = demoSite.features[groupId]; %>
-        - <%= groupDescriptor.displayName %>:
-        
-        <% Object.keys(groupDescriptor.features).forEach(function(featureId, idx) { %>
-            <% var feature = groupDescriptor.features[featureId]; %>
-            <% if (idx > 0) { %>, <% } %><%= feature.displayName %>
-        <% }); %>
-    <% }); %>
-    
-    ">
+    <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web<% Object.keys(demoSite.features).forEach(function(groupId) { %><% var groupDescriptor = demoSite.features[groupId]; %> - <%= groupDescriptor.displayName %>: <% Object.keys(groupDescriptor.features).forEach(function(featureId, idx) { %><% var feature = groupDescriptor.features[featureId]; %><% if (idx > 0) { %>, <% } %><%= feature.displayName %><% }); %><% }); %>">
     <meta name="google-site-verification" content="7e9Q1ZOEXFr2CYeqIvg5kJZwI6lOpmNmWdQuXn0ndsg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -51,228 +39,145 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <!--<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>-->
-                <a class="brand" href="#">KiUI</a>
-                <!--<div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">
-                        Logged in as <a href="#" class="navbar-link">Username</a>
-                    </p>
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>--><!--/.nav-collapse -->
-            </div>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            <% Object.keys(demoSite.features).forEach(function(groupId) { %>
+              <% var group = demoSite.features[groupId]; %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= group.displayName %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <% Object.keys(group.features).forEach(function(featureId) { %>
+                    <% var feature = group.features[featureId]; %>
+                    <li><a href="pages/<%= groupId + '_' + featureId + '.html'%>">
+                      <%= feature.displayName %>
+                      <% if (feature.isNew) { %>
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      <% } %>
+                      <% if (feature.isComingSoon) { %>
+                        <span class="label label-info">Coming soon...</span>
+                      <% } %>
+                    </a></li>
+                  <% }); %>
+                </ul>
+              </li>
+            <% }); %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="hero-unit text-center">
+          <h1>KiUI</h1>
+          <p>Widgets, validators, bindings and other useful features for your everyday job with <strong>Kendo UI Web</strong></p>
+          <p><a href="<%= filename %>-<%= pkg.version%>.zip" class="btn btn-primary btn-large"><i class="icon-download icon-large"></i> Download latest version (v<%= pkg.version%>)</a></p>
+          <ul class="social-buttons">
+            <li>
+              <iframe src="http://ghbtns.com/github-btn.html?user=redaemn&repo=KiUI&type=watch&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+            </li>
+            <li>
+              <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+            </li>
+            <li>
+              <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            </li>
+          </ul>
         </div>
-    </div>
-
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span2">
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        <!--<li class="nav-header">Sidebar</li>
-                        <li class="active"><a href="#">Link</a></li>-->
-                        <li><a href="#introduction">Introduction</a></li>
-                        <li><a href="#installation">Installation</a></li>
-                        <% Object.keys(demoSite.features).forEach(function(groupId) { %>
-                            <% var groupDescriptor = demoSite.features[groupId]; %>
-                            <li class="nav-header"><%= groupDescriptor.displayName %></li>
-                            <% Object.keys(groupDescriptor.features).forEach(function(featureId) { %>
-                                <% var feature = groupDescriptor.features[featureId]; %>
-                                <li>
-                                    <a href="#<%= groupId %>_<%= featureId %>">
-                                        <%= feature.displayName %>
-                                        <% if (feature.isNew) { %>
-                                            <span class="label label-important"><i class="icon-star"></i> New!</span>
-                                        <% } %>
-                                        <% if (feature.isComingSoon) { %>
-                                            <span class="label label-info">Coming soon...</span>
-                                        <% } %>
-                                    </a>
-                                </li>
-                            <% }); %>
-                        <% }); %>
-                    </ul>
-                </div><!--/.well -->
-            </div><!--/span-->
-            <div class="span10">
-                <div class="hero-unit text-center">
-                    <h1>KiUI</h1>
-                    <p>Widgets, validators, bindings and other useful features for your everyday job with <strong>Kendo UI Web</strong></p>
-                    <p><a href="<%= filename %>-<%= pkg.version%>.zip" class="btn btn-primary btn-large"><i class="icon-download icon-large"></i> Download latest version (v<%= pkg.version%>)</a></p>
-                    <ul class="social-buttons">
-                        <li>
-                            <iframe src="http://ghbtns.com/github-btn.html?user=redaemn&repo=KiUI&type=watch&count=true"
-                                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-                        </li>
-                        <li>
-                            <div class="g-plusone" data-annotation="inline" data-width="300"></div>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <section id="introduction">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Introduction</h1>
-                            </div>
-                            <p>
-                                <strong>KiUI</strong> is a companion framework for Telerik's <strong><a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></strong>.
-                                It adds widgets, validators, bindings and other higher-level features useful for your everyday job with Kendo... so that
-                                you don't have to develop them yourself!! :)
-                            </p>
-                            <p>
-                                <strong>KiUI</strong> comes to you from the experience of a professional that works day after day with Kendo framework to build customized
-                                widgets and features for web applications and sites.
-                            </p>
-                            <p>
-                                <strong>KiUI</strong> is currently tested on the latest version of <strong>Chrome</strong> and <strong>Firefox</strong>
-                                using <strong>Kendo UI Web</strong> v<%= kendoVersion %>.
-                            </p>
-                            <p class="well">
-                                You had an idea for a new feature that you think would be a perfect addition to <strong>KiUI</strong>? Just open a new
-                                <a href="https://github.com/redaemn/KiUI/issues" target="_blank">issue</a> or submit a new
-                                <a href="https://github.com/redaemn/KiUI/pulls" target="_blank">pull request</a> and tell me all
-                                about it!! Together we can try to add it!! :)
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="installation">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Installation</h1>
-                            </div>
-                            <p>
-                                To start working with <strong>KiUI</strong> begin <a href="<%= filename %>-<%= pkg.version%>.zip">downloading the latest version</a>,
-                                the package contains <code>.css</code> and <code>.js</code> files both in minified and un-minified version.
-                            </p>
-                            <p>
-                                After you included the Kendo UI Web library and one of its color themes, you must include the <strong>KiUI</strong> library
-                                using the following code:
-                            </p>
-                            <pre><code data-language="html">&lt;link href="<%= filename %>-<%= pkg.version%>.min.css" rel="stylesheet" />
+        
+        <section id="introduction">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="page-header">
+                <h1>Introduction</h1>
+              </div>
+              <p>
+                <strong>KiUI</strong> is a companion framework for Telerik's <strong><a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></strong>.
+                It adds widgets, validators, bindings and other higher-level features useful for your everyday job with Kendo... so that
+                you don't have to develop them yourself!! :)
+              </p>
+              <p>
+                <strong>KiUI</strong> comes to you from the experience of a professional that works day after day with Kendo framework to build customized
+                widgets and features for web applications and sites.
+              </p>
+              <p>
+                <strong>KiUI</strong> is currently tested on the latest version of <strong>Chrome</strong> and <strong>Firefox</strong>
+                using <strong>Kendo UI Web</strong> v<%= kendoVersion %>.
+              </p>
+              <p class="well">
+                You had an idea for a new feature that you think would be a perfect addition to <strong>KiUI</strong>? Just open a new
+                <a href="https://github.com/redaemn/KiUI/issues" target="_blank">issue</a> or submit a new
+                <a href="https://github.com/redaemn/KiUI/pulls" target="_blank">pull request</a> and tell me all
+                about it!! Together we can try to add it!! :)
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <section id="installation">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="page-header">
+                <h1>Installation</h1>
+              </div>
+              <p>
+                To start working with <strong>KiUI</strong> begin <a href="<%= filename %>-<%= pkg.version%>.zip">downloading the latest version</a>,
+                the package contains <code>.css</code> and <code>.js</code> files both in minified and un-minified version.
+              </p>
+              <p>
+                After you included the Kendo UI Web library and one of its color themes, you must include the <strong>KiUI</strong> library
+                using the following code:
+              </p>
+              <pre><code data-language="html">&lt;link href="<%= filename %>-<%= pkg.version%>.min.css" rel="stylesheet" />
 &lt;script src="<%= filename %>-<%= pkg.version%>.min.js">&lt;/script></code></pre>
-                            <p>
-                                Now you're good to go!! Explore all the available <strong>KiUI</strong> features described below and... happy coding!! :)
-                            </p>
-                        </div>
-                    </div>
-                </section>
+              <p>
+                Now you're good to go!! Explore all the available <strong>KiUI</strong> features using the top menu and... happy coding!! :)
+              </p>
+            </div>
+          </div>
+        </section>
 
-                <% Object.keys(demoSite.features).forEach(function(groupId) { %>
-                    <% var groupDescriptor = demoSite.features[groupId]; %>
-                    <div class="row-fluid group-container">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1><%= groupDescriptor.displayName %></h1>
-                            </div>
+      </div><!--/span-->
+    </div><!--/row-->
 
-                            <% Object.keys(groupDescriptor.features).forEach(function(featureId) { %>
-                                <% var feature = groupDescriptor.features[featureId]; %>
-                                <% var featureCompleteID = groupId + "_" + featureId; %>
+    <hr>
 
-                                <section id="<%= featureCompleteID %>" class="feature-container">
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
 
-                                    <div class="row-fluid">
-                                        <div class="span12">
-                                            <h2>
-                                                <%= feature.displayName %>
-                                                <% if (feature.isNew) { %>
-                                                    <span class="label label-important"><i class="icon-star"></i> New!</span>
-                                                <% } %>
-                                                <% if (feature.isComingSoon) { %>
-                                                    <span class="label label-info">Coming soon...</span>
-                                                <% } %>
-                                            </h2>
-                                        </div><!--/span-->
-                                    </div><!--/row-->
+  </div><!--/.fluid-container-->
 
-                                    <div class="row-fluid">
-                                        <% if (feature.isComingSoon) { %>
-                                            <div class="span12">
-                                                <%= feature.readme %>
-                                            </div><!--/span-->
-                                        <% } else { %>
-                                            <div class="span6">
-                                                <%= feature.html %>
-                                                <script><%= feature.js %></script>
-                                            </div><!--/span-->
-                                            <div class="span6">
-                                                <%= feature.readme %>
-                                            </div><!--/span-->
-                                        <% } %>
-                                    </div><!--/row-->
+  <!-- G+ button -->
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
 
-                                    <% if (!feature.isComingSoon) { %>
-                                        <div class="row-fluid">
-                                            <div class="span12">
-                                                <ul class="nav nav-tabs">
-                                                    <li class="active"><a href="#<%= featureCompleteID %>_html" data-toggle="tab">Html</a></li>
-                                                    <li><a href="#<%= featureCompleteID %>_js" data-toggle="tab">Javascript</a></li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="<%= featureCompleteID %>_html">
-                                                        <pre><code data-language="html"><%- feature.html %></code></pre>
-                                                    </div>
-                                                    <div class="tab-pane" id="<%= featureCompleteID %>_js">
-                                                        <pre><code data-language="javascript"><%- feature.js %></code></pre>
-                                                    </div>
-                                                </div>
-                                            </div><!--/span-->
-                                        </div><!--/row-->
-                                    <% } %>
-
-                                </section>
-
-                            <% }); %>
-
-                        </div><!--/span-->
-                    </div><!--/row-->
-
-                <% }); %>
-
-            </div><!--/span-->
-        </div><!--/row-->
-
-        <hr>
-
-        <footer>
-            <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
-            <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
-            <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
-        </footer>
-
-    </div><!--/.fluid-container-->
-
-    <!-- G+ button -->
-    <script type="text/javascript">
-        (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-    </script>
-
-    <!-- Twitter button -->
-    <script>
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-    </script>
+  <!-- Twitter button -->
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
 
 </body>
 

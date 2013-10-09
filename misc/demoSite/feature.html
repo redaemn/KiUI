@@ -1,0 +1,180 @@
+<%
+  var groupId = grunt.task.current.data.groupId;
+  var featureId = grunt.task.current.data.featureId;
+  var featureUniqueId = grunt.task.current.data.uniqueId;
+  var group = demoSite.features[groupId];
+  var feature = group.features[featureId];
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>KiUI - <%= group.displayName %>: <%= feature.displayName %></title>
+  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - <%= group.displayName %>: <%= feature.displayName %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../resources/main.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="../resources/rainbow-github.css" rel="stylesheet">
+  <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/<%= kendoVersion %>/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="../<%= filename %>-<%= pkg.version%>.min.css" rel="stylesheet" />
+
+  <script src="http://cdn.kendostatic.com/<%= kendoVersion %>/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/<%= kendoVersion %>/js/kendo.web.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="../<%= filename %>-<%= pkg.version%>.min.js"></script>
+  <script src="../resources/main.js"></script>
+  <script src="../resources/rainbow-custom.min.js"></script>
+
+  <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41055822-1', 'redaemn.github.io');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="../index.html">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            <% Object.keys(demoSite.features).forEach(function(groupId) { %>
+              <% var group = demoSite.features[groupId]; %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= group.displayName %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <% Object.keys(group.features).forEach(function(featureId) { %>
+                    <%
+                      var feature = group.features[featureId];
+                      var disabled = featureUniqueId == groupId + "_" + featureId;
+                    %>
+                    <li <% if (disabled) { %> class="disabled" <% } %>>
+                      <% if (disabled) { %>
+                        <a href="#">
+                      <% } else { %>
+                        <a href="../pages/<%= groupId + '_' + featureId + '.html'%>">
+                      <% } %>
+                      
+                        <%= feature.displayName %>
+                        <% if (feature.isNew) { %>
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        <% } %>
+                        <% if (feature.isComingSoon) { %>
+                          <span class="label label-info">Coming soon...</span>
+                        <% } %>
+                      
+                      </a>
+                    </li>
+                  <% }); %>
+                </ul>
+              </li>
+            <% }); %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid group-container">
+          <div class="span12">
+            <div class="page-header">
+              <h1><%= group.displayName %></h1>
+            </div>
+
+              <section id="<%= featureUniqueId %>" class="feature-container">
+
+                <div class="row-fluid">
+                  <div class="span12">
+                    <h2>
+                      <%= feature.displayName %>
+                      <% if (feature.isNew) { %>
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      <% } %>
+                      <% if (feature.isComingSoon) { %>
+                        <span class="label label-info">Coming soon...</span>
+                      <% } %>
+                    </h2>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  <% if (feature.isComingSoon) { %>
+                    <div class="span12">
+                      <%= feature.readme %>
+                    </div><!--/span-->
+                  <% } else { %>
+                    <div class="span6">
+                      <%= feature.html %>
+                      <script><%= feature.js %></script>
+                    </div><!--/span-->
+                    <div class="span6">
+                      <%= feature.readme %>
+                    </div><!--/span-->
+                  <% } %>
+                </div><!--/row-->
+
+                <% if (!feature.isComingSoon) { %>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#<%= featureUniqueId %>_html" data-toggle="tab">Html</a></li>
+                        <li><a href="#<%= featureUniqueId %>_js" data-toggle="tab">Javascript</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="<%= featureUniqueId %>_html">
+                          <pre><code data-language="html"><%- feature.html %></code></pre>
+                        </div>
+                        <div class="tab-pane" id="<%= featureUniqueId %>_js">
+                          <pre><code data-language="javascript"><%- feature.js %></code></pre>
+                        </div>
+                      </div>
+                    </div><!--/span-->
+                  </div><!--/row-->
+                <% } %>
+
+              </section>
+
+          </div><!--/span-->
+        </div><!--/row-->
+
+      </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
+
+  </div><!--/.fluid-container-->
+
+</body>
+
+</html>
+

@@ -81,17 +81,18 @@ module.exports = function(grunt) {
     },
     
     copy: {
-      demoSite: {
+      demoSiteIndex: {
         options: {
           processContent: grunt.template.process
         },
         files: [{
           expand: true,
           cwd: "misc/demoSite",
-          src: ["**"],
+          src: ["resources/**", "index.html"],
           dest: "dist/"
         }]
       }
+      //
     },
     
     demoSite: {
@@ -241,7 +242,34 @@ module.exports = function(grunt) {
     grunt.config('demoSite.features', features);
 
     grunt.log.writeln(groupsCount + " groups and " + featuresCount + " features correctly processed!");
-
-    grunt.task.run(['jshint:demoSite', 'copy:demoSite']);
+    
+    Object.keys(features).forEach(function(groupId) {
+        var groupDescriptor = features[groupId];
+        //grunt.config('demoSite.currentGroup', groupDescriptor);
+        
+        Object.keys(groupDescriptor.features).forEach(function(featureId, idx) {
+            var feature = groupDescriptor.features[featureId];
+            var featureUniqueId = groupId + "_" + featureId;
+            
+            grunt.config('copy.' + featureUniqueId, {
+              options: {
+                processContent: grunt.template.process
+              },
+              files: [{
+                expand: true,
+                cwd: "misc/demoSite",
+                src: ["feature.html"],
+                rename: function () {
+                  return 'dist/pages/' + featureUniqueId + ".html";
+                }
+              }],
+              groupId: groupId,
+              featureId: featureId,
+              uniqueId: featureUniqueId
+            });
+        });
+    });
+    
+    grunt.task.run(['jshint:demoSite', 'copy']);
   });
 };
