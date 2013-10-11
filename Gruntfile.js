@@ -30,24 +30,37 @@ module.exports = function(grunt) {
     },
     
     uglify: {
-      dist:{
+      options: {
+        report: 'min'
+      },
+      dist: {
         options: {
-          banner: '<%= commons.banner %>',
-          report: 'min'
+          banner: '<%= commons.banner %>'
         },
-        src:['dist/<%= filename %>-<%= pkg.version %>.js'],
+        src: ['dist/<%= filename %>-<%= pkg.version %>.js'],
         dest:'dist/<%= filename %>-<%= pkg.version %>.min.js'
+      },
+      demoSite: {
+        src: ['misc/demoSite/resources/main.js'],
+        dest:'dist/resources/main.min.js'
       }
     },
     
     cssmin: {
+      options: {
+        report: 'min'
+      },
       dist: {
         options: {
-          report: 'min',
           banner: '<%= commons.banner %>'
         },
         files: {
           'dist/<%= filename %>-<%= pkg.version %>.min.css': ['dist/<%= filename %>-<%= pkg.version %>.css']
+        }
+      },
+      demoSite: {
+        files: {
+          'dist/resources/main.min.css': ['misc/demoSite/resources/main.css']
         }
       }
     },
@@ -88,7 +101,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: "misc/demoSite",
-          src: ["resources/**", "index.html"],
+          src: ["resources/**", "!resources/main.*", "index.html"],
           dest: "dist/"
         }]
       }
@@ -270,6 +283,6 @@ module.exports = function(grunt) {
         });
     });
     
-    grunt.task.run(['jshint:demoSite', 'copy']);
+    grunt.task.run(['jshint:demoSite', 'uglify:demoSite', 'cssmin:demoSite', 'copy']);
   });
 };
