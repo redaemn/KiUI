@@ -2,8 +2,29 @@
     
   <div class="paragraph">
     <form>
-      <input class="datePicker" name="date" data-validation-date> <!--="dd-MM-yyyy">-->
-      <span class="help-inline"><span class="k-invalid-msg" data-for="date"></span></span>
+      <div class="control-group">
+        <label class="control-label">Date validator</label>
+        <div class="controls">
+          <input name="date" data-validation-date>
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date"></span></span>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Date validator with specific format</label>
+        <div class="controls">
+          <input name="date-format" data-validation-date="dd-MM-yyyy">
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date-format"></span></span>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Date validator with specific culture</label>
+        <div class="controls">
+          <input name="date-culture" data-validation-date data-validation-date-culture="it-IT">
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date-culture"></span></span>
+        </div>
+      </div>
     </form>
   </div>
     
