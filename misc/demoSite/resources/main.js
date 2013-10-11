@@ -1,10 +1,3 @@
-/*jQuery(function($) {
-
-  $('[data-toggle="tooltip"]').tooltip();
-
-});*/
-
-
 (function($) {
 
   $.fn.logEvent = function(text) {
@@ -28,3 +21,12 @@
   }
   
 })(jQuery);
+
+jQuery(function($) {
+  
+  // track downloads
+  $('.download-link').click(function() {
+    ga('send', 'event', 'button', 'click', 'download-link');
+  });
+  
+});
