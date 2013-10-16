@@ -229,7 +229,9 @@ module.exports = function(grunt) {
         fileContent = grunt.file.read("demo/" + file),
         groupDescriptor = {
           displayName: groupDisplayName,
-          features: {}
+          features: {},
+          hasNewFeatures: false,
+          hasComingSoonFeatures: false
         },
         featureDescriptor = {
           displayName: featureDisplayName,
@@ -254,6 +256,13 @@ module.exports = function(grunt) {
       }
       else {
         featureDescriptor = groupDescriptor.features[feature];
+      }
+      
+      if (featureDescriptor.isNew) {
+        groupDescriptor.hasNewFeatures = true;
+      }
+      if (featureDescriptor.isComingSoon) {
+        groupDescriptor.hasComingSoonFeatures = true;
       }
 
       if (/demo\.js$/.test(file)) {
