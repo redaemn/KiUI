@@ -26,6 +26,16 @@ module.exports = function(grunt) {
           'dist/<%= filename %>-<%= pkg.version %>.js': ['src/core.js', 'src/**/*.js'],
           'dist/<%= filename %>-<%= pkg.version %>.css': ['src/**/*.css']
         }
+      },
+      demoSite_css: {
+        files: {
+          'dist/resources/main.css.tmp': ['misc/demoSite/resources/main.css','misc/demoSite/resources/rainbow-github.css']
+        }
+      },
+      demoSite_js: {
+        files: {
+          'dist/resources/main.min.js': ['dist/resources/main.min.js.tmp', 'misc/demoSite/resources/rainbow-custom.min.js']
+        }
       }
     },
     
@@ -37,12 +47,14 @@ module.exports = function(grunt) {
         options: {
           banner: '<%= commons.banner %>'
         },
-        src: ['dist/<%= filename %>-<%= pkg.version %>.js'],
-        dest:'dist/<%= filename %>-<%= pkg.version %>.min.js'
+        files: {
+          'dist/<%= filename %>-<%= pkg.version %>.min.js': ['dist/<%= filename %>-<%= pkg.version %>.js']
+        }
       },
       demoSite: {
-        src: ['misc/demoSite/resources/main.js'],
-        dest:'dist/resources/main.min.js'
+        files: {
+          'dist/resources/main.min.js.tmp': ['misc/demoSite/resources/main.js']
+        }
       }
     },
     
@@ -60,7 +72,7 @@ module.exports = function(grunt) {
       },
       demoSite: {
         files: {
-          'dist/resources/main.min.css': ['misc/demoSite/resources/main.css']
+          'dist/resources/main.min.css': ['dist/resources/main.css.tmp']
         }
       }
     },
@@ -101,11 +113,12 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: "misc/demoSite",
-          src: ["resources/**", "!resources/main.*", "index.html"],
+          src: ["index.html"],
           dest: "dist/"
         }]
       }
-      //
+      // a configuration for every existing feature will be added here by
+      // the "demoSite" task!!
     },
     
     demoSite: {
@@ -145,6 +158,12 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    
+    clean: {
+      demoSite: ['dist/pages', 'dist/resources', 'dist/index.html'],
+      demoSite_tmp: ['dist/resources/*.tmp'],
+      dist: ['dist/*.css', 'dist/*.js', 'dist/*.zip']
     }
     
   });
@@ -157,6 +176,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   /****************************************
    * Default task
@@ -173,7 +193,7 @@ module.exports = function(grunt) {
    
    grunt.registerTask('build',
     'Lint JS files, concatenate and then minify JS and CSS files',
-    ['jshint:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'compress:dist']
+    ['clean:dist', 'jshint:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'compress:dist']
    );
 
   /****************************************
@@ -283,6 +303,15 @@ module.exports = function(grunt) {
         });
     });
     
-    grunt.task.run(['jshint:demoSite', 'uglify:demoSite', 'cssmin:demoSite', 'copy']);
+    grunt.task.run([
+      'clean:demoSite',
+      'jshint:demoSite',
+      'uglify:demoSite',
+      'concat:demoSite_js',
+      'concat:demoSite_css',
+      'cssmin:demoSite',
+      'clean:demoSite_tmp',
+      'copy'
+    ]);
   });
 };
