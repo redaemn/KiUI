@@ -15,7 +15,7 @@ jQuery(function($) {
   });
   
   $('#validators_dateValue_demo [name="date-format"]').kendoDatePicker({
-    format: 'dd-MM-yyyy',
+    format: 'MM-dd-yyyy',
     value: today
   });
   
