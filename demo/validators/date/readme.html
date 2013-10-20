@@ -1,6 +1,6 @@
 <p>
-  Personally, I've had problems using <em>Kendo UI Web</em> date validator: it only works on
-  <code>input[type="date"]</code> and since the <em>DatePicker</em> widget
+  Personally, I've had some problems using <em>Kendo UI Web</em> date validator:
+  it only works on <code>input[type="date"]</code> and since the <em>DatePicker</em> widget
   transforms it's <code>&lt;input></code> element to <code>input[type="text"]</code>,
   you can't use the validator anymore.
 </p>
@@ -9,4 +9,36 @@
   Kiui <em>Date</em> validator can be applied to <em>any</em> <code>&lt;input></code> element
   and it just works with <em>DatePicker</em>s. Additionally, you can also specify
   a custom culture that the validator will use when trying to parse the date.
+</p>
+
+<p>
+  To start using the <em>Date</em> validator just add the attribute <code>data-kiui-date</code>
+  to an <code>&lt;input></code> element and you're done; the date will be validated
+  using every standard format defined for the current default culture.
+</p>
+
+<p>
+  You can specify a custom format to be used when parsing the date; you can do so
+  by setting the attribute value to the desired format, such as
+  <code>data-kiui-date="dd-MM-yyyy"</code>. Now <em>only</em> that format will
+  be used to parse the date.
+</p>
+
+<p>
+  You can also specify a custom culture to be used when parsing the date instead
+  of the current default one. You can do so by setting the attribute
+  <code>data-kiui-date-culture</code> to the desired custom culture. Now <em>only</em>
+  the standard formats defined for the custom culture will be used to parse the date.
+</p>
+
+<p>
+  Unfortunately there seems to be a bug in <code>kendo.parseDate()</code> and so
+  the custom culture that you wish to use must have been set at least once as
+  the default culture for the parsing to work correctly. See the Javascript example
+  code for a way to do this.
+</p>
+
+<p>
+  If you specify both a custom format and a custom culture, <em>only</em> the custom
+  format will be considered when parsing the date.
 </p>
