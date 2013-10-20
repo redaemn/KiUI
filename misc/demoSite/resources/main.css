@@ -1,37 +1,43 @@
 body {
-    padding-top: 60px;
-    padding-bottom: 40px;
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
 .sidebar-nav {
-    padding: 9px 0;
+  padding: 9px 0;
 }
 
 @media (max-width: 980px) {
-    /* Enable use of floated navbar text */
-    .navbar-text.pull-right {
-        float: none;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
+  /* Enable use of floated navbar text */
+  .navbar-text.pull-right {
+    float: none;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
 
 body > .navbar .brand {
-    font-weight: bold;
-    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
-    -webkit-transition: all .2s linear;
-    -moz-transition: all .2s linear;
-    transition: all .2s linear;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+body > .navbar .dropdown .dropdown-toggle {
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  transition: all .2s linear;
 }
 
 footer > p {
-    margin: 0;
-    text-align: center;
+  margin: 0;
+  text-align: center;
 }
 
 section#introduction,
 section#installation,
 section.feature-container {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 
 section#installation {
@@ -39,17 +45,17 @@ section#installation {
 }
 
 .group-container .page-header {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 ul.social-buttons {
-    list-style-type: none;
-    margin: 40px 0 0;
+  list-style-type: none;
+  margin: 40px 0 0;
 }
 
 ul.social-buttons li {
-    display: inline-block;
-    margin: 0 20px;
+  display: inline-block;
+  margin: 0 20px;
 }
 
 div.paragraph {
