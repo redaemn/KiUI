@@ -1,0 +1,39 @@
+<div id="validators_dateValue_demo">
+    
+  <div class="paragraph">
+    <form>
+      <div class="control-group">
+        <label class="control-label">Date validator</label>
+        <div class="controls">
+          <span class="help-block">Try setting a date that simply is not a date (for example random text)</span>
+          <input name="date" data-kiui-date>
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date"></span></span>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Date validator with specific format</label>
+        <div class="controls">
+          <span class="help-block">Try setting a date that doesn't have the custom format <code>MM-dd-yyyy</code></span>
+          <input name="date-format" data-kiui-date="MM-dd-yyyy">
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date-format"></span></span>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Date validator with specific culture</label>
+        <div class="controls">
+          <span class="help-block">
+            This date uses standard italian format <code>dd/MM/yyyy</code>,
+            try setting something in a different format
+          </span>
+          <input name="date-culture" data-kiui-date data-kiui-date-culture="it-IT">
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date-culture"></span></span>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+    
+</div>
+
