@@ -61,7 +61,7 @@ describe('validators radioRequired:', function() {
       
       afterEach(function() {
         otherRadio1 = otherRadio2 = undefined;
-      })
+      });
       
       it('should return false if the radio buttons are required and a different radio button is checked', function() {
         otherRadio1.prop('checked', true);
@@ -83,7 +83,24 @@ describe('validators radioRequired:', function() {
   
   describe('with input[type="text"] elements', function() {
     
+    var validator, elem;
     
+    beforeEach(function() {
+      validator = $('<div data-role="validator"></div>').appendTo($('body'));
+      elem = $('<input name="inputName" type="text" required />').appendTo(validator);
+      spyOn(kendo.ui.Validator.fn.options.rules, 'required').andReturn(true);
+    });
+    
+    afterEach(function() {
+      validator.remove();
+      validator = elem = undefined;
+    });
+    
+    it('should call the standard Kendo required validator', function() {
+      validate(elem);
+      
+      expect(kendo.ui.Validator.fn.options.rules.required).toHaveBeenCalledWith(elem);
+    });
     
   });
   

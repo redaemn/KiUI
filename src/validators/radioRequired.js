@@ -12,7 +12,7 @@
       return !input.is("[required]") || validator.find("[name=" + input.attr("name") + "]").is(":checked");
     }
     else {
-      return kendo.ui.Validator.prototype.options.rules.required(input);
+      return kendo.ui.Validator.fn.options.rules.required(input);
     }
   };
   
