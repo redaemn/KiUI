@@ -2,1782 +2,253 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>KiUI - Kendo UI Web features for your everyday job</title>
-    <!-- TODO: inside the description, add the name of every element developed using a template  -->
-    <meta name="description" content="Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web
-    
-    
-        
-        - Bindings:
-        
-        
-            
-            Bool Value
-        
-    
-        
-        - Utilities:
-        
-        
-            
-            Notifier
-        
-    
-        
-        - Widgets:
-        
-        
-            
-            Popup Menu
-        
-    
-    
-    ">
-    <meta name="google-site-verification" content="7e9Q1ZOEXFr2CYeqIvg5kJZwI6lOpmNmWdQuXn0ndsg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>KiUI - Kendo UI Web features for your everyday job</title>
+  <!-- TODO: inside the description, add the name of every element developed using a template  -->
+  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - Bindings: Bool Value - Utilities: Notifier - Validators: Date, Radio Required - Widgets: Popup Menu">
+  <meta name="google-site-verification" content="7e9Q1ZOEXFr2CYeqIvg5kJZwI6lOpmNmWdQuXn0ndsg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/main.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="resources/rainbow-github.css" rel="stylesheet">
-    <link href="http://cdn.kendostatic.com/2013.1.319/styles/kendo.common.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2013.1.319/styles/kendo.default.min.css" rel="stylesheet" />
-    <link href="kiui-0.0.2.min.css" rel="stylesheet" />
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="kiui-0.0.3.min.css" rel="stylesheet" />
+  <link href="resources/main.min.css" rel="stylesheet">
 
-    <script src="http://cdn.kendostatic.com/2013.1.319/js/jquery.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2013.1.319/js/kendo.web.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    <script src="kiui-0.0.2.min.js"></script>
-    <script src="resources/main.js"></script>
-    <script src="resources/rainbow-custom.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="kiui-0.0.3.min.js"></script>
+  <script src="resources/main.min.js"></script>
 
-    <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-41055822-1', 'redaemn.github.io');
-      ga('send', 'pageview');
-    </script>
+  <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-41055822-1', 'redaemn.github.io');
+    ga('send', 'pageview');
+  </script>
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <!--<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>-->
-                <a class="brand" href="#">KiUI</a>
-                <!--<div class="nav-collapse collapse">
-                    <p class="navbar-text pull-right">
-                        Logged in as <a href="#" class="navbar-link">Username</a>
-                    </p>
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>--><!--/.nav-collapse -->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Bindings
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li><a href="pages/bindings_boolValue.html">
+                      Bool Value
+                      
+                      
+                    </a></li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Utilities
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li><a href="pages/utilities_notifier.html">
+                      Notifier
+                      
+                      
+                    </a></li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Validators
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li><a href="pages/validators_date.html">
+                      Date
+                      
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      
+                      
+                    </a></li>
+                  
+                    
+                    <li><a href="pages/validators_radioRequired.html">
+                      Radio Required
+                      
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      
+                      
+                    </a></li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Widgets
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li><a href="pages/widgets_popupMenu.html">
+                      Popup Menu
+                      
+                      
+                    </a></li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="hero-unit text-center">
+          <h1>KiUI</h1>
+          <p>Widgets, validators, bindings and other useful features for your everyday job with <strong>Kendo UI Web</strong></p>
+          <p><a href="kiui-0.0.3.zip" class="btn btn-primary btn-large download-link"><i class="icon-download icon-large"></i> Download latest version (v0.0.3)</a></p>
+          <ul class="social-buttons">
+            <li>
+              <iframe src="http://ghbtns.com/github-btn.html?user=redaemn&repo=KiUI&type=watch&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+            </li>
+            <li>
+              <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+            </li>
+            <li>
+              <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            </li>
+          </ul>
+        </div>
+        
+        <section id="introduction">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="page-header">
+                <h1>Introduction</h1>
+              </div>
+              <p>
+                <strong>KiUI</strong> is a companion framework for Telerik's <strong><a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></strong>.
+                It adds widgets, validators, bindings and other higher-level features useful for your everyday job with Kendo... so that
+                you don't have to develop them yourself!! :)
+              </p>
+              <p>
+                <strong>KiUI</strong> comes to you from the experience of a professional that works day after day with Kendo framework to build customized
+                widgets and features for web applications and sites.
+              </p>
+              <p>
+                <strong>KiUI</strong> is currently tested on the latest version of <strong>Chrome</strong> and <strong>Firefox</strong>
+                using <strong>Kendo UI Web</strong> v2013.2.716.
+              </p>
+              <p class="well">
+                You had an idea for a new feature that you think would be a perfect addition to <strong>KiUI</strong>? Just open a new
+                <a href="https://github.com/redaemn/KiUI/issues" target="_blank">issue</a> or submit a new
+                <a href="https://github.com/redaemn/KiUI/pulls" target="_blank">pull request</a> and tell me all
+                about it!! Together we can try to add it!! :)
+              </p>
             </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span2">
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        <!--<li class="nav-header">Sidebar</li>
-                        <li class="active"><a href="#">Link</a></li>-->
-                        <li><a href="#introduction">Introduction</a></li>
-                        <li><a href="#installation">Installation</a></li>
-                        
-                            
-                            <li class="nav-header">Bindings</li>
-                            
-                                
-                                <li>
-                                    <a href="#bindings_boolValue">
-                                        Bool Value
-                                        
-                                        
-                                    </a>
-                                </li>
-                            
-                        
-                            
-                            <li class="nav-header">Utilities</li>
-                            
-                                
-                                <li>
-                                    <a href="#utilities_notifier">
-                                        Notifier
-                                        
-                                        
-                                    </a>
-                                </li>
-                            
-                        
-                            
-                            <li class="nav-header">Widgets</li>
-                            
-                                
-                                <li>
-                                    <a href="#widgets_popupMenu">
-                                        Popup Menu
-                                        
-                                            <span class="label label-important"><i class="icon-star"></i> New!</span>
-                                        
-                                        
-                                    </a>
-                                </li>
-                            
-                        
-                    </ul>
-                </div><!--/.well -->
-            </div><!--/span-->
-            <div class="span10">
-                <div class="hero-unit text-center">
-                    <h1>KiUI</h1>
-                    <p>Widgets, validators, bindings and other useful features for your everyday job with <strong>Kendo UI Web</strong></p>
-                    <p><a href="kiui-0.0.2.zip" class="btn btn-primary btn-large"><i class="icon-download icon-large"></i> Download latest version (v0.0.2)</a></p>
-                    <ul class="social-buttons">
-                        <li>
-                            <iframe src="http://ghbtns.com/github-btn.html?user=redaemn&repo=KiUI&type=watch&count=true"
-                                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-                        </li>
-                        <li>
-                            <div class="g-plusone" data-annotation="inline" data-width="300"></div>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <section id="introduction">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Introduction</h1>
-                            </div>
-                            <p>
-                                <strong>KiUI</strong> is a companion framework for Telerik's <strong><a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></strong>.
-                                It adds widgets, validators, bindings and other higher-level features useful for your everyday job with Kendo... so that
-                                you don't have to develop them yourself!! :)
-                            </p>
-                            <p>
-                                <strong>KiUI</strong> comes to you from the experience of a professional that works day after day with Kendo framework to build customized
-                                widgets and features for web applications and sites.
-                            </p>
-                            <p>
-                                <strong>KiUI</strong> is currently tested on the latest version of <strong>Chrome</strong> and <strong>Firefox</strong>
-                                using <strong>Kendo UI Web</strong> v2013.1.319.
-                            </p>
-                            <p class="well">
-                                You had an idea for a new feature that you think would be a perfect addition to <strong>KiUI</strong>? Just open a new
-                                <a href="https://github.com/redaemn/KiUI/issues" target="_blank">issue</a> or submit a new
-                                <a href="https://github.com/redaemn/KiUI/pulls" target="_blank">pull request</a> and tell me all
-                                about it!! Together we can try to add it!! :)
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="installation">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Installation</h1>
-                            </div>
-                            <p>
-                                To start working with <strong>KiUI</strong> begin <a href="kiui-0.0.2.zip">downloading the latest version</a>,
-                                the package contains <code>.css</code> and <code>.js</code> files both in minified and un-minified version.
-                            </p>
-                            <p>
-                                After you included the Kendo UI Web library and one of its color themes, you must include the <strong>KiUI</strong> library
-                                using the following code:
-                            </p>
-                            <pre><code data-language="html">&lt;link href="kiui-0.0.2.min.css" rel="stylesheet" />
-&lt;script src="kiui-0.0.2.min.js">&lt;/script></code></pre>
-                            <p>
-                                Now you're good to go!! Explore all the available <strong>KiUI</strong> features described below and... happy coding!! :)
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                
-                    
-                    <div class="row-fluid group-container">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Bindings</h1>
-                            </div>
-
-                            
-                                
-                                
-
-                                <section id="bindings_boolValue" class="feature-container">
-
-                                    <div class="row-fluid">
-                                        <div class="span12">
-                                            <h2>
-                                                Bool Value
-                                                
-                                                
-                                            </h2>
-                                        </div><!--/span-->
-                                    </div><!--/row-->
-
-                                    <div class="row-fluid">
-                                        
-                                            <div class="span6">
-                                                <div id="bindings_boolValue_demo">
-    <div class="span7">
-        <form>
-            <label>Do you like <strong>KiUI</strong>?</label>
-
-            <label class="radio">
-                <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
-                Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
-            </label>
-
-            <label class="radio">
-                <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
-                No
-            </label>
-
-            <label class="radio">
-                <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
-                Don't know
-            </label>
-        </form>
-    </div>
-
-    <div class="span5">
-        <h5>Current view-model state:</h5>
-        <pre>
-{
-    likeKiui: <span data-bind="text: likeKiuiText()"></span>
-}</pre>
-    </div>
-
-</div>
-                                                <script>jQuery(function($) {
-  var viewModel;
-
-  viewModel = kendo.observable({
-    likeKiui: null,
-    likeKiuiText: function() {
-      return kendo.stringify(this.get('likeKiui'));
-    }
-  });
-
-  kendo.bind($('#bindings_boolValue_demo'), viewModel);
-
-});
-</script>
-                                            </div><!--/span-->
-                                            <div class="span6">
-                                                <p>
-    The <code>boolValue</code> binding can be used to bind a radio buttons control with a boolean variable in the view
-    model.
-</p>
-
-<p>
-    It's able to support three different values: <code>true</code>, <code>false</code> and <code>null</code>.
-</p>
-
-                                            </div><!--/span-->
-                                        
-                                    </div><!--/row-->
-
-                                    
-                                        <div class="row-fluid">
-                                            <div class="span12">
-                                                <ul class="nav nav-tabs">
-                                                    <li class="active"><a href="#bindings_boolValue_html" data-toggle="tab">Html</a></li>
-                                                    <li><a href="#bindings_boolValue_js" data-toggle="tab">Javascript</a></li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="bindings_boolValue_html">
-                                                        <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
-    &lt;div class=&quot;span7&quot;&gt;
-        &lt;form&gt;
-            &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
-
-            &lt;label class=&quot;radio&quot;&gt;
-                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-                Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
-            &lt;/label&gt;
-
-            &lt;label class=&quot;radio&quot;&gt;
-                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-                No
-            &lt;/label&gt;
-
-            &lt;label class=&quot;radio&quot;&gt;
-                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-                Don&#x27;t know
-            &lt;/label&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;span5&quot;&gt;
-        &lt;h5&gt;Current view-model state:&lt;/h5&gt;
-        &lt;pre&gt;
-{
-    likeKiui: &lt;span data-bind=&quot;text: likeKiuiText()&quot;&gt;&lt;/span&gt;
-}&lt;/pre&gt;
-    &lt;/div&gt;
-
-&lt;/div&gt;</code></pre>
-                                                    </div>
-                                                    <div class="tab-pane" id="bindings_boolValue_js">
-                                                        <pre><code data-language="javascript">jQuery(function($) {
-  var viewModel;
-
-  viewModel = kendo.observable({
-    likeKiui: null,
-    likeKiuiText: function() {
-      return kendo.stringify(this.get(&#x27;likeKiui&#x27;));
-    }
-  });
-
-  kendo.bind($(&#x27;#bindings_boolValue_demo&#x27;), viewModel);
-
-});
-</code></pre>
-                                                    </div>
-                                                </div>
-                                            </div><!--/span-->
-                                        </div><!--/row-->
-                                    
-
-                                </section>
-
-                            
-
-                        </div><!--/span-->
-                    </div><!--/row-->
-
-                
-                    
-                    <div class="row-fluid group-container">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Utilities</h1>
-                            </div>
-
-                            
-                                
-                                
-
-                                <section id="utilities_notifier" class="feature-container">
-
-                                    <div class="row-fluid">
-                                        <div class="span12">
-                                            <h2>
-                                                Notifier
-                                                
-                                                
-                                            </h2>
-                                        </div><!--/span-->
-                                    </div><!--/row-->
-
-                                    <div class="row-fluid">
-                                        
-                                            <div class="span6">
-                                                <div id="utilities_notify_demo">
-    <p>
-        There are three different styles of notifications:
-    </p>
-    <p>
-        <button id="error" class="btn btn-danger">Notify error</button>
-        <button id="info" class="btn btn-info">Notify info</button>
-        <button id="success" class="btn btn-success">Notify success</button>
-    </p>
-    
-    <p>
-        Notification content can be appended to a previous notification of the same type:
-    </p>
-    <p>
-        <button id="append-notification" class="btn btn-danger">Append notification</button>
-    </p>
-    
-    <p>
-        Notifications can auto-hide after a defined time:
-    </p>
-    <p>
-        <button id="autoHide-notification" class="btn btn-success">Auto-hide notification</button>
-    </p>
-    
-    <p>
-        Notifications can be created without a title:
-    </p>
-    <p>
-        <button id="no-title-notification" class="btn btn-info">Notification with no title</button>
-    </p>
-    
-    <p>
-        Notifications can have a custom icon or no icon at all:
-    </p>
-    <p>
-        <button id="custom-icon-notification" class="btn btn-danger">Notification with custom icon</button>
-        <button id="no-icon-notification" class="btn btn-info">Notification with no icon</button>
-    </p>
-    
-    <p>
-        Notifications width can be customized too:
-    </p>
-    <p>
-        <button id="wider-notification" class="btn btn-success">Wider notification</button>
-        <button id="narrower-notification" class="btn btn-success">Narrower notification</button>
-    </p>
-    
-    <p>
-        Notifications can be positioned in the four corners of the screen:
-    </p>
-    <p>
-        <button id="top-left-positioning" class="btn btn-success">Top-Left</button>
-        <button id="bottom-left-positioning" class="btn btn-info">Bottom-Left</button>
-        <button id="bottom-right-positioning" class="btn btn-danger">Bottom-Right</button>
-        <button id="top-right-positioning" class="btn btn-info">Top-Right</button>
-    </p>
-</div>
-                                                <script>jQuery(function($) {
-
-  var notifier = kiui.notifier();
-
-  function notifyError() {
-    notifier.error({
-      title: "Error",
-      content: "This is an error with a title and a content"
-    });
-  }
-  
-  function notifyInfo() {
-    notifier.info({
-      title: "Info",
-      content: "This is an info with a title and a content"
-    });
-  }
-  
-  function notifySuccess() {
-    notifier.success({
-      title: "Success",
-      content: "This is a success notification with a title"
-    });
-  }
-
-  $('#utilities_notify_demo button#error').click(notifyError);
-  $('#utilities_notify_demo button#info').click(notifyInfo);
-  $('#utilities_notify_demo button#success').click(notifySuccess);
-  
-  function appendNotification() {
-    notifier.error({
-      title: "This title is not considered if appended",
-      content: "<p>This error will be appended to the last one if it's still visible</p>",
-      append: true
-    });
-  }
-  
-  $('#utilities_notify_demo button#append-notification').click(appendNotification);
-  
-  function autoHideNotification() {
-    notifier.success({
-      title: "Auto-hide",
-      content: "This notification will hide automatically in 4 seconds.",
-      autoHide: 4000
-    });
-  }
-  
-  $('#utilities_notify_demo button#autoHide-notification').click(autoHideNotification);
-  
-  function noTitleNotification() {
-    notifier.info({
-      content: "This notification has no title, just content!!"
-    });
-  }
-  
-  $('#utilities_notify_demo button#no-title-notification').click(noTitleNotification);
-  
-  function customIconNotification() {
-    notifier.error({
-      icon: '<span class="k-icon k-i-cancel"></span>',
-      title: "Custom icon",
-      content: "This notification has a custom icon"
-    });
-  }
-  
-  function noIconNotification() {
-    notifier.info({
-      icon: "",
-      title: "No icon",
-      content: "This notification has no icon"
-    });
-  }
-  
-  $('#utilities_notify_demo button#custom-icon-notification').click(customIconNotification);
-  $('#utilities_notify_demo button#no-icon-notification').click(noIconNotification);
-  
-  function widerNotification() {
-    notifier.success({
-      title: "Wider",
-      content: "This notification is wider than the others",
-      width: 400
-    });
-  }
-  
-  function narrowerNotification() {
-    notifier.success({
-      title: "Narrower",
-      content: "This notification is narrower than the others",
-      width: 150
-    });
-  }
-  
-  $('#utilities_notify_demo button#wider-notification').click(widerNotification);
-  $('#utilities_notify_demo button#narrower-notification').click(narrowerNotification);
-  
-  var topLeftNotifier = kiui.notifier({
-    position: "top-left"
-  });
-  
-  var bottomLeftNotifier = kiui.notifier({
-    position: "bottom-left"
-  });
-  
-  var bottomRightNotifier = kiui.notifier({
-    position: "bottom-right"
-  });
-  
-  var topRightNotifier = kiui.notifier({
-    position: "top-right"
-  });
-  
-  function topLeftNotification() {
-    topLeftNotifier.success({
-      title: "Top-left positioning",
-      content: "This notification is positioned in the top-left corner of the screen"
-    });
-  }
-  
-  $('#utilities_notify_demo button#top-left-positioning').click(topLeftNotification);
-  
-  function bottomLeftNotification() {
-    bottomLeftNotifier.info({
-      title: "Bottom-left positioning",
-      content: "This notification is positioned in the bottom-left corner of the screen"
-    });
-  }
-  
-  $('#utilities_notify_demo button#bottom-left-positioning').click(bottomLeftNotification);
-  
-  function bottomRightNotification() {
-    bottomRightNotifier.error({
-      title: "Bottom-right positioning",
-      content: "This notification is positioned in the bottom-right corner of the screen"
-    });
-  }
-  
-  $('#utilities_notify_demo button#bottom-right-positioning').click(bottomRightNotification);
-  
-  function topRightNotification() {
-    topRightNotifier.info({
-      title: "Top-right positioning",
-      content: "This notification is positioned in the top-right corner of the screen"
-    });
-  }
-  
-  $('#utilities_notify_demo button#top-right-positioning').click(topRightNotification);
-
-});
-</script>
-                                            </div><!--/span-->
-                                            <div class="span6">
-                                                <p>
-    The <em>Notifier</em> utility helps you to send notifications to the user.
-</p>
-
-<p>
-    Start creating an instance of Notifier using the <code>kiui.notifier()</code> function, it accepts a single <code>position</code> option that can
-    have four values: <code>top-left</code>, <code>bottom-left</code>, <code>bottom-right</code> or <code>top-right</code>. Default is <code>top-right</code>.
-</p>
-
-<p>
-    The Notifier exposes three methods that you can use to create different kinds of notifications: <code>error()</code>, <code>info()</code> and <code>success()</code>.
-</p>
-
-<p>
-    Each method accepts the following options:
-    
-    <ul>
-        <li>
-            <code>append</code>: when set to <code>true</code>, the given content will be appended to a previous notification of the same type;
-            if such a notification does not exist, a standard notification will be created instead. (Default: <code>false</code>)
-        </li>
-    
-        <li>
-            <code>autoHide</code>: when set to a number, the notification will be automatically hidden after the given amount of milliseconds. If set to
-            <code>false</code> the notification will have to be hidden manually.
-            (Default: <code>false</code>)
-        </li>
+          </div>
+        </section>
         
-        <li>
-            <code>content</code>: the html content that will be inserted inside the notification.
-        </li>
-        
-        <li>
-            <code>icon</code>: the html that will be used as icon for the notification, if set to <code>""</code> the icon will be hidden.
-            (Default: every method has its specific default icon)
-        </li>
-        
-        <li>        
-            <code>title</code>: the notification title, if set to <code>""</code> the title will be hidden. (Default: <code>""</code>)
-        </li>
-        
-        <li>        
-            <code>width</code>: the notification width in pixels. (Default: <code>250</code>)
-        </li>
-    </ul>
-    
-</p>
+        <section id="installation">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="page-header">
+                <h1>Installation</h1>
+              </div>
+              <p>
+                To start working with <strong>KiUI</strong> begin <a href="kiui-0.0.3.zip" class="download-link">downloading the latest version</a>,
+                the package contains <code>.css</code> and <code>.js</code> files both in minified and un-minified version.
+              </p>
+              <p>
+                After you included the Kendo UI Web library and one of its color themes, you must include the <strong>KiUI</strong> library
+                using the following code:
+              </p>
+              <pre><code data-language="html">&lt;link href="kiui-0.0.3.min.css" rel="stylesheet" />
+&lt;script src="kiui-0.0.3.min.js">&lt;/script></code></pre>
+              <p>
+                Now you're good to go!! Explore all the available <strong>KiUI</strong> features using the top menu and... happy coding!! :)
+              </p>
+            </div>
+          </div>
+        </section>
 
-                                            </div><!--/span-->
-                                        
-                                    </div><!--/row-->
+      </div><!--/span-->
+    </div><!--/row-->
 
-                                    
-                                        <div class="row-fluid">
-                                            <div class="span12">
-                                                <ul class="nav nav-tabs">
-                                                    <li class="active"><a href="#utilities_notifier_html" data-toggle="tab">Html</a></li>
-                                                    <li><a href="#utilities_notifier_js" data-toggle="tab">Javascript</a></li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="utilities_notifier_html">
-                                                        <pre><code data-language="html">&lt;div id=&quot;utilities_notify_demo&quot;&gt;
-    &lt;p&gt;
-        There are three different styles of notifications:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;error&quot; class=&quot;btn btn-danger&quot;&gt;Notify error&lt;/button&gt;
-        &lt;button id=&quot;info&quot; class=&quot;btn btn-info&quot;&gt;Notify info&lt;/button&gt;
-        &lt;button id=&quot;success&quot; class=&quot;btn btn-success&quot;&gt;Notify success&lt;/button&gt;
-    &lt;/p&gt;
-    
-    &lt;p&gt;
-        Notification content can be appended to a previous notification of the same type:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;append-notification&quot; class=&quot;btn btn-danger&quot;&gt;Append notification&lt;/button&gt;
-    &lt;/p&gt;
-    
-    &lt;p&gt;
-        Notifications can auto-hide after a defined time:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;autoHide-notification&quot; class=&quot;btn btn-success&quot;&gt;Auto-hide notification&lt;/button&gt;
-    &lt;/p&gt;
-    
-    &lt;p&gt;
-        Notifications can be created without a title:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;no-title-notification&quot; class=&quot;btn btn-info&quot;&gt;Notification with no title&lt;/button&gt;
-    &lt;/p&gt;
-    
-    &lt;p&gt;
-        Notifications can have a custom icon or no icon at all:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;custom-icon-notification&quot; class=&quot;btn btn-danger&quot;&gt;Notification with custom icon&lt;/button&gt;
-        &lt;button id=&quot;no-icon-notification&quot; class=&quot;btn btn-info&quot;&gt;Notification with no icon&lt;/button&gt;
-    &lt;/p&gt;
-    
-    &lt;p&gt;
-        Notifications width can be customized too:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;wider-notification&quot; class=&quot;btn btn-success&quot;&gt;Wider notification&lt;/button&gt;
-        &lt;button id=&quot;narrower-notification&quot; class=&quot;btn btn-success&quot;&gt;Narrower notification&lt;/button&gt;
-    &lt;/p&gt;
-    
-    &lt;p&gt;
-        Notifications can be positioned in the four corners of the screen:
-    &lt;/p&gt;
-    &lt;p&gt;
-        &lt;button id=&quot;top-left-positioning&quot; class=&quot;btn btn-success&quot;&gt;Top-Left&lt;/button&gt;
-        &lt;button id=&quot;bottom-left-positioning&quot; class=&quot;btn btn-info&quot;&gt;Bottom-Left&lt;/button&gt;
-        &lt;button id=&quot;bottom-right-positioning&quot; class=&quot;btn btn-danger&quot;&gt;Bottom-Right&lt;/button&gt;
-        &lt;button id=&quot;top-right-positioning&quot; class=&quot;btn btn-info&quot;&gt;Top-Right&lt;/button&gt;
-    &lt;/p&gt;
-&lt;/div&gt;</code></pre>
-                                                    </div>
-                                                    <div class="tab-pane" id="utilities_notifier_js">
-                                                        <pre><code data-language="javascript">jQuery(function($) {
+    <hr>
 
-  var notifier = kiui.notifier();
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
 
-  function notifyError() {
-    notifier.error({
-      title: &quot;Error&quot;,
-      content: &quot;This is an error with a title and a content&quot;
-    });
-  }
-  
-  function notifyInfo() {
-    notifier.info({
-      title: &quot;Info&quot;,
-      content: &quot;This is an info with a title and a content&quot;
-    });
-  }
-  
-  function notifySuccess() {
-    notifier.success({
-      title: &quot;Success&quot;,
-      content: &quot;This is a success notification with a title&quot;
-    });
-  }
+  </div><!--/.fluid-container-->
 
-  $(&#x27;#utilities_notify_demo button#error&#x27;).click(notifyError);
-  $(&#x27;#utilities_notify_demo button#info&#x27;).click(notifyInfo);
-  $(&#x27;#utilities_notify_demo button#success&#x27;).click(notifySuccess);
-  
-  function appendNotification() {
-    notifier.error({
-      title: &quot;This title is not considered if appended&quot;,
-      content: &quot;&lt;p&gt;This error will be appended to the last one if it&#x27;s still visible&lt;/p&gt;&quot;,
-      append: true
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#append-notification&#x27;).click(appendNotification);
-  
-  function autoHideNotification() {
-    notifier.success({
-      title: &quot;Auto-hide&quot;,
-      content: &quot;This notification will hide automatically in 4 seconds.&quot;,
-      autoHide: 4000
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#autoHide-notification&#x27;).click(autoHideNotification);
-  
-  function noTitleNotification() {
-    notifier.info({
-      content: &quot;This notification has no title, just content!!&quot;
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#no-title-notification&#x27;).click(noTitleNotification);
-  
-  function customIconNotification() {
-    notifier.error({
-      icon: &#x27;&lt;span class=&quot;k-icon k-i-cancel&quot;&gt;&lt;/span&gt;&#x27;,
-      title: &quot;Custom icon&quot;,
-      content: &quot;This notification has a custom icon&quot;
-    });
-  }
-  
-  function noIconNotification() {
-    notifier.info({
-      icon: &quot;&quot;,
-      title: &quot;No icon&quot;,
-      content: &quot;This notification has no icon&quot;
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#custom-icon-notification&#x27;).click(customIconNotification);
-  $(&#x27;#utilities_notify_demo button#no-icon-notification&#x27;).click(noIconNotification);
-  
-  function widerNotification() {
-    notifier.success({
-      title: &quot;Wider&quot;,
-      content: &quot;This notification is wider than the others&quot;,
-      width: 400
-    });
-  }
-  
-  function narrowerNotification() {
-    notifier.success({
-      title: &quot;Narrower&quot;,
-      content: &quot;This notification is narrower than the others&quot;,
-      width: 150
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#wider-notification&#x27;).click(widerNotification);
-  $(&#x27;#utilities_notify_demo button#narrower-notification&#x27;).click(narrowerNotification);
-  
-  var topLeftNotifier = kiui.notifier({
-    position: &quot;top-left&quot;
-  });
-  
-  var bottomLeftNotifier = kiui.notifier({
-    position: &quot;bottom-left&quot;
-  });
-  
-  var bottomRightNotifier = kiui.notifier({
-    position: &quot;bottom-right&quot;
-  });
-  
-  var topRightNotifier = kiui.notifier({
-    position: &quot;top-right&quot;
-  });
-  
-  function topLeftNotification() {
-    topLeftNotifier.success({
-      title: &quot;Top-left positioning&quot;,
-      content: &quot;This notification is positioned in the top-left corner of the screen&quot;
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#top-left-positioning&#x27;).click(topLeftNotification);
-  
-  function bottomLeftNotification() {
-    bottomLeftNotifier.info({
-      title: &quot;Bottom-left positioning&quot;,
-      content: &quot;This notification is positioned in the bottom-left corner of the screen&quot;
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#bottom-left-positioning&#x27;).click(bottomLeftNotification);
-  
-  function bottomRightNotification() {
-    bottomRightNotifier.error({
-      title: &quot;Bottom-right positioning&quot;,
-      content: &quot;This notification is positioned in the bottom-right corner of the screen&quot;
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#bottom-right-positioning&#x27;).click(bottomRightNotification);
-  
-  function topRightNotification() {
-    topRightNotifier.info({
-      title: &quot;Top-right positioning&quot;,
-      content: &quot;This notification is positioned in the top-right corner of the screen&quot;
-    });
-  }
-  
-  $(&#x27;#utilities_notify_demo button#top-right-positioning&#x27;).click(topRightNotification);
+  <!-- G+ button -->
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
 
-});
-</code></pre>
-                                                    </div>
-                                                </div>
-                                            </div><!--/span-->
-                                        </div><!--/row-->
-                                    
-
-                                </section>
-
-                            
-
-                        </div><!--/span-->
-                    </div><!--/row-->
-
-                
-                    
-                    <div class="row-fluid group-container">
-                        <div class="span12">
-                            <div class="page-header">
-                                <h1>Widgets</h1>
-                            </div>
-
-                            
-                                
-                                
-
-                                <section id="widgets_popupMenu" class="feature-container">
-
-                                    <div class="row-fluid">
-                                        <div class="span12">
-                                            <h2>
-                                                Popup Menu
-                                                
-                                                    <span class="label label-important"><i class="icon-star"></i> New!</span>
-                                                
-                                                
-                                            </h2>
-                                        </div><!--/span-->
-                                    </div><!--/row-->
-
-                                    <div class="row-fluid">
-                                        
-                                            <div class="span6">
-                                                <div id="widgets_popupMenu_demo">
-    
-    <p>
-        This is the basic <code>HTML</code> layout needed to build a Popup Menu:
-    </p>
-    
-    <div class="paragraph">
-        <div class="basic-layout">
-            <button class="btn">Basic layout</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-    </div>
-    
-    <p>
-        The trigger element can be any <code>html</code> tag:
-    </p>
-    
-    <div class="paragraph">
-        <div class="alternative-layout">
-            <a href="#" style="border: 1px solid #cccccc; padding: 1px 3px; background-color: #F5F5F5; display: inline-block;">
-                <span class="k-icon k-i-custom"></span>
-            </a>
-            <ul>
-                <li>
-                    Tools
-                    <ul>
-                        <li>Extensions</li>
-                        <li>Task manager</li>
-                    </ul>
-                </li>
-                <li>Settings</li>
-            </ul>
-        </div>
-    </div>
-    
-    <p>
-        Menu opening can be triggered when the mouse stops over the trigger:
-    </p>
-    
-    <div class="paragraph">
-        <div class="openOnHover-option">
-            <button class="btn">This opens on hover</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-    </div>
-    
-    <p>
-        Menu and submenus can be opened in various directions:
-    </p>
-    
-    <div class="paragraph">
-        <div class="bottom-right-direction-option">
-            <button class="btn">Bottom Right</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-        
-        <div class="bottom-left-direction-option">
-            <button class="btn">Bottom Left</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-        
-        <div class="top-right-direction-option">
-            <button class="btn">Top Right</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-        
-        <div class="top-left-direction-option">
-            <button class="btn">Top Left</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-    </div>
-    
-    <p>
-        Menu opening and closing animation can be configured:
-    </p>
-    
-    <div class="paragraph">
-        <div class="expand-animation-option">
-            <button class="btn">Expand</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-        
-        <div class="fade-animation-option">
-            <button class="btn">Fade</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-        
-        <div class="none-animation-option">
-            <button class="btn">None</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-    </div>
-    
-    <p>
-        Menu can be built using a <code>dataSource</code> instead of static <code>HTML</code>:
-    <p>
-    
-    <div class="paragraph">
-        <div class="datasource-option">
-            <button class="btn">Built with a dataSource</button>
-            <ul></ul>
-        </div>
-    </div>
-    
-    <p>
-        The widget fires some events to which you can subscribe:
-    </p>
-    
-    <div class="paragraph">
-        <div class="well kiuiEventLogger">
-            <h5>Logged events:</h5>
-            <ul></ul>
-        </div>
-    </div>
-    
-    <div class="paragraph">
-        <div class="trigger-events">
-            <button class="btn">Trigger events</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-    
-        <div class="cancel-event">
-            <button class="btn">Cancel an event</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-        
-        <div class="bind-event">
-            <button class="btn">Bind event</button>
-            <ul>
-                <li>
-                    Menu 1
-                    <ul>
-                        <li>SubMenu 1</li>
-                        <li>SubMenu 2</li>
-                    </ul>
-                </li>
-                <li>Menu 2</li>
-            </ul>
-        </div>
-    </div>
-    
-</div>
-                                                <script>jQuery(function($) {
-
-  // basic layout needed
-  $('#widgets_popupMenu_demo .basic-layout').kendoKiuiPopupMenu();
-  
-  // layout using an <a>
-  $('#widgets_popupMenu_demo .alternative-layout').kendoKiuiPopupMenu();
-  
-  // openOnHover
-  $('#widgets_popupMenu_demo .openOnHover-option').kendoKiuiPopupMenu({
-    openOnHover: true
-  });
-  
-  //direction
-  $('#widgets_popupMenu_demo .bottom-right-direction-option').kendoKiuiPopupMenu({
-    direction: 'bottom right'
-  });
-  
-  $('#widgets_popupMenu_demo .bottom-left-direction-option').kendoKiuiPopupMenu({
-    direction: 'bottom left'
-  });
-  
-  $('#widgets_popupMenu_demo .top-right-direction-option').kendoKiuiPopupMenu({
-    direction: 'top right'
-  });
-  
-  $('#widgets_popupMenu_demo .top-left-direction-option').kendoKiuiPopupMenu({
-    direction: 'top left'
-  });
-  
-  //animation
-  $('#widgets_popupMenu_demo .expand-animation-option').kendoKiuiPopupMenu({
-    animation: 'expand'
-  });
-  
-  $('#widgets_popupMenu_demo .fade-animation-option').kendoKiuiPopupMenu({
-    animation: 'fade'
-  });
-  
-  $('#widgets_popupMenu_demo .none-animation-option').kendoKiuiPopupMenu({
-    animation: 'none'
-  });
-  
-  // dataSource
-  $('#widgets_popupMenu_demo .datasource-option').kendoKiuiPopupMenu({
-    dataSource: [
-      {
-        text: "Menu 1",
-        spriteCssClass: "k-icon k-i-clock",
-        items: [
-          {
-            text: "<b>SubMenu 1</b>",
-            encoded: false
-          },
-          {
-            text: "SubMenu 2"
-          }
-        ]
-      },
-      {
-        text: "Menu 2",
-        spriteCssClass: "k-icon k-i-search"
-      }
-    ]
-  });
-  
-  // event handling
-  var eventLogger = $('#widgets_popupMenu_demo .kiuiEventLogger ul');
-  
-  $('#widgets_popupMenu_demo .trigger-events').kendoKiuiPopupMenu({
-    open: function(e) {
-      var itemName = $(e.item).is('button') ?
-        'Button menu' : 
-        $(e.item).children('.k-link').text().trim();
-      
-      eventLogger.logEvent("Opened: " + itemName);
-    },
-    close: function(e) {
-      var itemName = $(e.item).is('button') ?
-        'Button menu' : 
-        $(e.item).children('.k-link').text().trim();
-      
-      eventLogger.logEvent("Closed: " + itemName);
-    },
-    select: function(e) {
-      eventLogger.logEvent('Selected: ' + $(e.item).children('.k-link').text().trim());
-    }
-  });
-  
-  var blockEvent = false;
-  
-  $('#widgets_popupMenu_demo .cancel-event').kendoKiuiPopupMenu({
-    open: function(e) {
-      var itemName = $(e.item).is('button') ?
-        'Button menu' : 
-        $(e.item).children('.k-link').text().trim();
-      
-      if (itemName === 'Button menu' && blockEvent) {
-        e.preventDefault();
-       
-        eventLogger.logEvent("Open prevented: " + itemName);
-      }
-      else {
-        eventLogger.logEvent("Opened: " + itemName);
-      }
-      
-      if (itemName === 'Button menu') {
-         blockEvent = !blockEvent;
-      }
-    }
-  });
-  
-  // you can also subscribe to the event after the widget was created
-  $('#widgets_popupMenu_demo .bind-event').kendoKiuiPopupMenu({});
-  // retrieve the widget object
-  $('#widgets_popupMenu_demo .bind-event').data('kendoKiuiPopupMenu')
-    // bind the event
-    .bind('select', function(e) {
-      eventLogger.logEvent('Selected: ' + $(e.item).children('.k-link').text().trim());
-    });
-
-});
-</script>
-                                            </div><!--/span-->
-                                            <div class="span6">
-                                                <p>
-    The <em>Popup Menu</em> widget allows you to create a menu attached to a specific target element (such as a button or an anchor).
-</p>
-
-<p>
-    The basic <code>HTML</code> layout needed to build a <em>Popup Menu</em> requires a container element (usually a <code>&lt;div></code> tag)
-    that contains exactly two children: the first one is the trigger element which will trigger the menu opening and closing, the second
-    one is a <code>&lt;ul></code> element that will render the actual menu.
-</p>
-
-<p>
-    Under the hood, <em>Popup Menu</em> uses the <em>kendoMenu</em> widget to build the menu so the possible structure for the <code>&lt;ul></code>
-    subtree is the same as the one described for the <a href="http://demos.kendoui.com/web/menu/index.html" target="_blank">kendoMenu widget</a>.
-</p>
-
-<p>
-    The trigger element can be any <code>HTML</code> tag but usually a <code>&lt;button></code> or <code>&lt;a></code> tag will be used.
-</p>
-
-<hr />
-
-<p>
-    The widget accepts the following configuration options:
-    
-    <ul>
-        <li>
-            <code>openOnHover</code>: by default the menu will open when clicking on the target menu; setting this option to <code>true</code>
-            will trigger the menu opening when the mouse stops over the trigger.
-            (Default: <code>false</code>)
-        </li>
-        
-        <li>
-            <code>direction</code>: controls the menu and submenus opening directions; accepted values are <code>'bottom right'</code>, <code>'bottom left'</code>,
-            <code>'top right'</code> and <code>'top left'</code>; the first value is the menu direction and the second one is the
-            submenus direction. (Default: <code>'bottom right'</code>)
-        </li>
-        
-        <li>
-            <code>animation</code>: specifies which animation will be used when opening and closing the menu and submenus; available
-            animations are <code>'expand'</code>, <code>'fade'</code> and <code>'none'</code>. (Default: <code>'expand'</code>)
-        </li>
-        
-        <li>
-            <code>dataSource</code>: with this option it's possible to build the menu using a <code>dataSource</code> instead of static <code>HTML</code>;
-            for the structure of the dataSource, refer to the <a href="http://docs.kendoui.com/api/web/menu#methods-append" target="_blank">kendoMenu widget</a> documentation.
-        </li>
-    </ul>
-</p>
-
-<hr />
-
-<p>
-    The widget fires the following events to which you can subscribe:
-    
-    <ul>
-        <li>
-            <code>open</code>: fired before the menu or any of the submenus are opened; canceling the event will prevent the opening; the
-            event object will have a property <code>item</code> containing the DOM element representing the opened menu item.
-        </li>
-        
-        <li>
-            <code>close</code>: fired before the menu or any of the submenus are closed; canceling the event will prevent the closing; the
-            event object will have a property <code>item</code> containing the DOM element representing the closed menu item.
-        </li>
-        
-        <li>
-            <code>select</code>: fired when a menu or submenus item is selected; the event object will have a property
-            <code>item</code> containing the DOM element representing the selected menu item.
-        </li>
-    </ul>
-
-    You can subscribe to the events as you would do with any other Kendo UI widget: passing the event handler as a configuration
-    property or using the <code>bind()</code> method on the widget object.
-</p>
-
-                                            </div><!--/span-->
-                                        
-                                    </div><!--/row-->
-
-                                    
-                                        <div class="row-fluid">
-                                            <div class="span12">
-                                                <ul class="nav nav-tabs">
-                                                    <li class="active"><a href="#widgets_popupMenu_html" data-toggle="tab">Html</a></li>
-                                                    <li><a href="#widgets_popupMenu_js" data-toggle="tab">Javascript</a></li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="widgets_popupMenu_html">
-                                                        <pre><code data-language="html">&lt;div id=&quot;widgets_popupMenu_demo&quot;&gt;
-    
-    &lt;p&gt;
-        This is the basic &lt;code&gt;HTML&lt;/code&gt; layout needed to build a Popup Menu:
-    &lt;/p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;basic-layout&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Basic layout&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;p&gt;
-        The trigger element can be any &lt;code&gt;html&lt;/code&gt; tag:
-    &lt;/p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;alternative-layout&quot;&gt;
-            &lt;a href=&quot;#&quot; style=&quot;border: 1px solid #cccccc; padding: 1px 3px; background-color: #F5F5F5; display: inline-block;&quot;&gt;
-                &lt;span class=&quot;k-icon k-i-custom&quot;&gt;&lt;/span&gt;
-            &lt;/a&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Tools
-                    &lt;ul&gt;
-                        &lt;li&gt;Extensions&lt;/li&gt;
-                        &lt;li&gt;Task manager&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Settings&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;p&gt;
-        Menu opening can be triggered when the mouse stops over the trigger:
-    &lt;/p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;openOnHover-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;This opens on hover&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;p&gt;
-        Menu and submenus can be opened in various directions:
-    &lt;/p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;bottom-right-direction-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Bottom Right&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        
-        &lt;div class=&quot;bottom-left-direction-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Bottom Left&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        
-        &lt;div class=&quot;top-right-direction-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Top Right&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        
-        &lt;div class=&quot;top-left-direction-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Top Left&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;p&gt;
-        Menu opening and closing animation can be configured:
-    &lt;/p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;expand-animation-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Expand&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        
-        &lt;div class=&quot;fade-animation-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Fade&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        
-        &lt;div class=&quot;none-animation-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;None&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;p&gt;
-        Menu can be built using a &lt;code&gt;dataSource&lt;/code&gt; instead of static &lt;code&gt;HTML&lt;/code&gt;:
-    &lt;p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;datasource-option&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Built with a dataSource&lt;/button&gt;
-            &lt;ul&gt;&lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;p&gt;
-        The widget fires some events to which you can subscribe:
-    &lt;/p&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;well kiuiEventLogger&quot;&gt;
-            &lt;h5&gt;Logged events:&lt;/h5&gt;
-            &lt;ul&gt;&lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;div class=&quot;paragraph&quot;&gt;
-        &lt;div class=&quot;trigger-events&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Trigger events&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    
-        &lt;div class=&quot;cancel-event&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Cancel an event&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-        
-        &lt;div class=&quot;bind-event&quot;&gt;
-            &lt;button class=&quot;btn&quot;&gt;Bind event&lt;/button&gt;
-            &lt;ul&gt;
-                &lt;li&gt;
-                    Menu 1
-                    &lt;ul&gt;
-                        &lt;li&gt;SubMenu 1&lt;/li&gt;
-                        &lt;li&gt;SubMenu 2&lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li&gt;Menu 2&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-&lt;/div&gt;</code></pre>
-                                                    </div>
-                                                    <div class="tab-pane" id="widgets_popupMenu_js">
-                                                        <pre><code data-language="javascript">jQuery(function($) {
-
-  // basic layout needed
-  $(&#x27;#widgets_popupMenu_demo .basic-layout&#x27;).kendoKiuiPopupMenu();
-  
-  // layout using an &lt;a&gt;
-  $(&#x27;#widgets_popupMenu_demo .alternative-layout&#x27;).kendoKiuiPopupMenu();
-  
-  // openOnHover
-  $(&#x27;#widgets_popupMenu_demo .openOnHover-option&#x27;).kendoKiuiPopupMenu({
-    openOnHover: true
-  });
-  
-  //direction
-  $(&#x27;#widgets_popupMenu_demo .bottom-right-direction-option&#x27;).kendoKiuiPopupMenu({
-    direction: &#x27;bottom right&#x27;
-  });
-  
-  $(&#x27;#widgets_popupMenu_demo .bottom-left-direction-option&#x27;).kendoKiuiPopupMenu({
-    direction: &#x27;bottom left&#x27;
-  });
-  
-  $(&#x27;#widgets_popupMenu_demo .top-right-direction-option&#x27;).kendoKiuiPopupMenu({
-    direction: &#x27;top right&#x27;
-  });
-  
-  $(&#x27;#widgets_popupMenu_demo .top-left-direction-option&#x27;).kendoKiuiPopupMenu({
-    direction: &#x27;top left&#x27;
-  });
-  
-  //animation
-  $(&#x27;#widgets_popupMenu_demo .expand-animation-option&#x27;).kendoKiuiPopupMenu({
-    animation: &#x27;expand&#x27;
-  });
-  
-  $(&#x27;#widgets_popupMenu_demo .fade-animation-option&#x27;).kendoKiuiPopupMenu({
-    animation: &#x27;fade&#x27;
-  });
-  
-  $(&#x27;#widgets_popupMenu_demo .none-animation-option&#x27;).kendoKiuiPopupMenu({
-    animation: &#x27;none&#x27;
-  });
-  
-  // dataSource
-  $(&#x27;#widgets_popupMenu_demo .datasource-option&#x27;).kendoKiuiPopupMenu({
-    dataSource: [
-      {
-        text: &quot;Menu 1&quot;,
-        spriteCssClass: &quot;k-icon k-i-clock&quot;,
-        items: [
-          {
-            text: &quot;&lt;b&gt;SubMenu 1&lt;/b&gt;&quot;,
-            encoded: false
-          },
-          {
-            text: &quot;SubMenu 2&quot;
-          }
-        ]
-      },
-      {
-        text: &quot;Menu 2&quot;,
-        spriteCssClass: &quot;k-icon k-i-search&quot;
-      }
-    ]
-  });
-  
-  // event handling
-  var eventLogger = $(&#x27;#widgets_popupMenu_demo .kiuiEventLogger ul&#x27;);
-  
-  $(&#x27;#widgets_popupMenu_demo .trigger-events&#x27;).kendoKiuiPopupMenu({
-    open: function(e) {
-      var itemName = $(e.item).is(&#x27;button&#x27;) ?
-        &#x27;Button menu&#x27; : 
-        $(e.item).children(&#x27;.k-link&#x27;).text().trim();
-      
-      eventLogger.logEvent(&quot;Opened: &quot; + itemName);
-    },
-    close: function(e) {
-      var itemName = $(e.item).is(&#x27;button&#x27;) ?
-        &#x27;Button menu&#x27; : 
-        $(e.item).children(&#x27;.k-link&#x27;).text().trim();
-      
-      eventLogger.logEvent(&quot;Closed: &quot; + itemName);
-    },
-    select: function(e) {
-      eventLogger.logEvent(&#x27;Selected: &#x27; + $(e.item).children(&#x27;.k-link&#x27;).text().trim());
-    }
-  });
-  
-  var blockEvent = false;
-  
-  $(&#x27;#widgets_popupMenu_demo .cancel-event&#x27;).kendoKiuiPopupMenu({
-    open: function(e) {
-      var itemName = $(e.item).is(&#x27;button&#x27;) ?
-        &#x27;Button menu&#x27; : 
-        $(e.item).children(&#x27;.k-link&#x27;).text().trim();
-      
-      if (itemName === &#x27;Button menu&#x27; &amp;&amp; blockEvent) {
-        e.preventDefault();
-       
-        eventLogger.logEvent(&quot;Open prevented: &quot; + itemName);
-      }
-      else {
-        eventLogger.logEvent(&quot;Opened: &quot; + itemName);
-      }
-      
-      if (itemName === &#x27;Button menu&#x27;) {
-         blockEvent = !blockEvent;
-      }
-    }
-  });
-  
-  // you can also subscribe to the event after the widget was created
-  $(&#x27;#widgets_popupMenu_demo .bind-event&#x27;).kendoKiuiPopupMenu({});
-  // retrieve the widget object
-  $(&#x27;#widgets_popupMenu_demo .bind-event&#x27;).data(&#x27;kendoKiuiPopupMenu&#x27;)
-    // bind the event
-    .bind(&#x27;select&#x27;, function(e) {
-      eventLogger.logEvent(&#x27;Selected: &#x27; + $(e.item).children(&#x27;.k-link&#x27;).text().trim());
-    });
-
-});
-</code></pre>
-                                                    </div>
-                                                </div>
-                                            </div><!--/span-->
-                                        </div><!--/row-->
-                                    
-
-                                </section>
-
-                            
-
-                        </div><!--/span-->
-                    </div><!--/row-->
-
-                
-
-            </div><!--/span-->
-        </div><!--/row-->
-
-        <hr>
-
-        <footer>
-            <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
-            <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
-            <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
-        </footer>
-
-    </div><!--/.fluid-container-->
-
-    <!-- G+ button -->
-    <script type="text/javascript">
-        (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-    </script>
-
-    <!-- Twitter button -->
-    <script>
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-    </script>
+  <!-- Twitter button -->
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
 
 </body>
 

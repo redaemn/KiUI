@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>KiUI - Bindings: Bool Value</title>
+  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - Bindings: Bool Value">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.3.min.css" rel="stylesheet" />
+  <link href="../resources/main.min.css" rel="stylesheet">
+
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="../kiui-0.0.3.min.js"></script>
+  <script src="../resources/main.min.js"></script>
+
+  <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41055822-1', 'redaemn.github.io');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="../index.html">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Bindings
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li  class="disabled" >
+                      
+                        <a href="#">
+                      
+                      
+                        Bool Value
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Utilities
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/utilities_notifier.html">
+                      
+                      
+                        Notifier
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Validators
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/validators_date.html">
+                      
+                      
+                        Date
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/validators_radioRequired.html">
+                      
+                      
+                        Radio Required
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Widgets
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/widgets_popupMenu.html">
+                      
+                      
+                        Popup Menu
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid group-container">
+          <div class="span12">
+            <div class="page-header">
+              <h1>Bindings</h1>
+            </div>
+
+              <section id="bindings_boolValue" class="feature-container">
+
+                <div class="row-fluid">
+                  <div class="span12">
+                    <h2>
+                      Bool Value
+                      
+                      
+                    </h2>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  
+                    <div class="span6">
+                      <div id="bindings_boolValue_demo">
+    <div class="span7">
+        <form>
+            <label>Do you like <strong>KiUI</strong>?</label>
+
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
+                Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
+                No
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
+                Don't know
+            </label>
+        </form>
+    </div>
+
+    <div class="span5">
+        <h5>Current view-model state:</h5>
+        <pre>
+{
+    likeKiui: <span data-bind="text: likeKiuiText()"></span>
+}</pre>
+    </div>
+
+</div>
+                      <script>jQuery(function($) {
+  var viewModel;
+
+  viewModel = kendo.observable({
+    likeKiui: null,
+    likeKiuiText: function() {
+      return kendo.stringify(this.get('likeKiui'));
+    }
+  });
+
+  kendo.bind($('#bindings_boolValue_demo'), viewModel);
+
+});
+</script>
+                    </div><!--/span-->
+                    <div class="span6">
+                      <p>
+    The <code>boolValue</code> binding can be used to bind a radio buttons control with a boolean variable in the view
+    model.
+</p>
+
+<p>
+    It's able to support three different values: <code>true</code>, <code>false</code> and <code>null</code>.
+</p>
+
+                    </div><!--/span-->
+                  
+                </div><!--/row-->
+
+                
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#bindings_boolValue_html" data-toggle="tab">Html</a></li>
+                        <li><a href="#bindings_boolValue_js" data-toggle="tab">Javascript</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="bindings_boolValue_html">
+                          <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
+    &lt;div class=&quot;span7&quot;&gt;
+        &lt;form&gt;
+            &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
+
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
+            &lt;/label&gt;
+
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                No
+            &lt;/label&gt;
+
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                Don&#x27;t know
+            &lt;/label&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;span5&quot;&gt;
+        &lt;h5&gt;Current view-model state:&lt;/h5&gt;
+        &lt;pre&gt;
+{
+    likeKiui: &lt;span data-bind=&quot;text: likeKiuiText()&quot;&gt;&lt;/span&gt;
+}&lt;/pre&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+                        </div>
+                        <div class="tab-pane" id="bindings_boolValue_js">
+                          <pre><code data-language="javascript">jQuery(function($) {
+  var viewModel;
+
+  viewModel = kendo.observable({
+    likeKiui: null,
+    likeKiuiText: function() {
+      return kendo.stringify(this.get(&#x27;likeKiui&#x27;));
+    }
+  });
+
+  kendo.bind($(&#x27;#bindings_boolValue_demo&#x27;), viewModel);
+
+});
+</code></pre>
+                        </div>
+                      </div>
+                    </div><!--/span-->
+                  </div><!--/row-->
+                
+
+              </section>
+
+          </div><!--/span-->
+        </div><!--/row-->
+
+      </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
+
+  </div><!--/.fluid-container-->
+
+</body>
+
+</html>
+

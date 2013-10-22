@@ -1,6 +1,6 @@
 /*
- * KiUI v0.0.2 (https://github.com/redaemn/KiUI)
- * 2013-10-01
+ * KiUI v0.0.3 (https://github.com/redaemn/KiUI)
+ * 2013-10-22
  * Author: https://github.com/redaemn/KiUI/graphs/contributors
  *
  * This software is licensed under the GNU General Public License (GPL) version 3
@@ -520,6 +520,51 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
   kiui.plugin(Notifier);
 
 })(window.jQuery, window.kendo, window.kiui, window);
+
+/**
+ * Check that the input field contains a valid date value based on a particular
+ * format and/or culture
+ */
+
+(function ($, kendo, undefined) {
+  
+  kendo.ui.validator.rules.kiuiDate = function (input) {
+    if (input.is('[data-kiui-date]')) {
+      var value = input.val(),
+        format = input.data('kiui-date') || "",
+        culture = input.data('kiui-date-culture') || "";
+        
+      return value === "" ||
+        kendo.parseDate(value, format, culture) !== null;
+    }
+
+    return true;
+  };
+  
+  kendo.ui.validator.messages.kiuiDate = "{0} is not a valid date";
+  
+})(window.jQuery, window.kendo);
+
+
+/**
+ * Extends require validator to handle radio buttons inputs
+ */
+
+(function ($, kendo, undefined) {
+  
+  kendo.ui.validator.rules.required = function (input) {
+    var validator;
+    
+    if (input.is("[type=radio]")) {
+      validator = input.parents('[data-role="validator"]').first();
+      return !input.is("[required]") || validator.find("[name=" + input.attr("name") + "]").is(":checked");
+    }
+    else {
+      return kendo.ui.Validator.fn.options.rules.required(input);
+    }
+  };
+  
+})(window.jQuery, window.kendo);
 
 /**
  *

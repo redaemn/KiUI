@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>KiUI - Validators: Date</title>
+  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - Validators: Date">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.3.min.css" rel="stylesheet" />
+  <link href="../resources/main.min.css" rel="stylesheet">
+
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="../kiui-0.0.3.min.js"></script>
+  <script src="../resources/main.min.js"></script>
+
+  <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41055822-1', 'redaemn.github.io');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="../index.html">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Bindings
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/bindings_boolValue.html">
+                      
+                      
+                        Bool Value
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Utilities
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/utilities_notifier.html">
+                      
+                      
+                        Notifier
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Validators
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li  class="disabled" >
+                      
+                        <a href="#">
+                      
+                      
+                        Date
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/validators_radioRequired.html">
+                      
+                      
+                        Radio Required
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Widgets
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/widgets_popupMenu.html">
+                      
+                      
+                        Popup Menu
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid group-container">
+          <div class="span12">
+            <div class="page-header">
+              <h1>Validators</h1>
+            </div>
+
+              <section id="validators_date" class="feature-container">
+
+                <div class="row-fluid">
+                  <div class="span12">
+                    <h2>
+                      Date
+                      
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      
+                      
+                    </h2>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  
+                    <div class="span6">
+                      <div id="validators_dateValue_demo">
+    
+  <div class="paragraph">
+    <form>
+      <div class="control-group">
+        <label class="control-label">Date validator</label>
+        <div class="controls">
+          <span class="help-block">Try setting a date that simply is not a date (for example random text)</span>
+          <input name="date" data-kiui-date>
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date"></span></span>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Date validator with specific format</label>
+        <div class="controls">
+          <span class="help-block">Try setting a date that doesn't have the custom format <code>MM-dd-yyyy</code></span>
+          <input name="date-format" data-kiui-date="MM-dd-yyyy">
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date-format"></span></span>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label">Date validator with specific culture</label>
+        <div class="controls">
+          <span class="help-block">
+            This date uses standard italian format <code>dd/MM/yyyy</code>,
+            try setting something in a different format
+          </span>
+          <input name="date-culture" data-kiui-date data-kiui-date-culture="it-IT">
+          <span class="help-inline"><span class="k-invalid-msg" data-for="date-culture"></span></span>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+    
+</div>
+
+
+                      <script>jQuery(function($) {
+  
+  // set Italian culture
+  kendo.culture("it-IT");
+  // reset default US culture
+  kendo.culture("en-US");
+  // I need to do this because there seems to be a bug in kendo.parseDate(): it
+  // doesn't work for cultures that have never been set as default culture at
+  // least one time
+  
+  var today = new Date();
+  
+  $('#validators_dateValue_demo [name="date"]').kendoDatePicker({
+    value: today
+  });
+  
+  $('#validators_dateValue_demo [name="date-format"]').kendoDatePicker({
+    format: 'MM-dd-yyyy',
+    value: today
+  });
+  
+  $('#validators_dateValue_demo [name="date-culture"]').kendoDatePicker({
+    culture: 'it-IT',
+    value: today
+  });
+  
+  var validator = $("#validators_dateValue_demo form").kendoValidator().data("kendoValidator");
+  
+});</script>
+                    </div><!--/span-->
+                    <div class="span6">
+                      <p>
+  Personally, I've had some problems using <em>Kendo UI Web</em> date validator:
+  it only works on <code>input[type="date"]</code> and since the <em>DatePicker</em> widget
+  transforms it's <code>&lt;input></code> element to <code>input[type="text"]</code>,
+  you can't use the validator anymore.
+</p>
+
+<p>
+  Kiui <em>Date</em> validator can be applied to <em>any</em> <code>&lt;input></code> element
+  and it just works with <em>DatePicker</em>s. Additionally, you can also specify
+  a custom culture that the validator will use when trying to parse the date.
+</p>
+
+<p>
+  To start using the <em>Date</em> validator just add the attribute <code>data-kiui-date</code>
+  to an <code>&lt;input></code> element and you're done; the date will be validated
+  using every standard format defined for the current default culture.
+</p>
+
+<p>
+  You can specify a custom format to be used when parsing the date; you can do so
+  by setting the attribute value to the desired format, such as
+  <code>data-kiui-date="dd-MM-yyyy"</code>. Now <em>only</em> that format will
+  be used to parse the date.
+</p>
+
+<p>
+  You can also specify a custom culture to be used when parsing the date instead
+  of the current default one. You can do so by setting the attribute
+  <code>data-kiui-date-culture</code> to the desired custom culture. Now <em>only</em>
+  the standard formats defined for the custom culture will be used to parse the date.
+</p>
+
+<p>
+  Unfortunately there seems to be a bug in <code>kendo.parseDate()</code> and so
+  the custom culture that you wish to use must have been set at least once as
+  the default culture for the parsing to work correctly. See the Javascript example
+  code for a way to do this.
+</p>
+
+<p>
+  If you specify both a custom format and a custom culture, <em>only</em> the custom
+  format will be considered when parsing the date.
+</p>
+
+                    </div><!--/span-->
+                  
+                </div><!--/row-->
+
+                
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#validators_date_html" data-toggle="tab">Html</a></li>
+                        <li><a href="#validators_date_js" data-toggle="tab">Javascript</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="validators_date_html">
+                          <pre><code data-language="html">&lt;div id=&quot;validators_dateValue_demo&quot;&gt;
+    
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;form&gt;
+      &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Date validator&lt;/label&gt;
+        &lt;div class=&quot;controls&quot;&gt;
+          &lt;span class=&quot;help-block&quot;&gt;Try setting a date that simply is not a date (for example random text)&lt;/span&gt;
+          &lt;input name=&quot;date&quot; data-kiui-date&gt;
+          &lt;span class=&quot;help-inline&quot;&gt;&lt;span class=&quot;k-invalid-msg&quot; data-for=&quot;date&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Date validator with specific format&lt;/label&gt;
+        &lt;div class=&quot;controls&quot;&gt;
+          &lt;span class=&quot;help-block&quot;&gt;Try setting a date that doesn&#x27;t have the custom format &lt;code&gt;MM-dd-yyyy&lt;/code&gt;&lt;/span&gt;
+          &lt;input name=&quot;date-format&quot; data-kiui-date=&quot;MM-dd-yyyy&quot;&gt;
+          &lt;span class=&quot;help-inline&quot;&gt;&lt;span class=&quot;k-invalid-msg&quot; data-for=&quot;date-format&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Date validator with specific culture&lt;/label&gt;
+        &lt;div class=&quot;controls&quot;&gt;
+          &lt;span class=&quot;help-block&quot;&gt;
+            This date uses standard italian format &lt;code&gt;dd/MM/yyyy&lt;/code&gt;,
+            try setting something in a different format
+          &lt;/span&gt;
+          &lt;input name=&quot;date-culture&quot; data-kiui-date data-kiui-date-culture=&quot;it-IT&quot;&gt;
+          &lt;span class=&quot;help-inline&quot;&gt;&lt;span class=&quot;k-invalid-msg&quot; data-for=&quot;date-culture&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      
+    &lt;/form&gt;
+  &lt;/div&gt;
+    
+&lt;/div&gt;
+
+</code></pre>
+                        </div>
+                        <div class="tab-pane" id="validators_date_js">
+                          <pre><code data-language="javascript">jQuery(function($) {
+  
+  // set Italian culture
+  kendo.culture(&quot;it-IT&quot;);
+  // reset default US culture
+  kendo.culture(&quot;en-US&quot;);
+  // I need to do this because there seems to be a bug in kendo.parseDate(): it
+  // doesn&#x27;t work for cultures that have never been set as default culture at
+  // least one time
+  
+  var today = new Date();
+  
+  $(&#x27;#validators_dateValue_demo [name=&quot;date&quot;]&#x27;).kendoDatePicker({
+    value: today
+  });
+  
+  $(&#x27;#validators_dateValue_demo [name=&quot;date-format&quot;]&#x27;).kendoDatePicker({
+    format: &#x27;MM-dd-yyyy&#x27;,
+    value: today
+  });
+  
+  $(&#x27;#validators_dateValue_demo [name=&quot;date-culture&quot;]&#x27;).kendoDatePicker({
+    culture: &#x27;it-IT&#x27;,
+    value: today
+  });
+  
+  var validator = $(&quot;#validators_dateValue_demo form&quot;).kendoValidator().data(&quot;kendoValidator&quot;);
+  
+});</code></pre>
+                        </div>
+                      </div>
+                    </div><!--/span-->
+                  </div><!--/row-->
+                
+
+              </section>
+
+          </div><!--/span-->
+        </div><!--/row-->
+
+      </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
+
+  </div><!--/.fluid-container-->
+
+</body>
+
+</html>
+

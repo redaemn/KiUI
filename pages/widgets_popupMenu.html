@@ -1,0 +1,1054 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>KiUI - Widgets: Popup Menu</title>
+  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - Widgets: Popup Menu">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.3.min.css" rel="stylesheet" />
+  <link href="../resources/main.min.css" rel="stylesheet">
+
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="../kiui-0.0.3.min.js"></script>
+  <script src="../resources/main.min.js"></script>
+
+  <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41055822-1', 'redaemn.github.io');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="../index.html">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Bindings
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/bindings_boolValue.html">
+                      
+                      
+                        Bool Value
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Utilities
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/utilities_notifier.html">
+                      
+                      
+                        Notifier
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Validators
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/validators_date.html">
+                      
+                      
+                        Date
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li >
+                      
+                        <a href="../pages/validators_radioRequired.html">
+                      
+                      
+                        Radio Required
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Widgets
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li  class="disabled" >
+                      
+                        <a href="#">
+                      
+                      
+                        Popup Menu
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid group-container">
+          <div class="span12">
+            <div class="page-header">
+              <h1>Widgets</h1>
+            </div>
+
+              <section id="widgets_popupMenu" class="feature-container">
+
+                <div class="row-fluid">
+                  <div class="span12">
+                    <h2>
+                      Popup Menu
+                      
+                      
+                    </h2>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  
+                    <div class="span6">
+                      <div id="widgets_popupMenu_demo">
+    
+    <p>
+        This is the basic <code>HTML</code> layout needed to build a Popup Menu:
+    </p>
+    
+    <div class="paragraph">
+        <div class="basic-layout">
+            <button class="btn">Basic layout</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p>
+        The trigger element can be any <code>html</code> tag:
+    </p>
+    
+    <div class="paragraph">
+        <div class="alternative-layout">
+            <a href="#" style="border: 1px solid #cccccc; padding: 1px 3px; background-color: #F5F5F5; display: inline-block;">
+                <span class="k-icon k-i-custom"></span>
+            </a>
+            <ul>
+                <li>
+                    Tools
+                    <ul>
+                        <li>Extensions</li>
+                        <li>Task manager</li>
+                    </ul>
+                </li>
+                <li>Settings</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p>
+        Menu opening can be triggered when the mouse stops over the trigger:
+    </p>
+    
+    <div class="paragraph">
+        <div class="openOnHover-option">
+            <button class="btn">This opens on hover</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p>
+        Menu and submenus can be opened in various directions:
+    </p>
+    
+    <div class="paragraph">
+        <div class="bottom-right-direction-option">
+            <button class="btn">Bottom Right</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+        
+        <div class="bottom-left-direction-option">
+            <button class="btn">Bottom Left</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+        
+        <div class="top-right-direction-option">
+            <button class="btn">Top Right</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+        
+        <div class="top-left-direction-option">
+            <button class="btn">Top Left</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p>
+        Menu opening and closing animation can be configured:
+    </p>
+    
+    <div class="paragraph">
+        <div class="expand-animation-option">
+            <button class="btn">Expand</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+        
+        <div class="fade-animation-option">
+            <button class="btn">Fade</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+        
+        <div class="none-animation-option">
+            <button class="btn">None</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+    </div>
+    
+    <p>
+        Menu can be built using a <code>dataSource</code> instead of static <code>HTML</code>:
+    <p>
+    
+    <div class="paragraph">
+        <div class="datasource-option">
+            <button class="btn">Built with a dataSource</button>
+            <ul></ul>
+        </div>
+    </div>
+    
+    <p>
+        The widget fires some events to which you can subscribe:
+    </p>
+    
+    <div class="paragraph">
+        <div class="well kiuiEventLogger">
+            <h5>Logged events:</h5>
+            <ul></ul>
+        </div>
+    </div>
+    
+    <div class="paragraph">
+        <div class="trigger-events">
+            <button class="btn">Trigger events</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+    
+        <div class="cancel-event">
+            <button class="btn">Cancel an event</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+        
+        <div class="bind-event">
+            <button class="btn">Bind event</button>
+            <ul>
+                <li>
+                    Menu 1
+                    <ul>
+                        <li>SubMenu 1</li>
+                        <li>SubMenu 2</li>
+                    </ul>
+                </li>
+                <li>Menu 2</li>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+                      <script>jQuery(function($) {
+
+  // basic layout needed
+  $('#widgets_popupMenu_demo .basic-layout').kendoKiuiPopupMenu();
+  
+  // layout using an <a>
+  $('#widgets_popupMenu_demo .alternative-layout').kendoKiuiPopupMenu();
+  
+  // openOnHover
+  $('#widgets_popupMenu_demo .openOnHover-option').kendoKiuiPopupMenu({
+    openOnHover: true
+  });
+  
+  //direction
+  $('#widgets_popupMenu_demo .bottom-right-direction-option').kendoKiuiPopupMenu({
+    direction: 'bottom right'
+  });
+  
+  $('#widgets_popupMenu_demo .bottom-left-direction-option').kendoKiuiPopupMenu({
+    direction: 'bottom left'
+  });
+  
+  $('#widgets_popupMenu_demo .top-right-direction-option').kendoKiuiPopupMenu({
+    direction: 'top right'
+  });
+  
+  $('#widgets_popupMenu_demo .top-left-direction-option').kendoKiuiPopupMenu({
+    direction: 'top left'
+  });
+  
+  //animation
+  $('#widgets_popupMenu_demo .expand-animation-option').kendoKiuiPopupMenu({
+    animation: 'expand'
+  });
+  
+  $('#widgets_popupMenu_demo .fade-animation-option').kendoKiuiPopupMenu({
+    animation: 'fade'
+  });
+  
+  $('#widgets_popupMenu_demo .none-animation-option').kendoKiuiPopupMenu({
+    animation: 'none'
+  });
+  
+  // dataSource
+  $('#widgets_popupMenu_demo .datasource-option').kendoKiuiPopupMenu({
+    dataSource: [
+      {
+        text: "Menu 1",
+        spriteCssClass: "k-icon k-i-clock",
+        items: [
+          {
+            text: "<b>SubMenu 1</b>",
+            encoded: false
+          },
+          {
+            text: "SubMenu 2"
+          }
+        ]
+      },
+      {
+        text: "Menu 2",
+        spriteCssClass: "k-icon k-i-search"
+      }
+    ]
+  });
+  
+  // event handling
+  var eventLogger = $('#widgets_popupMenu_demo .kiuiEventLogger ul');
+  
+  $('#widgets_popupMenu_demo .trigger-events').kendoKiuiPopupMenu({
+    open: function(e) {
+      var itemName = $(e.item).is('button') ?
+        'Button menu' : 
+        $(e.item).children('.k-link').text().trim();
+      
+      eventLogger.logEvent("Opened: " + itemName);
+    },
+    close: function(e) {
+      var itemName = $(e.item).is('button') ?
+        'Button menu' : 
+        $(e.item).children('.k-link').text().trim();
+      
+      eventLogger.logEvent("Closed: " + itemName);
+    },
+    select: function(e) {
+      eventLogger.logEvent('Selected: ' + $(e.item).children('.k-link').text().trim());
+    }
+  });
+  
+  var blockEvent = false;
+  
+  $('#widgets_popupMenu_demo .cancel-event').kendoKiuiPopupMenu({
+    open: function(e) {
+      var itemName = $(e.item).is('button') ?
+        'Button menu' : 
+        $(e.item).children('.k-link').text().trim();
+      
+      if (itemName === 'Button menu' && blockEvent) {
+        e.preventDefault();
+       
+        eventLogger.logEvent("Open prevented: " + itemName);
+      }
+      else {
+        eventLogger.logEvent("Opened: " + itemName);
+      }
+      
+      if (itemName === 'Button menu') {
+         blockEvent = !blockEvent;
+      }
+    }
+  });
+  
+  // you can also subscribe to the event after the widget was created
+  $('#widgets_popupMenu_demo .bind-event').kendoKiuiPopupMenu({});
+  // retrieve the widget object
+  $('#widgets_popupMenu_demo .bind-event').data('kendoKiuiPopupMenu')
+    // bind the event
+    .bind('select', function(e) {
+      eventLogger.logEvent('Selected: ' + $(e.item).children('.k-link').text().trim());
+    });
+
+});
+</script>
+                    </div><!--/span-->
+                    <div class="span6">
+                      <p>
+    The <em>Popup Menu</em> widget allows you to create a menu attached to a specific target element (such as a button or an anchor).
+</p>
+
+<p>
+    The basic <code>HTML</code> layout needed to build a <em>Popup Menu</em> requires a container element (usually a <code>&lt;div></code> tag)
+    that contains exactly two children: the first one is the trigger element which will trigger the menu opening and closing, the second
+    one is a <code>&lt;ul></code> element that will render the actual menu.
+</p>
+
+<p>
+    Under the hood, <em>Popup Menu</em> uses the <em>kendoMenu</em> widget to build the menu so the possible structure for the <code>&lt;ul></code>
+    subtree is the same as the one described for the <a href="http://demos.kendoui.com/web/menu/index.html" target="_blank">kendoMenu widget</a>.
+</p>
+
+<p>
+    The trigger element can be any <code>HTML</code> tag but usually a <code>&lt;button></code> or <code>&lt;a></code> tag will be used.
+</p>
+
+<hr />
+
+<p>
+    The widget accepts the following configuration options:
+    
+    <ul>
+        <li>
+            <code>openOnHover</code>: by default the menu will open when clicking on the target menu; setting this option to <code>true</code>
+            will trigger the menu opening when the mouse stops over the trigger.
+            (Default: <code>false</code>)
+        </li>
+        
+        <li>
+            <code>direction</code>: controls the menu and submenus opening directions; accepted values are <code>'bottom right'</code>, <code>'bottom left'</code>,
+            <code>'top right'</code> and <code>'top left'</code>; the first value is the menu direction and the second one is the
+            submenus direction. (Default: <code>'bottom right'</code>)
+        </li>
+        
+        <li>
+            <code>animation</code>: specifies which animation will be used when opening and closing the menu and submenus; available
+            animations are <code>'expand'</code>, <code>'fade'</code> and <code>'none'</code>. (Default: <code>'expand'</code>)
+        </li>
+        
+        <li>
+            <code>dataSource</code>: with this option it's possible to build the menu using a <code>dataSource</code> instead of static <code>HTML</code>;
+            for the structure of the dataSource, refer to the <a href="http://docs.kendoui.com/api/web/menu#methods-append" target="_blank">kendoMenu widget</a> documentation.
+        </li>
+    </ul>
+</p>
+
+<hr />
+
+<p>
+    The widget fires the following events to which you can subscribe:
+    
+    <ul>
+        <li>
+            <code>open</code>: fired before the menu or any of the submenus are opened; canceling the event will prevent the opening; the
+            event object will have a property <code>item</code> containing the DOM element representing the opened menu item.
+        </li>
+        
+        <li>
+            <code>close</code>: fired before the menu or any of the submenus are closed; canceling the event will prevent the closing; the
+            event object will have a property <code>item</code> containing the DOM element representing the closed menu item.
+        </li>
+        
+        <li>
+            <code>select</code>: fired when a menu or submenus item is selected; the event object will have a property
+            <code>item</code> containing the DOM element representing the selected menu item.
+        </li>
+    </ul>
+
+    You can subscribe to the events as you would do with any other Kendo UI widget: passing the event handler as a configuration
+    property or using the <code>bind()</code> method on the widget object.
+</p>
+
+                    </div><!--/span-->
+                  
+                </div><!--/row-->
+
+                
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#widgets_popupMenu_html" data-toggle="tab">Html</a></li>
+                        <li><a href="#widgets_popupMenu_js" data-toggle="tab">Javascript</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="widgets_popupMenu_html">
+                          <pre><code data-language="html">&lt;div id=&quot;widgets_popupMenu_demo&quot;&gt;
+    
+    &lt;p&gt;
+        This is the basic &lt;code&gt;HTML&lt;/code&gt; layout needed to build a Popup Menu:
+    &lt;/p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;basic-layout&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Basic layout&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;
+        The trigger element can be any &lt;code&gt;html&lt;/code&gt; tag:
+    &lt;/p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;alternative-layout&quot;&gt;
+            &lt;a href=&quot;#&quot; style=&quot;border: 1px solid #cccccc; padding: 1px 3px; background-color: #F5F5F5; display: inline-block;&quot;&gt;
+                &lt;span class=&quot;k-icon k-i-custom&quot;&gt;&lt;/span&gt;
+            &lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Tools
+                    &lt;ul&gt;
+                        &lt;li&gt;Extensions&lt;/li&gt;
+                        &lt;li&gt;Task manager&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Settings&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;
+        Menu opening can be triggered when the mouse stops over the trigger:
+    &lt;/p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;openOnHover-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;This opens on hover&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;
+        Menu and submenus can be opened in various directions:
+    &lt;/p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;bottom-right-direction-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Bottom Right&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;bottom-left-direction-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Bottom Left&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;top-right-direction-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Top Right&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;top-left-direction-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Top Left&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;
+        Menu opening and closing animation can be configured:
+    &lt;/p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;expand-animation-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Expand&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;fade-animation-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Fade&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;none-animation-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;None&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;
+        Menu can be built using a &lt;code&gt;dataSource&lt;/code&gt; instead of static &lt;code&gt;HTML&lt;/code&gt;:
+    &lt;p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;datasource-option&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Built with a dataSource&lt;/button&gt;
+            &lt;ul&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;
+        The widget fires some events to which you can subscribe:
+    &lt;/p&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;well kiuiEventLogger&quot;&gt;
+            &lt;h5&gt;Logged events:&lt;/h5&gt;
+            &lt;ul&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class=&quot;paragraph&quot;&gt;
+        &lt;div class=&quot;trigger-events&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Trigger events&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    
+        &lt;div class=&quot;cancel-event&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Cancel an event&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;bind-event&quot;&gt;
+            &lt;button class=&quot;btn&quot;&gt;Bind event&lt;/button&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    Menu 1
+                    &lt;ul&gt;
+                        &lt;li&gt;SubMenu 1&lt;/li&gt;
+                        &lt;li&gt;SubMenu 2&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;Menu 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;</code></pre>
+                        </div>
+                        <div class="tab-pane" id="widgets_popupMenu_js">
+                          <pre><code data-language="javascript">jQuery(function($) {
+
+  // basic layout needed
+  $(&#x27;#widgets_popupMenu_demo .basic-layout&#x27;).kendoKiuiPopupMenu();
+  
+  // layout using an &lt;a&gt;
+  $(&#x27;#widgets_popupMenu_demo .alternative-layout&#x27;).kendoKiuiPopupMenu();
+  
+  // openOnHover
+  $(&#x27;#widgets_popupMenu_demo .openOnHover-option&#x27;).kendoKiuiPopupMenu({
+    openOnHover: true
+  });
+  
+  //direction
+  $(&#x27;#widgets_popupMenu_demo .bottom-right-direction-option&#x27;).kendoKiuiPopupMenu({
+    direction: &#x27;bottom right&#x27;
+  });
+  
+  $(&#x27;#widgets_popupMenu_demo .bottom-left-direction-option&#x27;).kendoKiuiPopupMenu({
+    direction: &#x27;bottom left&#x27;
+  });
+  
+  $(&#x27;#widgets_popupMenu_demo .top-right-direction-option&#x27;).kendoKiuiPopupMenu({
+    direction: &#x27;top right&#x27;
+  });
+  
+  $(&#x27;#widgets_popupMenu_demo .top-left-direction-option&#x27;).kendoKiuiPopupMenu({
+    direction: &#x27;top left&#x27;
+  });
+  
+  //animation
+  $(&#x27;#widgets_popupMenu_demo .expand-animation-option&#x27;).kendoKiuiPopupMenu({
+    animation: &#x27;expand&#x27;
+  });
+  
+  $(&#x27;#widgets_popupMenu_demo .fade-animation-option&#x27;).kendoKiuiPopupMenu({
+    animation: &#x27;fade&#x27;
+  });
+  
+  $(&#x27;#widgets_popupMenu_demo .none-animation-option&#x27;).kendoKiuiPopupMenu({
+    animation: &#x27;none&#x27;
+  });
+  
+  // dataSource
+  $(&#x27;#widgets_popupMenu_demo .datasource-option&#x27;).kendoKiuiPopupMenu({
+    dataSource: [
+      {
+        text: &quot;Menu 1&quot;,
+        spriteCssClass: &quot;k-icon k-i-clock&quot;,
+        items: [
+          {
+            text: &quot;&lt;b&gt;SubMenu 1&lt;/b&gt;&quot;,
+            encoded: false
+          },
+          {
+            text: &quot;SubMenu 2&quot;
+          }
+        ]
+      },
+      {
+        text: &quot;Menu 2&quot;,
+        spriteCssClass: &quot;k-icon k-i-search&quot;
+      }
+    ]
+  });
+  
+  // event handling
+  var eventLogger = $(&#x27;#widgets_popupMenu_demo .kiuiEventLogger ul&#x27;);
+  
+  $(&#x27;#widgets_popupMenu_demo .trigger-events&#x27;).kendoKiuiPopupMenu({
+    open: function(e) {
+      var itemName = $(e.item).is(&#x27;button&#x27;) ?
+        &#x27;Button menu&#x27; : 
+        $(e.item).children(&#x27;.k-link&#x27;).text().trim();
+      
+      eventLogger.logEvent(&quot;Opened: &quot; + itemName);
+    },
+    close: function(e) {
+      var itemName = $(e.item).is(&#x27;button&#x27;) ?
+        &#x27;Button menu&#x27; : 
+        $(e.item).children(&#x27;.k-link&#x27;).text().trim();
+      
+      eventLogger.logEvent(&quot;Closed: &quot; + itemName);
+    },
+    select: function(e) {
+      eventLogger.logEvent(&#x27;Selected: &#x27; + $(e.item).children(&#x27;.k-link&#x27;).text().trim());
+    }
+  });
+  
+  var blockEvent = false;
+  
+  $(&#x27;#widgets_popupMenu_demo .cancel-event&#x27;).kendoKiuiPopupMenu({
+    open: function(e) {
+      var itemName = $(e.item).is(&#x27;button&#x27;) ?
+        &#x27;Button menu&#x27; : 
+        $(e.item).children(&#x27;.k-link&#x27;).text().trim();
+      
+      if (itemName === &#x27;Button menu&#x27; &amp;&amp; blockEvent) {
+        e.preventDefault();
+       
+        eventLogger.logEvent(&quot;Open prevented: &quot; + itemName);
+      }
+      else {
+        eventLogger.logEvent(&quot;Opened: &quot; + itemName);
+      }
+      
+      if (itemName === &#x27;Button menu&#x27;) {
+         blockEvent = !blockEvent;
+      }
+    }
+  });
+  
+  // you can also subscribe to the event after the widget was created
+  $(&#x27;#widgets_popupMenu_demo .bind-event&#x27;).kendoKiuiPopupMenu({});
+  // retrieve the widget object
+  $(&#x27;#widgets_popupMenu_demo .bind-event&#x27;).data(&#x27;kendoKiuiPopupMenu&#x27;)
+    // bind the event
+    .bind(&#x27;select&#x27;, function(e) {
+      eventLogger.logEvent(&#x27;Selected: &#x27; + $(e.item).children(&#x27;.k-link&#x27;).text().trim());
+    });
+
+});
+</code></pre>
+                        </div>
+                      </div>
+                    </div><!--/span-->
+                  </div><!--/row-->
+                
+
+              </section>
+
+          </div><!--/span-->
+        </div><!--/row-->
+
+      </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
+
+  </div><!--/.fluid-container-->
+
+</body>
+
+</html>
+
