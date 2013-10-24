@@ -1,0 +1,21 @@
+.kiui-rating {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  cursor: default;
+}
+
+.kiui-rating li {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  cursor: pointer;
+}
+
+.kiui-rating li.kiui-rating-star-full:after {
+    content: "\2605";
+}
+
+.kiui-rating li.kiui-rating-star-empty:after {
+    content: "\2606";
+}
