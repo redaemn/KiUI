@@ -1,13 +1,54 @@
 <div id="widgets_rating_demo">
 
-  <ul class="star-rating" data-bind="value: rating">
-    <li data-value="0" title="One"></li>
-    <li data-value="1" title="Two"></li>
-    <li data-value="2" title="Three"></li>
-    <li data-value="3" title="Four"></li>
-    <li data-value="4" title="Five"></li>
-  </ul>
+  <p>
+    Default behaviour with MVVM and "readonly":
+  </p>
+
+  <div class="paragraph">
+    <ul class="star-rating" data-bind="value: rating">
+      <li data-value="1" title="One"></li>
+      <li data-value="2" title="Two"></li>
+      <li data-value="3" title="Three"></li>
+      <li data-value="4" title="Four"></li>
+      <li data-value="5" title="Five"></li>
+    </ul>
+    
+    <span class="star-hover"></span>
+  </div>
   
-  <input type="text" data-bind="value: rating" />
+  <div class="paragraph">
+    <label>Current rating:</label>
+    <input type="number" data-bind="value: rating" />
+    <span class="help-inline">Try to modify this.</span>
+  </div>
+    
+  <div class="paragraph">
+    <button data-bind="click: toggleReadonly, attr: { class: toggleReadonlyClass }">
+      Toggle readonly: current is
+      "<span data-bind="text: toggleReadonlyText"></span>"
+    </button>
+  </div>
+  
+  <p>
+    Custom star icons:
+  </p>
+  
+  <div class="paragraph">
+    <style>
+      #widgets_rating_demo .custom-star-rating li {
+        width: 13px;
+      }
+    </style>
+    
+    <ul class="custom-star-rating">
+        <li data-value="1" title="One"></li>
+        <li data-value="2" title="Two"></li>
+        <li data-value="3" title="Three"></li>
+        <li data-value="4" title="Four"></li>
+        <li data-value="5" title="Five"></li>
+      </ul>
+      
+      <span class="custom-star-hover"></span>
+  </div>
 
 </div>
