@@ -14,7 +14,8 @@
     MOUSEOVER = "mouseover",
     MOUSELEAVE = "mouseleave",
     CLICK = 'click',
-    KIUI_RATING = 'kiui-rating';
+    KIUI_RATING = 'kiui-rating',
+    KIUI_STATE_READONLY = 'kiui-state-readonly';
     
   var Rating = WIDGET.extend({
     init: function (element, options) {
@@ -32,6 +33,7 @@
       element.find(STAR).addClass(options.starEmptyClass);
       
       that.value(options.value);
+      that.readonly(options.readonly);
     },
 
     options: {
@@ -39,7 +41,8 @@
       name: "Rating",
       starEmptyClass: "kiui-rating-star-empty",
       starFullClass: "kiui-rating-star-full",
-      value: null
+      value: null,
+      readonly: false
     },
     
     events: [
@@ -61,28 +64,53 @@
       }
     },
     
+    readonly: function(readonly) {
+      var that = this;
+      
+      if (readonly === undefined) {
+        readonly = true;
+      }
+      
+      if (readonly) {
+        that.element.addClass(KIUI_STATE_READONLY);
+      }
+      else {
+        that.element.removeClass(KIUI_STATE_READONLY);
+      }
+      
+      that._readonly = readonly;
+    },
+    
     _mouseover: function(e) {
       var that = this,
-        value = $(e.currentTarget).data('value');
+        star = $(e.currentTarget),
+        value = star.data('value');
       
-      that._render(value);
-      that.trigger(MOUSEOVER, { value: value });
+      if (!that._readonly) {
+        that._render(value);
+        that.trigger(MOUSEOVER, { value: value, item: star });
+      }
     },
     
     _mouseleave: function() {
       var that = this;
       
-      that._render(that.value());
-      that.trigger(MOUSELEAVE);
+      if (!that._readonly) {
+        that._render(that.value());
+        that.trigger(MOUSELEAVE);
+      }
     },
     
     _select: function(e) {
       var that = this,
-        value = $(e.currentTarget).data('value');
+        star = $(e.currentTarget),
+        value = star.data('value');
       
-      that.value(value);
-      that.trigger(SELECT, { value: value });
-      that.trigger(CHANGE);
+      if (!that._readonly) {
+        that.value(value);
+        that.trigger(SELECT, { value: value, item: star });
+        that.trigger(CHANGE);
+      }
     },
     
     _render: function(value) {
@@ -90,7 +118,7 @@
         opt = that.options,
         star = that.element.find(STAR + '[data-value="' + value + '"]');
         
-        if (value === null) {
+        if (value === null || value === undefined || star.length === 0) {
           that.element.find(STAR).removeClass(opt.starFullClass).addClass(opt.starEmptyClass);
         }
         else {

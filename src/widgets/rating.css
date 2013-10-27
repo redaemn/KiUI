@@ -3,19 +3,28 @@
   padding: 0;
   list-style-type: none;
   cursor: default;
+  display: inline-block;
 }
 
 .kiui-rating li {
   margin: 0;
   padding: 0;
-  display: inline;
+  display: inline-block;
   cursor: pointer;
+}
+
+.kiui-rating.kiui-state-readonly li {
+  cursor: default;
 }
 
 .kiui-rating li.kiui-rating-star-full:after {
     content: "\2605";
+    font-family: Arial;
+    font-size: 16px;
 }
 
 .kiui-rating li.kiui-rating-star-empty:after {
     content: "\2606";
+    font-family: Arial;
+    font-size: 16px;
 }
