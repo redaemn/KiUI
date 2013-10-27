@@ -2,7 +2,7 @@
  *
  */
  
-(function($, document, window, undefined) {
+(function($, kendo, kiui, document, window, undefined) {
 
   var NS = ".kiuiPopupMenu",
     PREFIX = kiui.prefix,
@@ -256,4 +256,4 @@
   
   kiui.plugin(PopupMenu);
 
-})(window.jQuery, window.document, window);
+})(window.jQuery, window.kendo, window.kiui, window.document, window);
