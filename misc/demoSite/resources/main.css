@@ -35,17 +35,12 @@ footer > p {
 }
 
 section#introduction,
-section#installation,
-section.feature-container {
+section#installation {
   padding-top: 30px;
 }
 
 section#installation {
   padding-bottom: 30px;
-}
-
-.group-container .page-header {
-  margin-bottom: 0;
 }
 
 ul.social-buttons {
@@ -56,6 +51,22 @@ ul.social-buttons {
 ul.social-buttons li {
   display: inline-block;
   margin: 0 20px;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.feature-name-container {
+  margin-right: 60px;
+}
+
+.feature-name-container, .feature-name, span.social-buttons {
+  display: inline-block;
+}
+
+.feature-name + span.label {
+  vertical-align: super;
 }
 
 div.paragraph {

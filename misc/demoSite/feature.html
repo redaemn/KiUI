@@ -52,7 +52,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="../index.html">KiUI</a>
+        <a class="brand" href="../">KiUI</a>
         <div class="nav-collapse collapse">
           <!--<p class="navbar-text pull-right">
             Logged in as <a href="#" class="navbar-link">Username</a>
@@ -109,19 +109,25 @@
               <h1><%= group.displayName %></h1>
             </div>
 
-              <section id="<%= featureUniqueId %>" class="feature-container">
+              <section id="<%= featureUniqueId %>">
 
-                <div class="row-fluid">
+                <div class="row-fluid section-header">
                   <div class="span12">
-                    <h2>
-                      <%= feature.displayName %>
+                    <span class="feature-name-container">
+                      <h2 class="feature-name">
+                        <%= feature.displayName %>
+                      </h2>
                       <% if (feature.isNew) { %>
                         <span class="label label-important"><i class="icon-star"></i> New!</span>
                       <% } %>
                       <% if (feature.isComingSoon) { %>
                         <span class="label label-info">Coming soon...</span>
                       <% } %>
-                    </h2>
+                    </span>
+                    <span class="social-buttons">
+                      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                      <div class="g-plusone" data-annotation="inline" data-width="300" style="display: inline-block;"></div>
+                    </span>
                   </div><!--/span-->
                 </div><!--/row-->
 
@@ -177,6 +183,20 @@
     </footer>
 
   </div><!--/.fluid-container-->
+  
+  <!-- G+ button -->
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
+  <!-- Twitter button -->
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
 
 </body>
 
