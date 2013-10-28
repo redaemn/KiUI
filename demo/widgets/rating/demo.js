@@ -5,7 +5,6 @@ jQuery(function($) {
 
   ratingWidget = $('#widgets_rating_demo .star-rating').kendoKiuiRating({
     mouseover: function(e) {
-      console.log(e);
       var title = e.item.attr('title');
       $('#widgets_rating_demo .star-hover').text(" - " + e.value + ": " + title);
     },
@@ -41,7 +40,6 @@ jQuery(function($) {
     starEmptyClass: "icon-check-empty",
     starFullClass: "icon-check",
     mouseover: function(e) {
-      console.log(e);
       var title = e.item.attr('title');
       $('#widgets_rating_demo .custom-star-hover').text(" - " + e.value + ": " + title);
     },
