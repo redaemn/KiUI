@@ -146,7 +146,7 @@ describe('widgets rating:', function() {
           
         });
         
-        describe('mouseover on a li', function() {
+        describe('mouseover on a <<li>>', function() {
           
           var selectedStar;
           
@@ -359,7 +359,209 @@ describe('widgets rating:', function() {
           expect(elem.is('.kiui-state-readonly')).toBeTruthy();
         });
         
-        // TODO
+        describe('value() should continue to work as expected:', function() {
+          
+          it('called with a valid value, should set the right classes on <li> elements', function() {
+            var selectedStar, emptyStars, fullStars, value = 1;
+            
+            rating.value(value);
+            
+            selectedStar = elem.find('li[data-value="' + value + '"]');
+            fullStars = selectedStar.prevAll('li').add(selectedStar);
+            emptyStars = selectedStar.nextAll('li');
+            
+            fullStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeTruthy();
+              expect(star.is('.kiui-rating-star-empty')).toBeFalsy();
+            });
+            
+            emptyStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeFalsy();
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+          });
+          
+          it('called with an invalid value, should set the right classes on <li> elements', function(){
+            rating.value(42);
+            
+            stars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            })
+          });
+          
+          it('called with a null value, should set the right classes on <li> elements', function(){
+            rating.value(null);
+            
+            elem.find('li').each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+          });
+          
+          it('called with an undefined value, should not modify <li> elements classes', function(){
+            var selectedStar, emptyStars, fullStars, value = 1;
+            
+            rating.value(value);
+            
+            selectedStar = elem.find('li[data-value="' + value + '"]');
+            fullStars = selectedStar.prevAll('li').add(selectedStar);
+            emptyStars = selectedStar.nextAll('li');
+            
+            fullStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeTruthy();
+              expect(star.is('.kiui-rating-star-empty')).toBeFalsy();
+            });
+            
+            emptyStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeFalsy();
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+            
+            rating.value(undefined);
+            
+            fullStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeTruthy();
+              expect(star.is('.kiui-rating-star-empty')).toBeFalsy();
+            });
+            
+            emptyStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeFalsy();
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+          });
+          
+          it('called with no value, should return the last set value', function() {
+            rating.value(1);
+            
+            expect(rating.value()).toBe(1);
+          });
+          
+        });
+        
+        describe('mouseover on a <li>', function() {
+          
+          var selectedStar, hoverStar;
+          
+          beforeEach(function() {
+            spyOn(RATING.fn, 'trigger').andCallThrough();
+            selectedStar = elem.find('li[data-value="0"]');
+            hoverStar = elem.find('li[data-value="1"]');
+            rating.value(0);
+            hoverStar.mouseover();
+          });
+          
+          it('should not modify <li> elements classes', function(){
+            var fullStars = selectedStar.prevAll('li').add(selectedStar),
+              emptyStars = selectedStar.nextAll('li');
+            
+            fullStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeTruthy();
+              expect(star.is('.kiui-rating-star-empty')).toBeFalsy();
+            });
+            
+            emptyStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeFalsy();
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+          });
+          
+          it('should not trigger the mouseover event', function() {
+            expect(rating.trigger).not.toHaveBeenCalled();
+          });
+          
+        });
+        
+        describe('mouseleave', function() {
+          
+          var selectedStar;
+          
+          beforeEach(function() {
+            spyOn(RATING.fn, 'trigger').andCallThrough();
+            selectedStar = elem.find('li[data-value="0"]');
+            rating.value(0);
+            elem.mouseleave();
+          });
+          
+          it('should not modify <li> elements classes', function(){
+            var fullStars = selectedStar.prevAll('li').add(selectedStar),
+              emptyStars = selectedStar.nextAll('li');
+            
+            fullStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeTruthy();
+              expect(star.is('.kiui-rating-star-empty')).toBeFalsy();
+            });
+            
+            emptyStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeFalsy();
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+          });
+          
+          it('should not trigger the mouseleave event', function() {
+            expect(rating.trigger).not.toHaveBeenCalled();
+          });
+          
+        });
+        
+        describe('clicking on a <li>', function() {
+          
+          var selectedStar, clickedStar;
+          
+          beforeEach(function() {
+            spyOn(RATING.fn, 'trigger').andCallThrough();
+            spyOn(RATING.fn, 'value').andCallThrough();
+            selectedStar = elem.find('li[data-value="0"]');
+            clickedStar = elem.find('li[data-value="1"]');
+            rating.value(0);
+            clickedStar.click();
+          });
+          
+          it('should not modify <li> elements classes', function(){
+            var fullStars = selectedStar.prevAll('li').add(selectedStar),
+              emptyStars = selectedStar.nextAll('li');
+            
+            fullStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeTruthy();
+              expect(star.is('.kiui-rating-star-empty')).toBeFalsy();
+            });
+            
+            emptyStars.each(function() {
+              var star = $(this);
+              expect(star.is('.kiui-rating-star-full')).toBeFalsy();
+              expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
+            });
+          });
+          
+          it('should not call value()', function() {
+            expect(rating.value.calls.length).toBe(1);
+            expect(rating.value).toHaveBeenCalledWith(0);
+          });
+          
+          it('should not change the current rating value', function() {
+            expect(rating.value()).toBe(0);
+          });
+          
+          it('should not trigger the select event', function() {
+            expect(rating.trigger).not.toHaveBeenCalled();
+          });
+          
+          it('should not trigger the change event', function() {
+            expect(rating.trigger).not.toHaveBeenCalled();
+          });
+          
+        });
         
       });
       
