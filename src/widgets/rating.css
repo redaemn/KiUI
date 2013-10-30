@@ -21,10 +21,12 @@
     content: "\2605";
     font-family: Arial;
     font-size: 16px;
+    color: orange;
 }
 
 .kiui-rating li.kiui-rating-star-empty:after {
     content: "\2606";
     font-family: Arial;
     font-size: 16px;
+    color: gray;
 }
