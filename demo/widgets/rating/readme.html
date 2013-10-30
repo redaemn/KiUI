@@ -1,0 +1,88 @@
+<p>
+  <em>Rating</em> widget can be used to rate any kind of content
+  with stars (or other icons that you might like :)
+</p>
+
+<p>
+  It is highly customizable and very well integrated with <em>Kendo UI Web</em>
+  framework <strong>MVVM</strong> pattern.
+</p>
+
+<p>
+  The basic HTML needed to create the widget is a <code>&lt;ul></code> element
+  containing one <code>&lt;li></code> element for every possible rating. Every
+  <code>&lt;li></code> element must have at least a <code>data-value</code>
+  attribute set to the rating value to which the element corresponds.
+</p>
+
+<hr>
+
+<p>
+  Configuration options:
+  
+  <ul>
+    <li>
+      <code>starEmptyClass</code>: it is the CSS class added to the elements that
+      represent empty stars, a custom class can be used to personalize the appearance
+      of empty stars. (Default: <code>"kiui-rating-star-empty"</code>)
+    </li>
+    <li>
+      <code>starFullClass</code>: it is the CSS class added to the elements that
+      represent full stars, a custom class can be used to personalize the appearance
+      of full stars. (Default: <code>"kiui-rating-star-full"</code>)
+    </li>
+    <li>
+      <code>value</code>: the initial rating value that is displayed when the
+      widget is created. (Default: <code>null</code>)
+    </li>
+    <li>
+      <code>readonly</code>: if set to true the widget will be initially rendered
+      in readonly mode; its value will not be modifiable by the user but only
+      programmatically. (Default: <code>false</code>)
+    </li>
+  </ul>
+</p>
+
+<hr>
+
+<p>
+  Methods:
+  
+  <ul>
+    <li>
+      <code>value()</code>: used to get/set the current rating value. Without
+      parameters it returns the current rating value, with a single parameter it
+      sets it as the current rating value.
+    </li>
+    
+    <li>
+      <code>readonly()</code>: used to toggle readonly mode. With boolean parameter
+      <code>true</code> or without any parameter the widget will be readonly; with
+      <code>false</code> the rating value will be editable by the user.
+    </li>
+  </ul>
+</p>
+
+<hr>
+
+<p>
+  Events:
+  
+  <ul>
+    <li>
+      <code>mouseover</code>:
+    </li>
+    
+    <li>
+      <code>mouseleave</code>:
+    </li>
+    
+    <li>
+      <code>select</code>:
+    </li>
+    
+    <li>
+      <code>change</code>:
+    </li>
+  </ul>
+</p>
