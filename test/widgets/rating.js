@@ -90,7 +90,7 @@ describe('widgets rating:', function() {
             stars.each(function() {
               var star = $(this);
               expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
-            })
+            });
           });
           
           it('called with a null value, should set the right classes on <li> elements', function(){
@@ -389,7 +389,7 @@ describe('widgets rating:', function() {
             stars.each(function() {
               var star = $(this);
               expect(star.is('.kiui-rating-star-empty')).toBeTruthy();
-            })
+            });
           });
           
           it('called with a null value, should set the right classes on <li> elements', function(){
