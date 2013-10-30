@@ -38,13 +38,31 @@ jQuery(function($) {
   
   $('#widgets_rating_demo .custom-star-rating').kendoKiuiRating({
     starEmptyClass: "icon-check-empty",
-    starFullClass: "icon-check",
+    starFullClass: "icon-check green",
     mouseover: function(e) {
       var title = e.item.attr('title');
       $('#widgets_rating_demo .custom-star-hover').text(" - " + e.value + ": " + title);
     },
     mouseleave: function() {
       $('#widgets_rating_demo .custom-star-hover').text("");
+    }
+  });
+  
+  // event handling
+  var eventLogger = $('#widgets_rating_demo .kiuiEventLogger ul');
+  
+  $('#widgets_rating_demo .rating-events').kendoKiuiRating({
+    mouseover: function(e) {
+      eventLogger.logEvent("Mouseover: " + e.value + ", " + e.item.attr('title'));
+    },
+    mouseleave: function() {
+      eventLogger.logEvent("Mouseleave");
+    },
+    select: function(e) {
+      eventLogger.logEvent("Selected: " + e.value + ", " + e.item.attr('title'));
+    },
+    change: function() {
+      eventLogger.logEvent("Changed");
     }
   });
   
