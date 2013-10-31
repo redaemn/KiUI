@@ -58,7 +58,10 @@
     <li>
       <code>readonly()</code>: used to toggle readonly mode. With boolean parameter
       <code>true</code> or without any parameter the widget will be readonly; with
-      <code>false</code> the rating value will be editable by the user.
+      <code>false</code> the rating value will be editable by the user. When the
+      widget is in readonly mode, the rating value can still be modified programmatically
+      (via the <code>value()</code> method or modifying the View Model when using
+      MVVM data binding).
     </li>
   </ul>
 </p>
@@ -70,19 +73,27 @@
   
   <ul>
     <li>
-      <code>mouseover</code>:
+      <code>mouseover</code>: fired when the user hovers over a star; the event
+      object will have a property <code>item</code> containing the DOM element
+      representing the star and a property <code>value</code> containing the rating
+      value associated with the star.
     </li>
     
     <li>
-      <code>mouseleave</code>:
+      <code>mouseleave</code>: fired when the user moves the mouse out of the
+      widget.
     </li>
     
     <li>
-      <code>select</code>:
+      <code>select</code>: fired when the user clicks on a star; the event
+      object will have a property <code>item</code> containing the DOM element
+      representing the star and a property <code>value</code> containing the rating
+      value associated with the star.
     </li>
     
     <li>
-      <code>change</code>:
+      <code>change</code>: fired after the current rating value has been changed
+      by the user (mainly this is used by MVVM to update the View Model).
     </li>
   </ul>
 </p>
