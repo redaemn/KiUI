@@ -207,9 +207,12 @@ module.exports = function(grunt) {
       groupsCount = 0,
       featuresCount = 0;
 
-    function camelCaseToSpace(text) {
+    function camelCaseToSeparator(text, separator) {
+      if (separator === undefined) {
+        separator = ' ';
+      }
       return text.replace(/[A-Z]/g, function(match) {
-        return(' ' + match);
+        return(separator + match.toLowerCase());
       });
     }
 
@@ -223,9 +226,9 @@ module.exports = function(grunt) {
                     // group/feature/fileName
       var matches = /^([^\/]+)\/([^\/]+)\//g.exec(file),
         group = matches[1],
-        groupDisplayName = ucwords(camelCaseToSpace(group)),
-        feature = matches[2],
-        featureDisplayName = ucwords(camelCaseToSpace(feature)),
+        groupDisplayName = ucwords(camelCaseToSeparator(group)),
+        feature = camelCaseToSeparator(matches[2], '-'),
+        featureDisplayName = ucwords(camelCaseToSeparator(matches[2])),
         fileContent = grunt.file.read("demo/" + file),
         groupDescriptor = {
           displayName: groupDisplayName,
@@ -238,8 +241,8 @@ module.exports = function(grunt) {
           html: "",
           js: "",
           readme: "",
-          isNew: newFeatures[group] && newFeatures[group].indexOf(feature) > -1,
-          isComingSoon: comingSoonFeatures[group] && comingSoonFeatures[group].indexOf(feature) > -1
+          isNew: newFeatures[group] && newFeatures[group].indexOf(matches[2]) > -1,
+          isComingSoon: comingSoonFeatures[group] && comingSoonFeatures[group].indexOf(matches[2]) > -1
         };
 
       if (!features[group]) {
@@ -291,7 +294,7 @@ module.exports = function(grunt) {
         
         Object.keys(groupDescriptor.features).forEach(function(featureId, idx) {
             var feature = groupDescriptor.features[featureId];
-            var featureUniqueId = groupId + "_" + featureId;
+            var featureUniqueId = groupId + "-" + featureId;
             
             grunt.config('copy.' + featureUniqueId, {
               options: {
@@ -302,7 +305,7 @@ module.exports = function(grunt) {
                 cwd: "misc/demoSite",
                 src: ["feature.html"],
                 rename: function () {
-                  return 'dist/pages/' + featureUniqueId + ".html";
+                  return 'dist/' + groupId + '/' + featureId + ".html";
                 }
               }],
               groupId: groupId,

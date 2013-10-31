@@ -64,7 +64,7 @@
                 <ul class="dropdown-menu">
                   <% Object.keys(group.features).forEach(function(featureId) { %>
                     <% var feature = group.features[featureId]; %>
-                    <li><a href="pages/<%= groupId + '_' + featureId + '.html'%>">
+                    <li><a href="<%= groupId %>/<%= featureId + '.html'%>">
                       <%= feature.displayName %>
                       <% if (feature.isNew) { %>
                         <span class="label label-important"><i class="icon-star"></i> New!</span>

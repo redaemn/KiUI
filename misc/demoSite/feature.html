@@ -71,13 +71,13 @@
                   <% Object.keys(group.features).forEach(function(featureId) { %>
                     <%
                       var feature = group.features[featureId];
-                      var disabled = featureUniqueId == groupId + "_" + featureId;
+                      var disabled = featureUniqueId == groupId + "-" + featureId;
                     %>
                     <li <% if (disabled) { %> class="disabled" <% } %>>
                       <% if (disabled) { %>
                         <a href="#">
                       <% } else { %>
-                        <a href="../pages/<%= groupId + '_' + featureId + '.html'%>">
+                        <a href="../<%= groupId %>/<%= featureId + '.html'%>">
                       <% } %>
                       
                         <%= feature.displayName %>
@@ -151,14 +151,14 @@
                   <div class="row-fluid">
                     <div class="span12">
                       <ul class="nav nav-tabs">
-                        <li class="active"><a href="#<%= featureUniqueId %>_html" data-toggle="tab">Html</a></li>
-                        <li><a href="#<%= featureUniqueId %>_js" data-toggle="tab">Javascript</a></li>
+                        <li class="active"><a href="#<%= featureUniqueId %>-html" data-toggle="tab">Html</a></li>
+                        <li><a href="#<%= featureUniqueId %>-js" data-toggle="tab">Javascript</a></li>
                       </ul>
                       <div class="tab-content">
-                        <div class="tab-pane active" id="<%= featureUniqueId %>_html">
+                        <div class="tab-pane active" id="<%= featureUniqueId %>-html">
                           <pre><code data-language="html"><%- feature.html %></code></pre>
                         </div>
-                        <div class="tab-pane" id="<%= featureUniqueId %>_js">
+                        <div class="tab-pane" id="<%= featureUniqueId %>-js">
                           <pre><code data-language="javascript"><%- feature.js %></code></pre>
                         </div>
                       </div>
