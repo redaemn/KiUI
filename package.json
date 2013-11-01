@@ -1,7 +1,7 @@
 {
   "author": "https://github.com/redaemn/KiUI/graphs/contributors",
   "name": "KiUI",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.0",
