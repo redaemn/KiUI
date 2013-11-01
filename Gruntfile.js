@@ -196,7 +196,7 @@ module.exports = function(grunt) {
     },
     
     clean: {
-      demoSite: ['dist/pages', 'dist/resources', 'dist/index.html'],
+      demoSite: ['dist/**/*', '!dist/kiui*'],
       demoSite_tmp: ['dist/resources/*.tmp'],
       dist: ['dist/*.css', 'dist/*.js', 'dist/*.zip']
     }
