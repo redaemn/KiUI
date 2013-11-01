@@ -125,7 +125,8 @@ module.exports = function(grunt) {
       // will be filled by the 'demoSite' task
       features: {},
       newFeatures: {
-        validators: ['date', 'radio-required']
+        validators: ['date', 'radio-required'],
+        widgets: ['rating']
       },
       comingSoonFeatures: {
         
