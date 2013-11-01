@@ -125,10 +125,44 @@ module.exports = function(grunt) {
       // will be filled by the 'demoSite' task
       features: {},
       newFeatures: {
-        validators: ['date', 'radioRequired']
+        validators: ['date', 'radio-required']
       },
       comingSoonFeatures: {
         
+      },
+      SEO: {
+        bindings: {
+          'bool-value': {
+            title: "KiUI Bool Value Binding: boolean value binding for radio buttons in Kendo UI Web",
+            description: "KiUI Bool Value is a Kendo UI Web custom binding that allows you to bind a radio buttons control with a boolean variable in the view model."
+          }
+        },
+        utilities: {
+          notifier: {
+            title: "KiUI Notifier Utility: notifications made easy in Kendo UI Web",
+            description: "KiUI Notifier is an extension to Kendo UI Web that allows you to easily send notifications to the user. It is also highly customizable."
+          }
+        },
+        validators: {
+          date: {
+            title: "KiUI Date Validator: validate date input fields in Kendo UI Web",
+            description: "KiUI Date is a Kendo UI Web custom validator that allows you to validate any input element that contains a date in any format and culture."
+          },
+          'radio-required': {
+            title: "KiUI Radio Required Validator: enables required validator for radio buttons in Kendo UI Web",
+            description: "KiUI Radio Required is an extension to the standard Kendo UI Web required validator that makes it possible to use it on radio buttons too."
+          }
+        },
+        widgets: {
+          'popup-menu': {
+            title: "KiUI Popup Menu Widget: attach a drop-down menu to any page element in Kendo UI Web",
+            description: "KiUI Popup Menu is a Kendo UI Web custom widget that allows you to create popup or drop-down menus. It is also highly customizable."
+          },
+          rating: {
+            title: "KiUI Rating Widget: rate anything with stars in Kendo UI Web",
+            description: "KiUI Rating is a Kendo UI Web custom widget that allows you to create a star rating element for any page content. It is also highly customizable."
+          }
+        }
       }
     },
     
@@ -241,8 +275,8 @@ module.exports = function(grunt) {
           html: "",
           js: "",
           readme: "",
-          isNew: newFeatures[group] && newFeatures[group].indexOf(matches[2]) > -1,
-          isComingSoon: comingSoonFeatures[group] && comingSoonFeatures[group].indexOf(matches[2]) > -1
+          isNew: newFeatures[group] && newFeatures[group].indexOf(feature) > -1,
+          isComingSoon: comingSoonFeatures[group] && comingSoonFeatures[group].indexOf(feature) > -1
         };
 
       if (!features[group]) {
