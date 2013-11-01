@@ -113,7 +113,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: "misc/demoSite",
-          src: ["index.html"],
+          src: ["index.html", "sitemap.xml"],
           dest: "dist/"
         }]
       }
