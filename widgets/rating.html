@@ -1,0 +1,688 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>KiUI Rating Widget: rate anything with stars in Kendo UI Web</title>
+  <meta name="description" content="KiUI Rating is a Kendo UI Web custom widget that allows you to create a star rating element for any page content. It is also highly customizable.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.4.min.css" rel="stylesheet" />
+  <link href="../resources/main.min.css" rel="stylesheet">
+
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="../kiui-0.0.4.min.js"></script>
+  <script src="../resources/main.min.js"></script>
+
+  <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41055822-1', 'redaemn.github.io');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="../">KiUI</a>
+        <div class="nav-collapse collapse">
+          <!--<p class="navbar-text pull-right">
+            Logged in as <a href="#" class="navbar-link">Username</a>
+          </p>-->
+          <ul class="nav">
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Bindings
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../bindings/bool-value.html">
+                      
+                      
+                        Bool Value
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Utilities
+                  
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../utilities/notifier.html">
+                      
+                      
+                        Notifier
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Validators
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../validators/date.html">
+                      
+                      
+                        Date
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li >
+                      
+                        <a href="../validators/radio-required.html">
+                      
+                      
+                        Radio Required
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Widgets
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  
+                    
+                    <li >
+                      
+                        <a href="../widgets/popup-menu.html">
+                      
+                      
+                        Popup Menu
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li  class="disabled" >
+                      
+                        <a href="#">
+                      
+                      
+                        Rating
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container -->
+    </div><!--/.navbar-inner -->
+  </div><!--/.navbar -->
+
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid group-container">
+          <div class="span12">
+            <div class="page-header">
+              <h1>Widgets</h1>
+            </div>
+
+              <section id="widgets-rating">
+
+                <div class="row-fluid section-header">
+                  <div class="span12">
+                    <span class="feature-name-container">
+                      <h2 class="feature-name">
+                        Rating
+                      </h2>
+                      
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      
+                      
+                    </span>
+                    <span class="social-buttons">
+                      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                      <div class="g-plusone" data-annotation="inline" data-width="300" style="display: inline-block;"></div>
+                    </span>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  
+                    <div class="span6">
+                      <div id="widgets_rating_demo">
+
+  <p>
+    Default behaviour with MVVM and "readonly":
+  </p>
+
+  <div class="paragraph">
+    <ul class="star-rating" data-bind="value: rating">
+      <li data-value="1" title="One"></li>
+      <li data-value="2" title="Two"></li>
+      <li data-value="3" title="Three"></li>
+      <li data-value="4" title="Four"></li>
+      <li data-value="5" title="Five"></li>
+    </ul>
+    
+    <span class="star-hover"></span>
+  </div>
+  
+  <div class="paragraph">
+    <label>Current rating:</label>
+    <input type="number" data-bind="value: rating" />
+    <span class="help-inline">Try to modify this.</span>
+  </div>
+    
+  <div class="paragraph">
+    <button data-bind="click: toggleReadonly, attr: { class: toggleReadonlyClass }">
+      Toggle readonly: current is
+      "<span data-bind="text: toggleReadonlyText"></span>"
+    </button>
+  </div>
+  
+  <p>
+    Custom icons:
+  </p>
+  
+  <div class="paragraph">
+    <style>
+      #widgets_rating_demo .custom-star-rating li {
+        width: 13px;
+      }
+      
+      .green {
+        color: green;
+      }
+    </style>
+    
+    <ul class="custom-star-rating">
+        <li data-value="1" title="One"></li>
+        <li data-value="2" title="Two"></li>
+        <li data-value="3" title="Three"></li>
+        <li data-value="4" title="Four"></li>
+        <li data-value="5" title="Five"></li>
+      </ul>
+      
+      <span class="custom-star-hover"></span>
+  </div>
+  
+  <p>
+    Events fired:
+  </p>
+  
+  <div class="paragraph">
+    <ul class="rating-events">
+      <li data-value="1" title="One"></li>
+      <li data-value="2" title="Two"></li>
+      <li data-value="3" title="Three"></li>
+      <li data-value="4" title="Four"></li>
+      <li data-value="5" title="Five"></li>
+    </ul>
+  </div>
+  
+  <div class="paragraph">
+    <div class="well kiuiEventLogger">
+        <h5>Logged events:</h5>
+        <ul></ul>
+    </div>
+  </div>
+
+</div>
+
+                      <script>jQuery(function($) {
+
+  var viewModel,
+    ratingWidget;
+
+  ratingWidget = $('#widgets_rating_demo .star-rating').kendoKiuiRating({
+    mouseover: function(e) {
+      var title = e.item.attr('title');
+      $('#widgets_rating_demo .star-hover').text(" - " + e.value + ": " + title);
+    },
+    mouseleave: function() {
+      $('#widgets_rating_demo .star-hover').text("");
+    }
+  }).data('kendoKiuiRating');
+
+  viewModel = kendo.observable({
+    rating: null,
+    readonly: false,
+    toggleReadonly: function() {
+      this.readonly = !this.readonly;
+      
+      if (this.readonly) {
+        this.set('toggleReadonlyText', 'readonly');
+        this.set('toggleReadonlyClass', 'btn btn-danger');
+      }
+      else {
+        this.set('toggleReadonlyText', 'read-write');
+        this.set('toggleReadonlyClass', 'btn');
+      }
+      
+      ratingWidget.readonly(this.readonly);
+    },
+    toggleReadonlyText: "read-write",
+    toggleReadonlyClass: "btn"
+  });
+
+  kendo.bind($('#widgets_rating_demo'), viewModel, kendo.ui, kiui);
+  
+  $('#widgets_rating_demo .custom-star-rating').kendoKiuiRating({
+    starEmptyClass: "icon-check-empty",
+    starFullClass: "icon-check green",
+    mouseover: function(e) {
+      var title = e.item.attr('title');
+      $('#widgets_rating_demo .custom-star-hover').text(" - " + e.value + ": " + title);
+    },
+    mouseleave: function() {
+      $('#widgets_rating_demo .custom-star-hover').text("");
+    }
+  });
+  
+  // event handling
+  var eventLogger = $('#widgets_rating_demo .kiuiEventLogger ul');
+  
+  $('#widgets_rating_demo .rating-events').kendoKiuiRating({
+    mouseover: function(e) {
+      eventLogger.logEvent("Mouseover: " + e.value + ", " + e.item.attr('title'));
+    },
+    mouseleave: function() {
+      eventLogger.logEvent("Mouseleave");
+    },
+    select: function(e) {
+      eventLogger.logEvent("Selected: " + e.value + ", " + e.item.attr('title'));
+    },
+    change: function() {
+      eventLogger.logEvent("Changed");
+    }
+  });
+  
+});
+</script>
+                    </div><!--/span-->
+                    <div class="span6">
+                      <p>
+  <em>Rating</em> widget can be used to rate any kind of content
+  with stars (or other icons that you might like :)
+</p>
+
+<p>
+  It is highly customizable and very well integrated with <em>Kendo UI Web</em>
+  framework <strong>MVVM</strong> pattern.
+</p>
+
+<p>
+  The basic HTML needed to create the widget is a <code>&lt;ul></code> element
+  containing one <code>&lt;li></code> element for every possible rating. Every
+  <code>&lt;li></code> element must have at least a <code>data-value</code>
+  attribute set to the rating value to which the element corresponds.
+</p>
+
+<hr>
+
+<p>
+  Configuration options:
+  
+  <ul>
+    <li>
+      <code>starEmptyClass</code>: it is the CSS class added to the elements that
+      represent empty stars, a custom class can be used to personalize the appearance
+      of empty stars. (Default: <code>"kiui-rating-star-empty"</code>)
+    </li>
+    <li>
+      <code>starFullClass</code>: it is the CSS class added to the elements that
+      represent full stars, a custom class can be used to personalize the appearance
+      of full stars. (Default: <code>"kiui-rating-star-full"</code>)
+    </li>
+    <li>
+      <code>value</code>: the initial rating value that is displayed when the
+      widget is created. (Default: <code>null</code>)
+    </li>
+    <li>
+      <code>readonly</code>: if set to true the widget will be initially rendered
+      in readonly mode; its value will not be modifiable by the user but only
+      programmatically. (Default: <code>false</code>)
+    </li>
+  </ul>
+</p>
+
+<hr>
+
+<p>
+  Methods:
+  
+  <ul>
+    <li>
+      <code>value()</code>: used to get/set the current rating value. Without
+      parameters it returns the current rating value, with a single parameter it
+      sets it as the current rating value.
+    </li>
+    
+    <li>
+      <code>readonly()</code>: used to toggle readonly mode. With boolean parameter
+      <code>true</code> or without any parameter the widget will be readonly; with
+      <code>false</code> the rating value will be editable by the user. When the
+      widget is in readonly mode, the rating value can still be modified programmatically
+      (via the <code>value()</code> method or modifying the View Model when using
+      MVVM data binding).
+    </li>
+  </ul>
+</p>
+
+<hr>
+
+<p>
+  Events:
+  
+  <ul>
+    <li>
+      <code>mouseover</code>: fired when the user hovers over a star; the event
+      object will have a property <code>item</code> containing the DOM element
+      representing the star and a property <code>value</code> containing the rating
+      value associated with the star.
+    </li>
+    
+    <li>
+      <code>mouseleave</code>: fired when the user moves the mouse out of the
+      widget.
+    </li>
+    
+    <li>
+      <code>select</code>: fired when the user clicks on a star; the event
+      object will have a property <code>item</code> containing the DOM element
+      representing the star and a property <code>value</code> containing the rating
+      value associated with the star.
+    </li>
+    
+    <li>
+      <code>change</code>: fired after the current rating value has been changed
+      by the user (mainly this is used by MVVM to update the View Model).
+    </li>
+  </ul>
+</p>
+
+                    </div><!--/span-->
+                  
+                </div><!--/row-->
+
+                
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#widgets-rating-html" data-toggle="tab">Html</a></li>
+                        <li><a href="#widgets-rating-js" data-toggle="tab">Javascript</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="widgets-rating-html">
+                          <pre><code data-language="html">&lt;div id=&quot;widgets_rating_demo&quot;&gt;
+
+  &lt;p&gt;
+    Default behaviour with MVVM and &quot;readonly&quot;:
+  &lt;/p&gt;
+
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;ul class=&quot;star-rating&quot; data-bind=&quot;value: rating&quot;&gt;
+      &lt;li data-value=&quot;1&quot; title=&quot;One&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;2&quot; title=&quot;Two&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;3&quot; title=&quot;Three&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;4&quot; title=&quot;Four&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;5&quot; title=&quot;Five&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;span class=&quot;star-hover&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;label&gt;Current rating:&lt;/label&gt;
+    &lt;input type=&quot;number&quot; data-bind=&quot;value: rating&quot; /&gt;
+    &lt;span class=&quot;help-inline&quot;&gt;Try to modify this.&lt;/span&gt;
+  &lt;/div&gt;
+    
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;button data-bind=&quot;click: toggleReadonly, attr: { class: toggleReadonlyClass }&quot;&gt;
+      Toggle readonly: current is
+      &quot;&lt;span data-bind=&quot;text: toggleReadonlyText&quot;&gt;&lt;/span&gt;&quot;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  
+  &lt;p&gt;
+    Custom icons:
+  &lt;/p&gt;
+  
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;style&gt;
+      #widgets_rating_demo .custom-star-rating li {
+        width: 13px;
+      }
+      
+      .green {
+        color: green;
+      }
+    &lt;/style&gt;
+    
+    &lt;ul class=&quot;custom-star-rating&quot;&gt;
+        &lt;li data-value=&quot;1&quot; title=&quot;One&quot;&gt;&lt;/li&gt;
+        &lt;li data-value=&quot;2&quot; title=&quot;Two&quot;&gt;&lt;/li&gt;
+        &lt;li data-value=&quot;3&quot; title=&quot;Three&quot;&gt;&lt;/li&gt;
+        &lt;li data-value=&quot;4&quot; title=&quot;Four&quot;&gt;&lt;/li&gt;
+        &lt;li data-value=&quot;5&quot; title=&quot;Five&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      
+      &lt;span class=&quot;custom-star-hover&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  
+  &lt;p&gt;
+    Events fired:
+  &lt;/p&gt;
+  
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;ul class=&quot;rating-events&quot;&gt;
+      &lt;li data-value=&quot;1&quot; title=&quot;One&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;2&quot; title=&quot;Two&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;3&quot; title=&quot;Three&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;4&quot; title=&quot;Four&quot;&gt;&lt;/li&gt;
+      &lt;li data-value=&quot;5&quot; title=&quot;Five&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;paragraph&quot;&gt;
+    &lt;div class=&quot;well kiuiEventLogger&quot;&gt;
+        &lt;h5&gt;Logged events:&lt;/h5&gt;
+        &lt;ul&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+                        </div>
+                        <div class="tab-pane" id="widgets-rating-js">
+                          <pre><code data-language="javascript">jQuery(function($) {
+
+  var viewModel,
+    ratingWidget;
+
+  ratingWidget = $(&#x27;#widgets_rating_demo .star-rating&#x27;).kendoKiuiRating({
+    mouseover: function(e) {
+      var title = e.item.attr(&#x27;title&#x27;);
+      $(&#x27;#widgets_rating_demo .star-hover&#x27;).text(&quot; - &quot; + e.value + &quot;: &quot; + title);
+    },
+    mouseleave: function() {
+      $(&#x27;#widgets_rating_demo .star-hover&#x27;).text(&quot;&quot;);
+    }
+  }).data(&#x27;kendoKiuiRating&#x27;);
+
+  viewModel = kendo.observable({
+    rating: null,
+    readonly: false,
+    toggleReadonly: function() {
+      this.readonly = !this.readonly;
+      
+      if (this.readonly) {
+        this.set(&#x27;toggleReadonlyText&#x27;, &#x27;readonly&#x27;);
+        this.set(&#x27;toggleReadonlyClass&#x27;, &#x27;btn btn-danger&#x27;);
+      }
+      else {
+        this.set(&#x27;toggleReadonlyText&#x27;, &#x27;read-write&#x27;);
+        this.set(&#x27;toggleReadonlyClass&#x27;, &#x27;btn&#x27;);
+      }
+      
+      ratingWidget.readonly(this.readonly);
+    },
+    toggleReadonlyText: &quot;read-write&quot;,
+    toggleReadonlyClass: &quot;btn&quot;
+  });
+
+  kendo.bind($(&#x27;#widgets_rating_demo&#x27;), viewModel, kendo.ui, kiui);
+  
+  $(&#x27;#widgets_rating_demo .custom-star-rating&#x27;).kendoKiuiRating({
+    starEmptyClass: &quot;icon-check-empty&quot;,
+    starFullClass: &quot;icon-check green&quot;,
+    mouseover: function(e) {
+      var title = e.item.attr(&#x27;title&#x27;);
+      $(&#x27;#widgets_rating_demo .custom-star-hover&#x27;).text(&quot; - &quot; + e.value + &quot;: &quot; + title);
+    },
+    mouseleave: function() {
+      $(&#x27;#widgets_rating_demo .custom-star-hover&#x27;).text(&quot;&quot;);
+    }
+  });
+  
+  // event handling
+  var eventLogger = $(&#x27;#widgets_rating_demo .kiuiEventLogger ul&#x27;);
+  
+  $(&#x27;#widgets_rating_demo .rating-events&#x27;).kendoKiuiRating({
+    mouseover: function(e) {
+      eventLogger.logEvent(&quot;Mouseover: &quot; + e.value + &quot;, &quot; + e.item.attr(&#x27;title&#x27;));
+    },
+    mouseleave: function() {
+      eventLogger.logEvent(&quot;Mouseleave&quot;);
+    },
+    select: function(e) {
+      eventLogger.logEvent(&quot;Selected: &quot; + e.value + &quot;, &quot; + e.item.attr(&#x27;title&#x27;));
+    },
+    change: function() {
+      eventLogger.logEvent(&quot;Changed&quot;);
+    }
+  });
+  
+});
+</code></pre>
+                        </div>
+                      </div>
+                    </div><!--/span-->
+                  </div><!--/row-->
+                
+
+              </section>
+
+          </div><!--/span-->
+        </div><!--/row-->
+
+      </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+      <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
+      <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
+      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+    </footer>
+
+  </div><!--/.fluid-container-->
+  
+  <!-- G+ button -->
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
+  <!-- Twitter button -->
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+
+</body>
+
+</html>
+

@@ -5,8 +5,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>KiUI - Validators: Date</title>
-  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - Validators: Date">
+  <title>KiUI Date Validator: validate date input fields in Kendo UI Web</title>
+  <meta name="description" content="KiUI Date is a Kendo UI Web custom validator that allows you to validate any input element that contains a date in any format and culture.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -14,14 +14,14 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
   <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
-  <link href="../kiui-0.0.3.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.4.min.css" rel="stylesheet" />
   <link href="../resources/main.min.css" rel="stylesheet">
 
   <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
   <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
   <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-  <script src="../kiui-0.0.3.min.js"></script>
+  <script src="../kiui-0.0.4.min.js"></script>
   <script src="../resources/main.min.js"></script>
 
   <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
@@ -46,7 +46,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="../index.html">KiUI</a>
+        <a class="brand" href="../">KiUI</a>
         <div class="nav-collapse collapse">
           <!--<p class="navbar-text pull-right">
             Logged in as <a href="#" class="navbar-link">Username</a>
@@ -66,7 +66,7 @@
                     
                     <li >
                       
-                        <a href="../pages/bindings_boolValue.html">
+                        <a href="../bindings/bool-value.html">
                       
                       
                         Bool Value
@@ -92,7 +92,7 @@
                     
                     <li >
                       
-                        <a href="../pages/utilities_notifier.html">
+                        <a href="../utilities/notifier.html">
                       
                       
                         Notifier
@@ -133,7 +133,7 @@
                     
                     <li >
                       
-                        <a href="../pages/validators_radioRequired.html">
+                        <a href="../validators/radio-required.html">
                       
                       
                         Radio Required
@@ -152,7 +152,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Widgets
-                  
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
                   
                   <b class="caret"></b>
                 </a>
@@ -161,10 +161,25 @@
                     
                     <li >
                       
-                        <a href="../pages/widgets_popupMenu.html">
+                        <a href="../widgets/popup-menu.html">
                       
                       
                         Popup Menu
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li >
+                      
+                        <a href="../widgets/rating.html">
+                      
+                      
+                        Rating
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
                         
                         
                       
@@ -189,17 +204,23 @@
               <h1>Validators</h1>
             </div>
 
-              <section id="validators_date" class="feature-container">
+              <section id="validators-date">
 
-                <div class="row-fluid">
+                <div class="row-fluid section-header">
                   <div class="span12">
-                    <h2>
-                      Date
+                    <span class="feature-name-container">
+                      <h2 class="feature-name">
+                        Date
+                      </h2>
                       
                         <span class="label label-important"><i class="icon-star"></i> New!</span>
                       
                       
-                    </h2>
+                    </span>
+                    <span class="social-buttons">
+                      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                      <div class="g-plusone" data-annotation="inline" data-width="300" style="display: inline-block;"></div>
+                    </span>
                   </div><!--/span-->
                 </div><!--/row-->
 
@@ -330,11 +351,11 @@
                   <div class="row-fluid">
                     <div class="span12">
                       <ul class="nav nav-tabs">
-                        <li class="active"><a href="#validators_date_html" data-toggle="tab">Html</a></li>
-                        <li><a href="#validators_date_js" data-toggle="tab">Javascript</a></li>
+                        <li class="active"><a href="#validators-date-html" data-toggle="tab">Html</a></li>
+                        <li><a href="#validators-date-js" data-toggle="tab">Javascript</a></li>
                       </ul>
                       <div class="tab-content">
-                        <div class="tab-pane active" id="validators_date_html">
+                        <div class="tab-pane active" id="validators-date-html">
                           <pre><code data-language="html">&lt;div id=&quot;validators_dateValue_demo&quot;&gt;
     
   &lt;div class=&quot;paragraph&quot;&gt;
@@ -376,7 +397,7 @@
 
 </code></pre>
                         </div>
-                        <div class="tab-pane" id="validators_date_js">
+                        <div class="tab-pane" id="validators-date-js">
                           <pre><code data-language="javascript">jQuery(function($) {
   
   // set Italian culture
@@ -429,6 +450,20 @@
     </footer>
 
   </div><!--/.fluid-container-->
+  
+  <!-- G+ button -->
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
+  <!-- Twitter button -->
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
 
 </body>
 

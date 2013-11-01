@@ -5,8 +5,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>KiUI - Validators: Radio Required</title>
-  <meta name="description" content="KiUI - Widgets, validators, bindings and other useful features for your everyday job with Kendo UI Web - Validators: Radio Required">
+  <title>KiUI Bool Value Binding: boolean value binding for radio buttons in Kendo UI Web</title>
+  <meta name="description" content="KiUI Bool Value is a Kendo UI Web custom binding that allows you to bind a radio buttons control with a boolean variable in the view model.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -14,14 +14,14 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
   <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
-  <link href="../kiui-0.0.3.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.4.min.css" rel="stylesheet" />
   <link href="../resources/main.min.css" rel="stylesheet">
 
   <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
   <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
   <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-  <script src="../kiui-0.0.3.min.js"></script>
+  <script src="../kiui-0.0.4.min.js"></script>
   <script src="../resources/main.min.js"></script>
 
   <link rel="author" href="https://github.com/redaemn/KiUI/graphs/contributors">
@@ -46,7 +46,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="../index.html">KiUI</a>
+        <a class="brand" href="../">KiUI</a>
         <div class="nav-collapse collapse">
           <!--<p class="navbar-text pull-right">
             Logged in as <a href="#" class="navbar-link">Username</a>
@@ -64,9 +64,9 @@
                 <ul class="dropdown-menu">
                   
                     
-                    <li >
+                    <li  class="disabled" >
                       
-                        <a href="../pages/bindings_boolValue.html">
+                        <a href="#">
                       
                       
                         Bool Value
@@ -92,7 +92,7 @@
                     
                     <li >
                       
-                        <a href="../pages/utilities_notifier.html">
+                        <a href="../utilities/notifier.html">
                       
                       
                         Notifier
@@ -118,7 +118,7 @@
                     
                     <li >
                       
-                        <a href="../pages/validators_date.html">
+                        <a href="../validators/date.html">
                       
                       
                         Date
@@ -131,9 +131,9 @@
                     </li>
                   
                     
-                    <li  class="disabled" >
+                    <li >
                       
-                        <a href="#">
+                        <a href="../validators/radio-required.html">
                       
                       
                         Radio Required
@@ -152,7 +152,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Widgets
-                  
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
                   
                   <b class="caret"></b>
                 </a>
@@ -161,10 +161,25 @@
                     
                     <li >
                       
-                        <a href="../pages/widgets_popupMenu.html">
+                        <a href="../widgets/popup-menu.html">
                       
                       
                         Popup Menu
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
+                    
+                    <li >
+                      
+                        <a href="../widgets/rating.html">
+                      
+                      
+                        Rating
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
                         
                         
                       
@@ -186,92 +201,84 @@
         <div class="row-fluid group-container">
           <div class="span12">
             <div class="page-header">
-              <h1>Validators</h1>
+              <h1>Bindings</h1>
             </div>
 
-              <section id="validators_radioRequired" class="feature-container">
+              <section id="bindings-bool-value">
 
-                <div class="row-fluid">
+                <div class="row-fluid section-header">
                   <div class="span12">
-                    <h2>
-                      Radio Required
+                    <span class="feature-name-container">
+                      <h2 class="feature-name">
+                        Bool Value
+                      </h2>
                       
-                        <span class="label label-important"><i class="icon-star"></i> New!</span>
                       
-                      
-                    </h2>
+                    </span>
+                    <span class="social-buttons">
+                      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                      <div class="g-plusone" data-annotation="inline" data-width="300" style="display: inline-block;"></div>
+                    </span>
                   </div><!--/span-->
                 </div><!--/row-->
 
                 <div class="row-fluid">
                   
                     <div class="span6">
-                      <div id="validators_radioRequired_demo">
+                      <div id="bindings_boolValue_demo">
+    <div class="span7">
+        <form>
+            <label>Do you like <strong>KiUI</strong>?</label>
 
-  <form>
-    <div class="control-group">
-      <label class="control-label">Did you download <strong>KiUI</strong> latest version?</label>
-      <div class="controls">
-        <label class="radio inline">
-          <input type="radio" name="answer" value="N" required /> No
-        </label>
-        
-        <label class="radio inline">
-          <input type="radio" name="answer" value="Y" required /> Yes
-        </label>
-        
-        <label class="radio inline">
-          <input type="radio" name="answer" value="A" required /> ABSOLUTELY!!
-        </label>
-        
-        <span class="help-inline"><span class="k-invalid-msg" data-for="answer"></span></span>
-      </div>
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
+                Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
+                No
+            </label>
+
+            <label class="radio">
+                <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
+                Don't know
+            </label>
+        </form>
     </div>
-    
-    <div class="control-group">
-      <button type="button" class="btn btn-primary">Validate</button>
+
+    <div class="span5">
+        <h5>Current view-model state:</h5>
+        <pre>
+{
+    likeKiui: <span data-bind="text: likeKiuiText()"></span>
+}</pre>
     </div>
-  </form>
 
 </div>
-
                       <script>jQuery(function($) {
-  
-  var validator = $("#validators_radioRequired_demo form").kendoValidator().data("kendoValidator");
-  
-  $('#validators_radioRequired_demo form button').click(function(e) {
-    e.preventDefault();
-    
-    if (validator.validate()) {
-      $(this)
-        .removeClass('btn-primary')
-        .addClass('btn-success')
-        .text('The form is valid! Yay!');
+  var viewModel;
+
+  viewModel = kendo.observable({
+    likeKiui: null,
+    likeKiuiText: function() {
+      return kendo.stringify(this.get('likeKiui'));
     }
   });
-  
-  validator.validate();
-  
+
+  kendo.bind($('#bindings_boolValue_demo'), viewModel);
+
 });
 </script>
                     </div><!--/span-->
                     <div class="span6">
                       <p>
-  Recently at work I had to implement some form validations; there was this radio
-  button that needed to be <em>required</em>. I said to myself: <em>"Nothing easier!!
-  I'll just use the standard <code>required</code> Kendo validator"</em>. Unfortunately
-  it doesn't support radio buttons. :(
+    The <code>boolValue</code> binding can be used to bind a radio buttons control with a boolean variable in the view
+    model.
 </p>
 
 <p>
-  Kiui <em>Radio Required</em> validator extends the standard Kendo required
-  validator and makes it work with radio buttons too.
-</p>
-
-<p>
-  It's not that difficult to use: just go on and put that <code>required</code>
-  attribute on your <code>&lt;input type="radio"></code> element and it'll
-  <em>just</em> work!
+    It's able to support three different values: <code>true</code>, <code>false</code> and <code>null</code>.
 </p>
 
                     </div><!--/span-->
@@ -282,59 +289,56 @@
                   <div class="row-fluid">
                     <div class="span12">
                       <ul class="nav nav-tabs">
-                        <li class="active"><a href="#validators_radioRequired_html" data-toggle="tab">Html</a></li>
-                        <li><a href="#validators_radioRequired_js" data-toggle="tab">Javascript</a></li>
+                        <li class="active"><a href="#bindings-bool-value-html" data-toggle="tab">Html</a></li>
+                        <li><a href="#bindings-bool-value-js" data-toggle="tab">Javascript</a></li>
                       </ul>
                       <div class="tab-content">
-                        <div class="tab-pane active" id="validators_radioRequired_html">
-                          <pre><code data-language="html">&lt;div id=&quot;validators_radioRequired_demo&quot;&gt;
+                        <div class="tab-pane active" id="bindings-bool-value-html">
+                          <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
+    &lt;div class=&quot;span7&quot;&gt;
+        &lt;form&gt;
+            &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
 
-  &lt;form&gt;
-    &lt;div class=&quot;control-group&quot;&gt;
-      &lt;label class=&quot;control-label&quot;&gt;Did you download &lt;strong&gt;KiUI&lt;/strong&gt; latest version?&lt;/label&gt;
-      &lt;div class=&quot;controls&quot;&gt;
-        &lt;label class=&quot;radio inline&quot;&gt;
-          &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;N&quot; required /&gt; No
-        &lt;/label&gt;
-        
-        &lt;label class=&quot;radio inline&quot;&gt;
-          &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;Y&quot; required /&gt; Yes
-        &lt;/label&gt;
-        
-        &lt;label class=&quot;radio inline&quot;&gt;
-          &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;A&quot; required /&gt; ABSOLUTELY!!
-        &lt;/label&gt;
-        
-        &lt;span class=&quot;help-inline&quot;&gt;&lt;span class=&quot;k-invalid-msg&quot; data-for=&quot;answer&quot;&gt;&lt;/span&gt;&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;div class=&quot;control-group&quot;&gt;
-      &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Validate&lt;/button&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
+            &lt;/label&gt;
 
-&lt;/div&gt;
-</code></pre>
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                No
+            &lt;/label&gt;
+
+            &lt;label class=&quot;radio&quot;&gt;
+                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
+                Don&#x27;t know
+            &lt;/label&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;span5&quot;&gt;
+        &lt;h5&gt;Current view-model state:&lt;/h5&gt;
+        &lt;pre&gt;
+{
+    likeKiui: &lt;span data-bind=&quot;text: likeKiuiText()&quot;&gt;&lt;/span&gt;
+}&lt;/pre&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
                         </div>
-                        <div class="tab-pane" id="validators_radioRequired_js">
+                        <div class="tab-pane" id="bindings-bool-value-js">
                           <pre><code data-language="javascript">jQuery(function($) {
-  
-  var validator = $(&quot;#validators_radioRequired_demo form&quot;).kendoValidator().data(&quot;kendoValidator&quot;);
-  
-  $(&#x27;#validators_radioRequired_demo form button&#x27;).click(function(e) {
-    e.preventDefault();
-    
-    if (validator.validate()) {
-      $(this)
-        .removeClass(&#x27;btn-primary&#x27;)
-        .addClass(&#x27;btn-success&#x27;)
-        .text(&#x27;The form is valid! Yay!&#x27;);
+  var viewModel;
+
+  viewModel = kendo.observable({
+    likeKiui: null,
+    likeKiuiText: function() {
+      return kendo.stringify(this.get(&#x27;likeKiui&#x27;));
     }
   });
-  
-  validator.validate();
-  
+
+  kendo.bind($(&#x27;#bindings_boolValue_demo&#x27;), viewModel);
+
 });
 </code></pre>
                         </div>
@@ -360,6 +364,20 @@
     </footer>
 
   </div><!--/.fluid-container-->
+  
+  <!-- G+ button -->
+  <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script>
+
+  <!-- Twitter button -->
+  <script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
 
 </body>
 

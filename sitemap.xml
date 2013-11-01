@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>http://redaemn.github.io/KiUI/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  
+    
+    
+      <url>
+        <loc>http://redaemn.github.io/KiUI/bindings/bool-value.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
+  
+    
+    
+      <url>
+        <loc>http://redaemn.github.io/KiUI/utilities/notifier.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
+  
+    
+    
+      <url>
+        <loc>http://redaemn.github.io/KiUI/validators/date.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
+      <url>
+        <loc>http://redaemn.github.io/KiUI/validators/radio-required.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
+  
+    
+    
+      <url>
+        <loc>http://redaemn.github.io/KiUI/widgets/popup-menu.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
+      <url>
+        <loc>http://redaemn.github.io/KiUI/widgets/rating.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
+  
+  
+</urlset>

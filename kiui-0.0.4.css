@@ -1,6 +1,6 @@
 /*
- * KiUI v0.0.3 (https://github.com/redaemn/KiUI)
- * 2013-10-22
+ * KiUI v0.0.4 (https://github.com/redaemn/KiUI)
+ * 2013-11-01
  * Author: https://github.com/redaemn/KiUI/graphs/contributors
  *
  * This software is licensed under the GNU General Public License (GPL) version 3
@@ -73,4 +73,37 @@
 
 .kiui-popup-menu.kiui-position-left .kiui-popup-menu-menu {
   right: 0;
+}
+
+.kiui-rating {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  cursor: default;
+  display: inline-block;
+}
+
+.kiui-rating li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.kiui-rating.kiui-state-readonly li {
+  cursor: default;
+}
+
+.kiui-rating li.kiui-rating-star-full:after {
+    content: "\2605";
+    font-family: Arial;
+    font-size: 16px;
+    color: orange;
+}
+
+.kiui-rating li.kiui-rating-star-empty:after {
+    content: "\2606";
+    font-family: Arial;
+    font-size: 16px;
+    color: gray;
 }
