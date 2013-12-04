@@ -7,55 +7,6 @@ body {
   padding: 9px 0;
 }
 
-@media (max-width: 979px) {
-  body {
-    padding-top: 0;
-  }
-  
-  /* Enable use of floated navbar text */
-  .navbar-text.pull-right {
-    float: none;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-
-.pulse-animation {
-  animation: pulse 12s ease 2s infinite normal none;
-  -webkit-animation: pulse 12s linear 2s infinite normal none;
-  -moz-animation: pulse 12s ease 2s infinite normal none;
-}
-
-.pulse-animation:hover {
-  animation: initial;
-  -webkit-animation: initial;
-  -moz-animation: initial;
-}
-
-@keyframes pulse
-{
-  0%, 42% {color: #999999; text-shadow: none;}
-  50% {color: #ffffff; text-shadow: 0 0 1em #fff, 0 0 3em #fff; -webkit-animation-timing-function: ease-out;}
-  58% {color: #999999; text-shadow: none; -webkit-animation-timing-function: ease-in;}
-  100% {color: #999999; text-shadow: none;}
-}
-
-@-webkit-keyframes pulse
-{
-  0%, 42% {color: #999999; text-shadow: none;}
-  50% {color: #ffffff; text-shadow: 0 0 1em #fff, 0 0 3em #fff; -webkit-animation-timing-function: ease-out;}
-  58% {color: #999999; text-shadow: none; -webkit-animation-timing-function: ease-in;}
-  100% {color: #999999; text-shadow: none;}
-}
-
-@-moz-keyframes pulse
-{
-  0%, 42% {color: #999999; text-shadow: none;}
-  50% {color: #ffffff; text-shadow: 0 0 1em #fff, 0 0 3em #fff; -webkit-animation-timing-function: ease-out;}
-  58% {color: #999999; text-shadow: none; -webkit-animation-timing-function: ease-in;}
-  100% {color: #999999; text-shadow: none;}
-}
-
 body > .navbar .brand {
   font-weight: bold;
   text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
@@ -65,7 +16,7 @@ body > .navbar .brand {
 }
 
 body > .navbar .contribution {
-  padding: 10px 15px 10px;
+  padding: 10px 0px 10px 15px;
   text-decoration: none;
   color: #999999;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -142,4 +93,61 @@ div.paragraph {
 .kiuiEventLogger ul li {
   padding: 1px 4px;
   border-bottom: 1px solid #eeeeee;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+  
+  /* Enable use of floated navbar text */
+  .navbar-text.pull-right {
+    float: none;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  body > .navbar .contribution.submit-pr {
+    padding-right: 15px;
+  }
+}
+
+/******************/
+/*** Animations ***/
+/******************/
+
+.pulse-animation {
+  animation: pulse 12s ease 2s infinite normal none;
+  -webkit-animation: pulse 12s linear 2s infinite normal none;
+  -moz-animation: pulse 12s ease 2s infinite normal none;
+}
+
+.pulse-animation:hover {
+  animation: initial;
+  -webkit-animation: initial;
+  -moz-animation: initial;
+}
+
+@keyframes pulse
+{
+  0%, 42% {color: #999999; text-shadow: none;}
+  50% {color: #ffffff; text-shadow: 0 0 1em #fff, 0 0 3em #fff; -webkit-animation-timing-function: ease-out;}
+  58% {color: #999999; text-shadow: none; -webkit-animation-timing-function: ease-in;}
+  100% {color: #999999; text-shadow: none;}
+}
+
+@-webkit-keyframes pulse
+{
+  0%, 42% {color: #999999; text-shadow: none;}
+  50% {color: #ffffff; text-shadow: 0 0 1em #fff, 0 0 3em #fff; -webkit-animation-timing-function: ease-out;}
+  58% {color: #999999; text-shadow: none; -webkit-animation-timing-function: ease-in;}
+  100% {color: #999999; text-shadow: none;}
+}
+
+@-moz-keyframes pulse
+{
+  0%, 42% {color: #999999; text-shadow: none;}
+  50% {color: #ffffff; text-shadow: 0 0 1em #fff, 0 0 3em #fff; -webkit-animation-timing-function: ease-out;}
+  58% {color: #999999; text-shadow: none; -webkit-animation-timing-function: ease-in;}
+  100% {color: #999999; text-shadow: none;}
 }
