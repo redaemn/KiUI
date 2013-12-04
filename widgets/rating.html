@@ -47,6 +47,9 @@
           <span class="icon-bar"></span>
         </button>
         <a class="brand" href="../">KiUI</a>
+        <a class="contribution submit-pr pulse-animation pull-right" href="https://github.com/redaemn/KiUI/pulls" target="_blank">Submit a PR!</a>
+        <a class="contribution pulse-animation pull-right" href="https://github.com/redaemn/KiUI/issues" target="_blank">Suggest a feature!</a>
+        <a href="../kiui-0.0.4.zip" class="btn btn-primary download-link pull-right"><i class="icon-download icon-large"></i> Get v0.0.4</a>
         <div class="nav-collapse collapse">
           <!--<p class="navbar-text pull-right">
             Logged in as <a href="#" class="navbar-link">Username</a>
@@ -491,7 +494,16 @@
                         <li><a href="#widgets-rating-js" data-toggle="tab">Javascript</a></li>
                       </ul>
                       <div class="tab-content">
-                        <div class="tab-pane active" id="widgets-rating-html">
+                        <div class="tab-pane active" id="widgets-rating-html" itemscope itemtype="http://schema.org/Code">
+                          <link itemprop="codeRepository" href="https://github.com/redaemn/KiUI" />
+                          <meta itemprop="sampleType" content="code snippet" />
+                          <meta itemprop="programmingLanguage" content="html" />
+                          <span itemprop="targetProduct" itemscope itemtype="http://schema.org/SoftwareApplication">
+                            <meta itemprop="name" content="KiUI" />
+                            <link itemprop="downloadUrl" href="../kiui-0.0.4.zip" />
+                            <meta itemprop="fileFormat" content="application/zip" />
+                            <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
+                          </span>
                           <pre><code data-language="html">&lt;div id=&quot;widgets_rating_demo&quot;&gt;
 
   &lt;p&gt;
@@ -573,7 +585,16 @@
 &lt;/div&gt;
 </code></pre>
                         </div>
-                        <div class="tab-pane" id="widgets-rating-js">
+                        <div class="tab-pane" id="widgets-rating-js" itemscope itemtype="http://schema.org/Code">
+                          <link itemprop="codeRepository" href="https://github.com/redaemn/KiUI" />
+                          <meta itemprop="sampleType" content="code snippet" />
+                          <meta itemprop="programmingLanguage" content="javascript" />
+                          <span itemprop="targetProduct" itemscope itemtype="http://schema.org/SoftwareApplication">
+                            <meta itemprop="name" content="KiUI" />
+                            <link itemprop="downloadUrl" href="../kiui-0.0.4.zip" />
+                            <meta itemprop="fileFormat" content="application/zip" />
+                            <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
+                          </span>
                           <pre><code data-language="javascript">jQuery(function($) {
 
   var viewModel,
