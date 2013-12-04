@@ -158,10 +158,28 @@
                         <li><a href="#<%= featureUniqueId %>-js" data-toggle="tab">Javascript</a></li>
                       </ul>
                       <div class="tab-content">
-                        <div class="tab-pane active" id="<%= featureUniqueId %>-html">
+                        <div class="tab-pane active" id="<%= featureUniqueId %>-html" itemscope itemtype="http://schema.org/Code">
+                          <link itemprop="codeRepository" href="https://github.com/redaemn/KiUI" />
+                          <meta itemprop="sampleType" content="code snippet" />
+                          <meta itemprop="programmingLanguage" content="html" />
+                          <span itemprop="targetProduct" itemscope itemtype="http://schema.org/SoftwareApplication">
+                            <meta itemprop="name" content="KiUI" />
+                            <link itemprop="downloadUrl" href="../<%= filename %>-<%= pkg.version%>.zip" />
+                            <meta itemprop="fileFormat" content="application/zip" />
+                            <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
+                          </span>
                           <pre><code data-language="html"><%- feature.html %></code></pre>
                         </div>
-                        <div class="tab-pane" id="<%= featureUniqueId %>-js">
+                        <div class="tab-pane" id="<%= featureUniqueId %>-js" itemscope itemtype="http://schema.org/Code">
+                          <link itemprop="codeRepository" href="https://github.com/redaemn/KiUI" />
+                          <meta itemprop="sampleType" content="code snippet" />
+                          <meta itemprop="programmingLanguage" content="javascript" />
+                          <span itemprop="targetProduct" itemscope itemtype="http://schema.org/SoftwareApplication">
+                            <meta itemprop="name" content="KiUI" />
+                            <link itemprop="downloadUrl" href="../<%= filename %>-<%= pkg.version%>.zip" />
+                            <meta itemprop="fileFormat" content="application/zip" />
+                            <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
+                          </span>
                           <pre><code data-language="javascript"><%- feature.js %></code></pre>
                         </div>
                       </div>
