@@ -9,11 +9,19 @@ module.exports = function(grunt) {
     commons: {
       banner: '/*\n' +
               ' * <%= pkg.name %> v<%= pkg.version %> (https://github.com/redaemn/KiUI)\n' +
-              ' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-              ' * Author: <%= pkg.author %>\n' +
+              ' * Copyright (C) <%= grunt.template.today("yyyy") %>  <%= pkg.author.name %> <%= pkg.author.url %>\n' +
               ' *\n' +
-              ' * This software is licensed under the GNU General Public License (GPL) version 3\n' +
-              ' * http://www.gnu.org/copyleft/gpl.html\n' +
+              ' * This program is free software: you can redistribute it and/or modify\n' +
+              ' * it under the terms of the GNU General Public License as published by\n' +
+              ' * the Free Software Foundation, either version 3 of the License, or\n' +
+              ' * (at your option) any later version.\n' +
+              ' * \n' +
+              ' * This program is distributed in the hope that it will be useful,\n' +
+              ' * but WITHOUT ANY WARRANTY; without even the implied warranty of\n' +
+              ' * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n' +
+              ' * GNU General Public License for more details.\n' +
+              ' * \n' +
+              ' * [https://github.com/redaemn/KiUI/blob/master/LICENSE].\n' +
               ' */\n\n'
     },
     

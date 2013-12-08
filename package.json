@@ -1,7 +1,10 @@
 {
-  "author": "https://github.com/redaemn/KiUI/graphs/contributors",
   "name": "KiUI",
   "version": "0.0.5",
+  "author": {
+    "name": "Gabriele Rabbiosi",
+    "url": "https://plus.google.com/+GabrieleRabbiosi/"
+  },
   "devDependencies": {
     "grunt": "~0.4",
     "karma": "~0.10",
@@ -15,5 +18,13 @@
     "grunt-contrib-watch": "~0.5",
     "grunt-contrib-compress": "~0.5",
     "grunt-contrib-clean": "~0.5"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/redaemn/KiUI"
+  },
+  "license": {
+    "type": "GPL v3",
+    "url": "https://github.com/redaemn/KiUI/blob/master/LICENSE"
   }
 }
