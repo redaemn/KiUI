@@ -78,17 +78,19 @@ module.exports = function(grunt) {
     },
     
     jshint: {
-      dist: ['Gruntfile.js','src/**/*.js', 'test/**/*.js'],
+      chore: ['package.json', 'Gruntfile.js', 'karma.conf.js'],
+      dist: ['src/**/*.js', 'test/**/*.js'],
       demoSite: ['demo/**/*.js']
     },
     
     karma: {
+      options: {
+        configFile: 'karma.conf.js'
+      },
       singleRun: {
-        configFile: 'karma.conf.js',
         singleRun: true
       },
       coverage: {
-        configFile: 'karma.conf.js',
         singleRun: true,
         preprocessors: {
           'src/**/*.js': 'coverage'
@@ -100,7 +102,6 @@ module.exports = function(grunt) {
         }
       },
       watch: {
-        configFile: 'karma.conf.js',
         autoWatch: true
       }
     },
@@ -218,18 +219,31 @@ module.exports = function(grunt) {
    ****************************************/
 
   grunt.registerTask('default',
-    'Lint JS files, run tests and then build',
-    ['jshint:dist', 'karma:singleRun', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'compress:dist']
-  );
+    'Lint JS files, run tests and then build', [
+      'clean:dist',
+      'jshint:chore',
+      'jshint:dist',
+      'karma:singleRun',
+      'concat:dist',
+      'uglify:dist',
+      'cssmin:dist',
+      'compress:dist'
+    ]);
   
   /****************************************
    * Build Task
    ****************************************/
    
    grunt.registerTask('build',
-    'Lint JS files, concatenate and then minify JS and CSS files',
-    ['clean:dist', 'jshint:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'compress:dist']
-   );
+    'Lint JS files, concatenate and minify JS and CSS files and create a zip package', [
+      'clean:dist',
+      'jshint:chore',
+      'jshint:dist',
+      'concat:dist',
+      'uglify:dist',
+      'cssmin:dist',
+      'compress:dist'
+    ]);
 
   /****************************************
    * Demo Site Task

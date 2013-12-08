@@ -1,58 +1,87 @@
 
-// base path, that will be used to resolve files and exclude
-basePath = '.';
+module.exports = function(config) {
+  config.set({
+    
+    // base path, that will be used to resolve files and exclude
+    basePath: '.',
+    
+    frameworks: ['jasmine'],
+    
+    // list of files / patterns to load in the browser
+    files: [
+      'lib/jquery.min.js',
+      'lib/kendo.web.min.js',
+      'lib/kendo.culture.it-IT.min.js',
+      'src/core.js',
+      'src/**/*.js',
+      'test/**/*.js'
+    ],
 
-// list of files / patterns to load in the browser
-files = [
-  JASMINE,
-  JASMINE_ADAPTER,
-  'lib/jquery.min.js',
-  'lib/kendo.web.min.js',
-  'lib/kendo.culture.it-IT.min.js',
-  'src/core.js',
-  'src/**/*.js',
-  'test/**/*.js'
-];
+    // list of files to exclude
+    exclude: [
+      
+    ],
 
-// list of files to exclude
-exclude = [
+    preprocessors: {
+      
+    },
 
-];
+    // use dots reporter, as travis terminal does not support escaping sequences
+    // possible values: 'dots', 'progress'
+    // CLI --reporters progress
+    reporters: ['progress'],
+    
+    hostname: process.env.IP ? process.env.IP : 'localhost',
+    
+    // web server port
+    // CLI --port 9876
+    port: process.env.IP ? process.env.PORT : 9018,
+    
+    // enable / disable colors in the output (reporters and logs)
+    // CLI --colors --no-colors
+    colors: true,
 
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari
-// - PhantomJS
-browsers = process.env.IP ? [] : [
-  'Chrome'
-];
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // CLI --log-level debug
+    logLevel: config.LOG_INFO,
 
-// test results reporter to use
-// possible values: dots || progress
-reporters = ['progress'];
+    // enable / disable watching file and executing tests whenever any file changes
+    // CLI --auto-watch --no-auto-watch
+    autoWatch: false,
 
-hostname = process.env.IP ? process.env.IP : 'localhost';
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera
+    // - Safari (only Mac)
+    // - PhantomJS
+    // - IE (only Windows)
+    // CLI --browsers Chrome,Firefox,Safari
+    browsers: process.env.IP ? [] : [
+      'Chrome'
+    ],
+    
+    // If browser does not capture in given timeout [ms], kill it
+    // CLI --capture-timeout 5000
+    captureTimeout: 20000,
 
-// web server port
-port = process.env.IP ? process.env.PORT : 9018;
+    // Auto run tests on start (when browsers are captured) and exit
+    // CLI --single-run --no-single-run
+    singleRun: false,
 
-// cli runner port
-runnerPort = process.env.IP ? 0 : 9100;
+    // report which specs are slower than 500ms
+    // CLI --report-slower-than 500
+    reportSlowerThan: 500
 
-// enable / disable colors in the output (reporters and logs)
-colors = true;
-
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_INFO;
-
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch = false;
-
-// Continuous Integration mode
-// if true, it capture browsers, run tests and exit
-singleRun = false;
-
+    // plugins: [
+    //   'karma-jasmine',
+    //   'karma-chrome-launcher',
+    //   'karma-firefox-launcher',
+    //   'karma-junit-reporter',
+    //   'karma-commonjs'
+    // ]
+    
+  });
+};
