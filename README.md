@@ -1,7 +1,7 @@
 [![devDependency Status](https://david-dm.org/redaemn/KiUI/dev-status.png)](https://david-dm.org/redaemn/KiUI#info=devDependencies)
 
-# KiUI - Widgets, validators, bindings and other useful features for your
-everyday job with [Kendo UI Web](http://www.kendoui.com/web.aspx)
+# KiUI
+#### Widgets, validators, bindings and other useful features for your everyday job with [Kendo UI Web](http://www.kendoui.com/web.aspx)
 
 ***
 
