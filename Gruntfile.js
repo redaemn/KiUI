@@ -8,8 +8,10 @@ module.exports = function(grunt) {
     
     commons: {
       banner: '/*\n' +
-              ' * <%= pkg.name %> v<%= pkg.version %> (https://github.com/redaemn/KiUI)\n' +
-              ' * Copyright (C) <%= grunt.template.today("yyyy") %>  <%= pkg.author.name %> <%= pkg.author.url %>\n' +
+              ' * <%= pkg.name %> v<%= pkg.version %> [https://github.com/redaemn/KiUI]\n' +
+              ' * <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+              ' * \n' +
+              ' * Copyright (C) <%= grunt.template.today("yyyy") %>  <%= pkg.author.name %> [<%= pkg.author.url %>]\n' +
               ' *\n' +
               ' * This program is free software: you can redistribute it and/or modify\n' +
               ' * it under the terms of the GNU General Public License as published by\n' +
