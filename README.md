@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/redaemn/KiUI.png?branch=master)](https://travis-ci.org/redaemn/KiUI)
 [![devDependency Status](https://david-dm.org/redaemn/KiUI/dev-status.png)](https://david-dm.org/redaemn/KiUI#info=devDependencies)
 
 # KiUI
