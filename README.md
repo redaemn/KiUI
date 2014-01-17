@@ -77,8 +77,8 @@ they will be placed inside the `coverage` subdirectory.
 
 ## License
 
-GNU General Public License (GPL) version 3
+The MIT License (MIT)
 
-Copyright &copy; 2013  Gabriele Rabbiosi https://plus.google.com/+GabrieleRabbiosi/
+Copyright &copy; 2014 Gabriele Rabbiosi https://plus.google.com/+GabrieleRabbiosi/
 
 <https://github.com/redaemn/KiUI/blob/master/LICENSE>
