@@ -108,6 +108,42 @@ describe('utility notifier:', function() {
     });
     
   });
+
+  describe('notifier() with "top" position', function() {
+    
+    var notifier,
+      kiuiNotifier;
+    
+    beforeEach(function() {
+      kiuiNotifier = kiui.Notifier;
+      spyOn(kiui, 'Notifier').andCallFake(function(element, options) {
+        return new kiuiNotifier(element, options);
+      });
+      notifier = kiui.notifier({
+        position: "top"
+      });
+    });
+    
+    afterEach(function() {
+      notifier.destroy();
+      notifier = originalNotifier = undefined;
+    });
+    
+    it('should create a .kiui-notifier DOM element with the right positioning', function() {
+      var element = $('.kiui-notifier');
+      expect(element.length).toBe(1);
+      expect(element.hasClass('kiui-position-top')).toBeTruthy();
+      expect(element.hasClass('kiui-position-left')).toBeFalsy();
+      expect(element.hasClass('kiui-position-right')).toBeFalsy();
+      expect(element.hasClass('kiui-position-bottom')).toBeFalsy();
+    });
+    
+    it('should call Notifier passing the option', function() {
+      expect(kiui.Notifier.calls.length).toBe(1);
+      expect(kiui.Notifier.mostRecentCall.args[1].position).toEqual("top");
+    });
+    
+  });
   
   describe('notifier() with invalid position', function() {
     
@@ -232,7 +268,7 @@ describe('utility notifier:', function() {
         
       });
       
-      describe('with valid position option', function() {
+      describe('with "bottom-left" position option', function() {
         var notifier;
         
         beforeEach(function() {
@@ -248,6 +284,28 @@ describe('utility notifier:', function() {
         
         it('should set the right classes on DOM element', function() {
           expect(elem.is('.kiui-notifier.kiui-position-bottom.kiui-position-left')).toBeTruthy();
+        });
+      });
+
+      describe('with "top" position option', function() {
+        var notifier;
+        
+        beforeEach(function() {
+          notifier = new kiui.Notifier(elem, {
+            position: 'top'
+          });
+        });
+        
+        afterEach(function() {
+          notifier.destroy();
+          notifier = undefined;
+        });
+        
+        it('should set the right classes on DOM element', function() {
+          expect(elem.is('.kiui-notifier.kiui-position-top')).toBeTruthy();
+          expect(elem.is('.kiui-position-bottom')).toBeFalsy();
+          expect(elem.is('.kiui-position-left')).toBeFalsy();
+          expect(elem.is('.kiui-position-right')).toBeFalsy();
         });
       });
       
@@ -823,6 +881,27 @@ describe('utility notifier:', function() {
           expect(elem.is('.testNotificationClass')).toBeTruthy();
         });
       
+      });
+
+      describe('with "width" option', function() {
+
+        var notification;
+        
+        beforeEach(function() {
+          notification = new kiui.Notification(elem, {
+            width: 40
+          });
+        });
+        
+        afterEach(function() {
+          notification.destroy();
+          notification = undefined;
+        });
+
+        it('should set notification width', function() {
+          expect(elem.width()).toBe(40);
+        });  
+
       });
     
     });

@@ -49,11 +49,14 @@
       element = that.element;
       options = that.options;
 
-      positions = /^([^-]+)-(.+)$/.exec(options.position);
+      positions = /^([^-]+)(-(.+))?$/.exec(options.position);
       element
         .addClass(KIUI_NOTIFIER)
-        .addClass(KIUI_POSITION + positions[1])
-        .addClass(KIUI_POSITION + positions[2]);
+        .addClass(KIUI_POSITION + positions[1]);
+
+      if (positions[3]) {
+        element.addClass(KIUI_POSITION + positions[3]);
+      }
         
       $(window).on("resize" + NS, PROXY(that._setNotificationsPosition, that));
       
@@ -89,12 +92,33 @@
         }
         
         if (idx > 0 && currentVertical + height > maxVertical - margin) {
-          currentVertical = margin;
-          currentHorizontal += maxHorizontal + margin;
-          maxHorizontal = 0;
+          if (position !== TOP && position !== BOTTOM) {
+            currentVertical = margin;
+            currentHorizontal += maxHorizontal + margin;
+            maxHorizontal = 0;
+          }
+          else {
+            currentVertical = maxVertical + margin;
+          }
         }
         
-        if (position == TOP_RIGHT) {
+        if (position == TOP) {
+          notification.setPosition({
+            top: currentVertical,
+            right: margin,
+            left: margin,
+            width: 'auto'
+          });
+        }
+        else if (position == BOTTOM) {
+          notification.setPosition({
+            bottom: currentVertical,
+            right: margin,
+            left: margin,
+            width: 'auto'
+          });
+        }
+        else if (position == TOP_RIGHT) {
           notification.setPosition({
             top: currentVertical,
             right: currentHorizontal
@@ -387,6 +411,8 @@
     
     isInvalidPosition = (
       !options.position || (
+        options.position !== TOP &&
+        options.position !== BOTTOM &&
         options.position !== TOP_RIGHT &&
         options.position !== TOP_LEFT &&
         options.position !== BOTTOM_RIGHT &&
