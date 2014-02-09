@@ -145,4 +145,30 @@ jQuery(function($) {
   
   $('#utilities_notify_demo button#top-right-positioning').click(topRightNotification);
 
+  var topNotifier = kiui.notifier({
+    position: "top"
+  });
+
+  var bottomNotifier = kiui.notifier({
+    position: "bottom"
+  });
+
+  function topNotification() {
+    topNotifier.info({
+      title: "Top positioning",
+      content: "This notification is screen-wide and positioned at the top of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#top-positioning').click(topNotification);
+
+  function bottomNotification() {
+    bottomNotifier.success({
+      title: "Bottom positioning",
+      content: "This notification is screen-wide and positioned at the bottom of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#bottom-positioning').click(bottomNotification);
+
 });
