@@ -1,0 +1,27 @@
+<div id="bindings_loader_demo">
+    <div class="span7">
+        <p>
+            <div class="alert alert-info" data-bind="loader: ongoingOperation">
+                <p>
+                    <strong>Try clicking the button below!</strong>
+                </p>
+                <p>
+                    A loader overlay will appear over this &lt;div&gt; element until the async operation is completed.
+                </p>
+                <p>
+                    <button class="btn" data-bind="click: startAsyncOperation">Start async operation</button>
+                </p>
+            </div>
+        </p>
+        
+    </div>
+
+    <div class="span5">
+        <h5>Current view-model state:</h5>
+        <pre>
+{
+    ongoingOperation: <span data-bind="text: ongoingOperationText()"></span>
+}</pre>
+    </div>
+
+</div>

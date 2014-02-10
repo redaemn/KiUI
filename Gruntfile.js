@@ -130,6 +130,7 @@ module.exports = function(grunt) {
       // will be filled by the 'demoSite' task
       features: {},
       newFeatures: {
+        bindings: ['loader'],
         utilities: ['notifier']
       },
       comingSoonFeatures: {
@@ -140,6 +141,10 @@ module.exports = function(grunt) {
           'bool-value': {
             title: "KiUI Bool Value Binding: boolean value binding for radio buttons in Kendo UI Web",
             description: "KiUI Bool Value is a Kendo UI Web custom binding that allows you to bind a radio buttons control with a boolean variable in the view model."
+          },
+          loader: {
+            title: "KiUI Loader Binding: automatically show or hide a loader on a DOM element in Kendo UI Web",
+            description: "KiUI Loader is a Kendo UI Web custom binding that allows you to bind a loader overlay on a DOM element with a boolean variable in the view model."
           }
         },
         utilities: {
