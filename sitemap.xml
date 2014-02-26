@@ -16,6 +16,12 @@
         <priority>0.5</priority>
       </url>
     
+      <url>
+        <loc>http://redaemn.github.io/KiUI/bindings/loader.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    
   
     
     

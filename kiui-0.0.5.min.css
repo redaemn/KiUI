@@ -1,0 +1,11 @@
+/*
+ * KiUI v0.0.5 [https://github.com/redaemn/KiUI]
+ * 2014-02-26
+ *
+ * This software is licensed under The MIT License (MIT)
+ * Copyright (c) 2014 Gabriele Rabbiosi [https://plus.google.com/+GabrieleRabbiosi/]
+ * [https://github.com/redaemn/KiUI/blob/master/LICENSE]
+ */
+
+
+.kiui-notification{padding:.8em;display:none;position:fixed;z-index:10000;transition:top 400ms,right 400ms,left 400ms,bottom 400ms;-webkit-transition:top 400ms,right 400ms,left 400ms,bottom 400ms;-moz-transition:top 400ms,right 400ms,left 400ms,bottom 400ms;-o-transition:top 400ms,right 400ms,left 400ms,bottom 400ms}.kiui-notification .kiui-notification-icon{float:left;margin-right:.3em}.kiui-notification .kiui-notification-title{line-height:1.3em;min-height:1.3em;margin-bottom:.4em;font-weight:700}.kiui-notification .kiui-notification-close{float:right;margin-left:.3em;cursor:pointer}.kiui-notification .kiui-notification-content{line-height:1.3em}.kiui-popup-menu{position:relative;display:inline-block}.kiui-popup-menu .kiui-popup-menu-menu{display:none;position:absolute;margin-top:.15em;white-space:nowrap;top:100%;min-width:160px;z-index:10000}.kiui-popup-menu.kiui-state-open .kiui-popup-menu-menu{z-index:10001}.kiui-popup-menu.kiui-position-top .kiui-popup-menu-menu{top:auto;bottom:100%;margin-top:0;margin-bottom:.15em}.kiui-popup-menu.kiui-position-left .kiui-popup-menu-menu{right:0}.kiui-rating{margin:0;padding:0;list-style-type:none;cursor:default;display:inline-block}.kiui-rating li{margin:0;padding:0;display:inline-block;cursor:pointer}.kiui-rating.kiui-state-readonly li{cursor:default}.kiui-rating li.kiui-rating-star-full:after{content:"\2605";font-family:Arial;font-size:16px;color:orange}.kiui-rating li.kiui-rating-star-empty:after{content:"\2606";font-family:Arial;font-size:16px;color:gray}

@@ -12,16 +12,16 @@
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" rel="stylesheet" />
-  <link href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" rel="stylesheet" />
-  <link href="../kiui-0.0.4.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="../kiui-0.0.5.min.css" rel="stylesheet" />
   <link href="../resources/main.min.css" rel="stylesheet">
 
-  <script src="http://cdn.kendostatic.com/2013.2.716/js/jquery.min.js"></script>
-  <script src="http://cdn.kendostatic.com/2013.2.716/js/kendo.web.min.js"></script>
-  <script src="http://cdn.kendostatic.com/2013.2.716/js/cultures/kendo.culture.it-IT.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.3.1119/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.web.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2013.3.1119/js/cultures/kendo.culture.it-IT.min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-  <script src="../kiui-0.0.4.min.js"></script>
+  <script src="../kiui-0.0.5.min.js"></script>
   <script src="../resources/main.min.js"></script>
 
   <link rel="author" href="https://plus.google.com/+GabrieleRabbiosi">
@@ -49,7 +49,7 @@
         <a class="brand" href="../">KiUI</a>
         <a class="contribution submit-pr pulse-animation pull-right" href="https://github.com/redaemn/KiUI/pulls" target="_blank">Submit a PR!</a>
         <a class="contribution pulse-animation pull-right" href="https://github.com/redaemn/KiUI/issues" target="_blank">Suggest a feature!</a>
-        <a href="../kiui-0.0.4.zip" class="btn btn-primary download-link pull-right"><i class="icon-download icon-large"></i> Get v0.0.4</a>
+        <a href="../kiui-0.0.5.zip" class="btn btn-primary download-link pull-right"><i class="icon-download icon-large"></i> Get v0.0.5</a>
         <div class="nav-collapse collapse">
           <!--<p class="navbar-text pull-right">
             Logged in as <a href="#" class="navbar-link">Username</a>
@@ -60,7 +60,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Bindings
-                  
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
                   
                   <b class="caret"></b>
                 </a>
@@ -79,6 +79,21 @@
                       </a>
                     </li>
                   
+                    
+                    <li >
+                      
+                        <a href="../bindings/loader.html">
+                      
+                      
+                        Loader
+                        
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
+                        
+                      
+                      </a>
+                    </li>
+                  
                 </ul>
               </li>
             
@@ -86,7 +101,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Utilities
-                  
+                  <span class="label label-important"><i class="icon-star"></i> New!</span>
                   
                   <b class="caret"></b>
                 </a>
@@ -100,6 +115,8 @@
                       
                         Notifier
                         
+                          <span class="label label-important"><i class="icon-star"></i> New!</span>
+                        
                         
                       
                       </a>
@@ -112,7 +129,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Validators
-                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
                   
                   <b class="caret"></b>
                 </a>
@@ -125,8 +142,6 @@
                       
                       
                         Date
-                        
-                          <span class="label label-important"><i class="icon-star"></i> New!</span>
                         
                         
                       
@@ -141,8 +156,6 @@
                       
                         Radio Required
                         
-                          <span class="label label-important"><i class="icon-star"></i> New!</span>
-                        
                         
                       
                       </a>
@@ -155,7 +168,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Widgets
-                  <span class="label label-important"><i class="icon-star"></i> New!</span>
+                  
                   
                   <b class="caret"></b>
                 </a>
@@ -181,8 +194,6 @@
                       
                       
                         Rating
-                        
-                          <span class="label label-important"><i class="icon-star"></i> New!</span>
                         
                         
                       
@@ -216,6 +227,8 @@
                         Notifier
                       </h2>
                       
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
+                      
                       
                     </span>
                     <span class="social-buttons">
@@ -229,6 +242,19 @@
                   
                     <div class="span6">
                       <div id="utilities_notify_demo">
+    <div class="well">
+        <p>
+            <span class="label label-important"><i class="icon-star"></i> New!</span>
+            Now notifications can also be screen-wide and positioned at the top or bottom of the page:
+        </p>
+        <p>
+            <button id="top-positioning" class="btn btn-info">Top</button>
+            <button id="bottom-positioning" class="btn btn-success">Bottom</button>
+        </p>
+        <p style="margin-bottom: 0px;">
+            This is <em>very</em> useful for notifications on <em>mobile devices</em>!!
+        </p>
+    </div>
     <p>
         There are three different styles of notifications:
     </p>
@@ -432,6 +458,32 @@
   
   $('#utilities_notify_demo button#top-right-positioning').click(topRightNotification);
 
+  var topNotifier = kiui.notifier({
+    position: "top"
+  });
+
+  var bottomNotifier = kiui.notifier({
+    position: "bottom"
+  });
+
+  function topNotification() {
+    topNotifier.info({
+      title: "Top positioning",
+      content: "This notification is screen-wide and positioned at the top of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#top-positioning').click(topNotification);
+
+  function bottomNotification() {
+    bottomNotifier.success({
+      title: "Bottom positioning",
+      content: "This notification is screen-wide and positioned at the bottom of the screen"
+    });
+  }
+  
+  $('#utilities_notify_demo button#bottom-positioning').click(bottomNotification);
+
 });
 </script>
                     </div><!--/span-->
@@ -502,11 +554,24 @@
                           <meta itemprop="programmingLanguage" content="html" />
                           <span itemprop="targetProduct" itemscope itemtype="http://schema.org/SoftwareApplication">
                             <meta itemprop="name" content="KiUI" />
-                            <link itemprop="downloadUrl" href="../kiui-0.0.4.zip" />
+                            <link itemprop="downloadUrl" href="../kiui-0.0.5.zip" />
                             <meta itemprop="fileFormat" content="application/zip" />
                             <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
                           </span>
                           <pre><code data-language="html">&lt;div id=&quot;utilities_notify_demo&quot;&gt;
+    &lt;div class=&quot;well&quot;&gt;
+        &lt;p&gt;
+            &lt;span class=&quot;label label-important&quot;&gt;&lt;i class=&quot;icon-star&quot;&gt;&lt;/i&gt; New!&lt;/span&gt;
+            Now notifications can also be screen-wide and positioned at the top or bottom of the page:
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;button id=&quot;top-positioning&quot; class=&quot;btn btn-info&quot;&gt;Top&lt;/button&gt;
+            &lt;button id=&quot;bottom-positioning&quot; class=&quot;btn btn-success&quot;&gt;Bottom&lt;/button&gt;
+        &lt;/p&gt;
+        &lt;p style=&quot;margin-bottom: 0px;&quot;&gt;
+            This is &lt;em&gt;very&lt;/em&gt; useful for notifications on &lt;em&gt;mobile devices&lt;/em&gt;!!
+        &lt;/p&gt;
+    &lt;/div&gt;
     &lt;p&gt;
         There are three different styles of notifications:
     &lt;/p&gt;
@@ -570,7 +635,7 @@
                           <meta itemprop="programmingLanguage" content="javascript" />
                           <span itemprop="targetProduct" itemscope itemtype="http://schema.org/SoftwareApplication">
                             <meta itemprop="name" content="KiUI" />
-                            <link itemprop="downloadUrl" href="../kiui-0.0.4.zip" />
+                            <link itemprop="downloadUrl" href="../kiui-0.0.5.zip" />
                             <meta itemprop="fileFormat" content="application/zip" />
                             <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
                           </span>
@@ -721,6 +786,32 @@
   
   $(&#x27;#utilities_notify_demo button#top-right-positioning&#x27;).click(topRightNotification);
 
+  var topNotifier = kiui.notifier({
+    position: &quot;top&quot;
+  });
+
+  var bottomNotifier = kiui.notifier({
+    position: &quot;bottom&quot;
+  });
+
+  function topNotification() {
+    topNotifier.info({
+      title: &quot;Top positioning&quot;,
+      content: &quot;This notification is screen-wide and positioned at the top of the screen&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#top-positioning&#x27;).click(topNotification);
+
+  function bottomNotification() {
+    bottomNotifier.success({
+      title: &quot;Bottom positioning&quot;,
+      content: &quot;This notification is screen-wide and positioned at the bottom of the screen&quot;
+    });
+  }
+  
+  $(&#x27;#utilities_notify_demo button#bottom-positioning&#x27;).click(bottomNotification);
+
 });
 </code></pre>
                         </div>
@@ -742,7 +833,7 @@
     <footer>
       <p>Powered by <a href="http://www.kendoui.com/web.aspx" target="_blank">Kendo UI Web</a></p>
       <p>Project on GitHub <a href="https://github.com/redaemn/KiUI" target="_blank">https://github.com/redaemn/KiUI</a></p>
-      <p>This software is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">GNU General Public License (GPL) version 3</a></p>
+      <p>This software is licensed under <a href="https://github.com/redaemn/KiUI/blob/master/LICENSE" target="_blank">The MIT License (MIT)</a></p>
     </footer>
 
   </div><!--/.fluid-container-->

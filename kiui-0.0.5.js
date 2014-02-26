@@ -1,10 +1,10 @@
 /*
- * KiUI v0.0.4 (https://github.com/redaemn/KiUI)
- * 2013-11-01
- * Author: https://github.com/redaemn/KiUI/graphs/contributors
+ * KiUI v0.0.5 [https://github.com/redaemn/KiUI]
+ * 2014-02-26
  *
- * This software is licensed under the GNU General Public License (GPL) version 3
- * http://www.gnu.org/copyleft/gpl.html
+ * This software is licensed under The MIT License (MIT)
+ * Copyright (c) 2014 Gabriele Rabbiosi [https://plus.google.com/+GabrieleRabbiosi/]
+ * [https://github.com/redaemn/KiUI/blob/master/LICENSE]
  */
 
 /**
@@ -101,6 +101,44 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
 })(window.jQuery, window.kendo);
 
 /**
+ * Add kendo binder that makes it possible to bind a loader overlay on a DOM element to a boolean value
+ */
+
+(function ($, kendo, undefined) {
+
+kendo.data.binders.loader = kendo.data.Binder.extend({
+
+  init: function (element, bindings, options) {
+    //call the base constructor
+    kendo.data.Binder.fn.init.call(this, element, bindings, options);
+
+    element = $(this.element);
+
+    var position = element.css('position');
+
+    if (position !== 'relative' && position !== 'absolute') {
+      element.css('position', 'relative');
+    }
+  },
+
+  refresh: function () {
+    var that = this,
+      element = $(this.element),
+      value = that.bindings.loader.get(); //get the value from the View-Model
+
+    if (value) {
+      kendo.ui.progress(element, true);
+    }
+    else {
+      kendo.ui.progress(element, false);
+    }
+  }
+
+});
+
+})(window.jQuery, window.kendo);
+
+/**
  *
  */
  
@@ -151,11 +189,14 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
       element = that.element;
       options = that.options;
 
-      positions = /^([^-]+)-(.+)$/.exec(options.position);
+      positions = /^([^-]+)(-(.+))?$/.exec(options.position);
       element
         .addClass(KIUI_NOTIFIER)
-        .addClass(KIUI_POSITION + positions[1])
-        .addClass(KIUI_POSITION + positions[2]);
+        .addClass(KIUI_POSITION + positions[1]);
+
+      if (positions[3]) {
+        element.addClass(KIUI_POSITION + positions[3]);
+      }
         
       $(window).on("resize" + NS, PROXY(that._setNotificationsPosition, that));
       
@@ -191,12 +232,33 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
         }
         
         if (idx > 0 && currentVertical + height > maxVertical - margin) {
-          currentVertical = margin;
-          currentHorizontal += maxHorizontal + margin;
-          maxHorizontal = 0;
+          if (position !== TOP && position !== BOTTOM) {
+            currentVertical = margin;
+            currentHorizontal += maxHorizontal + margin;
+            maxHorizontal = 0;
+          }
+          else {
+            currentVertical = maxVertical + margin;
+          }
         }
         
-        if (position == TOP_RIGHT) {
+        if (position == TOP) {
+          notification.setPosition({
+            top: currentVertical,
+            right: margin,
+            left: margin,
+            width: 'auto'
+          });
+        }
+        else if (position == BOTTOM) {
+          notification.setPosition({
+            bottom: currentVertical,
+            right: margin,
+            left: margin,
+            width: 'auto'
+          });
+        }
+        else if (position == TOP_RIGHT) {
           notification.setPosition({
             top: currentVertical,
             right: currentHorizontal
@@ -489,6 +551,8 @@ kendo.data.binders.boolValue = kendo.data.Binder.extend({
     
     isInvalidPosition = (
       !options.position || (
+        options.position !== TOP &&
+        options.position !== BOTTOM &&
         options.position !== TOP_RIGHT &&
         options.position !== TOP_LEFT &&
         options.position !== BOTTOM_RIGHT &&

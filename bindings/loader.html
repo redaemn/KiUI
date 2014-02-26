@@ -5,8 +5,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>KiUI Bool Value Binding: boolean value binding for radio buttons in Kendo UI Web</title>
-  <meta name="description" content="KiUI Bool Value is a Kendo UI Web custom binding that allows you to bind a radio buttons control with a boolean variable in the view model.">
+  <title>KiUI Loader Binding: automatically show or hide a loader on a DOM element in Kendo UI Web</title>
+  <meta name="description" content="KiUI Loader is a Kendo UI Web custom binding that allows you to bind a loader overlay on a DOM element with a boolean variable in the view model.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -67,9 +67,9 @@
                 <ul class="dropdown-menu">
                   
                     
-                    <li  class="disabled" >
+                    <li >
                       
-                        <a href="#">
+                        <a href="../bindings/bool-value.html">
                       
                       
                         Bool Value
@@ -80,9 +80,9 @@
                     </li>
                   
                     
-                    <li >
+                    <li  class="disabled" >
                       
-                        <a href="../bindings/loader.html">
+                        <a href="#">
                       
                       
                         Loader
@@ -218,14 +218,16 @@
               <h1>Bindings</h1>
             </div>
 
-              <section id="bindings-bool-value">
+              <section id="bindings-loader">
 
                 <div class="row-fluid section-header">
                   <div class="span12">
                     <span class="feature-name-container">
                       <h2 class="feature-name">
-                        Bool Value
+                        Loader
                       </h2>
+                      
+                        <span class="label label-important"><i class="icon-star"></i> New!</span>
                       
                       
                     </span>
@@ -239,33 +241,26 @@
                 <div class="row-fluid">
                   
                     <div class="span6">
-                      <div id="bindings_boolValue_demo">
+                      <div id="bindings_loader_demo">
     <div class="span7">
-        <form>
-            <label>Do you like <strong>KiUI</strong>?</label>
-
-            <label class="radio">
-                <input type="radio" name="boolValue_demo" value="true" data-bind="boolValue: likeKiui" />
-                Yes <span class="help-inline">(Be sure to check this one!! ;-)</span>
-            </label>
-
-            <label class="radio">
-                <input type="radio" name="boolValue_demo" value="false" data-bind="boolValue: likeKiui" />
-                No
-            </label>
-
-            <label class="radio">
-                <input type="radio" name="boolValue_demo" value="null" data-bind="boolValue: likeKiui" />
-                Don't know
-            </label>
-        </form>
+        <div class="alert alert-info" data-bind="loader: ongoingOperation">
+            <p>
+                <strong>Try clicking the button below!</strong>
+            </p>
+            <p>
+                A loader overlay will appear over this &lt;div&gt; element until the async operation is completed.
+            </p>
+            <p>
+                <button class="btn" data-bind="click: startAsyncOperation">Start async operation</button>
+            </p>
+        </div>
     </div>
 
     <div class="span5">
         <h5>Current view-model state:</h5>
         <pre>
 {
-    likeKiui: <span data-bind="text: likeKiuiText()"></span>
+    ongoingOperation: <span data-bind="text: ongoingOperationText()"></span>
 }</pre>
     </div>
 
@@ -274,25 +269,38 @@
   var viewModel;
 
   viewModel = kendo.observable({
-    likeKiui: null,
-    likeKiuiText: function() {
-      return kendo.stringify(this.get('likeKiui'));
+    ongoingOperation: false,
+
+    startAsyncOperation: function() {
+      var that = this;
+
+      this.set('ongoingOperation', true);
+
+      // fake async operation
+      setTimeout(function() {
+        that.set('ongoingOperation', false);
+      }, 3000);
+    },
+    
+    ongoingOperationText: function() {
+      return kendo.stringify(this.get('ongoingOperation'));
     }
   });
 
-  kendo.bind($('#bindings_boolValue_demo'), viewModel);
+  kendo.bind($('#bindings_loader_demo'), viewModel);
 
 });
 </script>
                     </div><!--/span-->
                     <div class="span6">
                       <p>
-    The <code>boolValue</code> binding can be used to bind a radio buttons control with a boolean variable in the view
-    model.
+    The <code>loader</code> binding can be used to automatically show or hide a
+    loader overlay on a DOM element based on the value of a boolean property
+    defined in the view model.
 </p>
 
 <p>
-    It's able to support three different values: <code>true</code>, <code>false</code> and <code>null</code>.
+    It's useful when you need to notify the user of an ongoing asynchronous operation.
 </p>
 
                     </div><!--/span-->
@@ -303,11 +311,11 @@
                   <div class="row-fluid">
                     <div class="span12">
                       <ul class="nav nav-tabs">
-                        <li class="active"><a href="#bindings-bool-value-html" data-toggle="tab">Html</a></li>
-                        <li><a href="#bindings-bool-value-js" data-toggle="tab">Javascript</a></li>
+                        <li class="active"><a href="#bindings-loader-html" data-toggle="tab">Html</a></li>
+                        <li><a href="#bindings-loader-js" data-toggle="tab">Javascript</a></li>
                       </ul>
                       <div class="tab-content">
-                        <div class="tab-pane active" id="bindings-bool-value-html" itemscope itemtype="http://schema.org/Code">
+                        <div class="tab-pane active" id="bindings-loader-html" itemscope itemtype="http://schema.org/Code">
                           <link itemprop="codeRepository" href="https://github.com/redaemn/KiUI" />
                           <meta itemprop="sampleType" content="code snippet" />
                           <meta itemprop="programmingLanguage" content="html" />
@@ -317,39 +325,32 @@
                             <meta itemprop="fileFormat" content="application/zip" />
                             <link itemprop="requirements" href="http://www.kendoui.com/web.aspx" />
                           </span>
-                          <pre><code data-language="html">&lt;div id=&quot;bindings_boolValue_demo&quot;&gt;
+                          <pre><code data-language="html">&lt;div id=&quot;bindings_loader_demo&quot;&gt;
     &lt;div class=&quot;span7&quot;&gt;
-        &lt;form&gt;
-            &lt;label&gt;Do you like &lt;strong&gt;KiUI&lt;/strong&gt;?&lt;/label&gt;
-
-            &lt;label class=&quot;radio&quot;&gt;
-                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;true&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-                Yes &lt;span class=&quot;help-inline&quot;&gt;(Be sure to check this one!! ;-)&lt;/span&gt;
-            &lt;/label&gt;
-
-            &lt;label class=&quot;radio&quot;&gt;
-                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;false&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-                No
-            &lt;/label&gt;
-
-            &lt;label class=&quot;radio&quot;&gt;
-                &lt;input type=&quot;radio&quot; name=&quot;boolValue_demo&quot; value=&quot;null&quot; data-bind=&quot;boolValue: likeKiui&quot; /&gt;
-                Don&#x27;t know
-            &lt;/label&gt;
-        &lt;/form&gt;
+        &lt;div class=&quot;alert alert-info&quot; data-bind=&quot;loader: ongoingOperation&quot;&gt;
+            &lt;p&gt;
+                &lt;strong&gt;Try clicking the button below!&lt;/strong&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+                A loader overlay will appear over this &amp;lt;div&amp;gt; element until the async operation is completed.
+            &lt;/p&gt;
+            &lt;p&gt;
+                &lt;button class=&quot;btn&quot; data-bind=&quot;click: startAsyncOperation&quot;&gt;Start async operation&lt;/button&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;span5&quot;&gt;
         &lt;h5&gt;Current view-model state:&lt;/h5&gt;
         &lt;pre&gt;
 {
-    likeKiui: &lt;span data-bind=&quot;text: likeKiuiText()&quot;&gt;&lt;/span&gt;
+    ongoingOperation: &lt;span data-bind=&quot;text: ongoingOperationText()&quot;&gt;&lt;/span&gt;
 }&lt;/pre&gt;
     &lt;/div&gt;
 
 &lt;/div&gt;</code></pre>
                         </div>
-                        <div class="tab-pane" id="bindings-bool-value-js" itemscope itemtype="http://schema.org/Code">
+                        <div class="tab-pane" id="bindings-loader-js" itemscope itemtype="http://schema.org/Code">
                           <link itemprop="codeRepository" href="https://github.com/redaemn/KiUI" />
                           <meta itemprop="sampleType" content="code snippet" />
                           <meta itemprop="programmingLanguage" content="javascript" />
@@ -363,13 +364,25 @@
   var viewModel;
 
   viewModel = kendo.observable({
-    likeKiui: null,
-    likeKiuiText: function() {
-      return kendo.stringify(this.get(&#x27;likeKiui&#x27;));
+    ongoingOperation: false,
+
+    startAsyncOperation: function() {
+      var that = this;
+
+      this.set(&#x27;ongoingOperation&#x27;, true);
+
+      // fake async operation
+      setTimeout(function() {
+        that.set(&#x27;ongoingOperation&#x27;, false);
+      }, 3000);
+    },
+    
+    ongoingOperationText: function() {
+      return kendo.stringify(this.get(&#x27;ongoingOperation&#x27;));
     }
   });
 
-  kendo.bind($(&#x27;#bindings_boolValue_demo&#x27;), viewModel);
+  kendo.bind($(&#x27;#bindings_loader_demo&#x27;), viewModel);
 
 });
 </code></pre>
