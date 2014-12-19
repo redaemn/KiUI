@@ -10,7 +10,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'lib/jquery.min.js',
-      'lib/kendo.web.min.js',
+      'lib/kendo.ui.core.min.js',
       'lib/kendo.culture.it-IT.min.js',
       'src/core.js',
       'src/**/*.js',
