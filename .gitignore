@@ -1,5 +1,6 @@
 .idea/
 .c9revisions/
+.c9/
 node_modules/
 dist/
 coverage/
